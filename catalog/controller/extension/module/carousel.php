@@ -19,7 +19,7 @@ class ControllerExtensionModuleCarousel extends Controller {
 				$data['banners'][] = array(
 					'title' => $result['title'],
 					'link'  => $result['link'],
-					'button' => $result['button'],
+					'button' => $result['button'] ?? '',
 					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}

@@ -19,8 +19,8 @@ class ControllerExtensionModuleSlideshow extends Controller {
 				$data['banners'][] = array(
 					'title' =>  html_entity_decode($result['title'],  ENT_QUOTES, 'UTF-8'),
 					'link'  => $result['link'],
-					'button' => $result['button'],
-					'description' => $result['description'],
+					'button' => $result['button'] ?? '',
+					'description' => $result['description'] ?? '',
 					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}

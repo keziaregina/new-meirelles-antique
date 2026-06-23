@@ -1,3 +1,68 @@
 2026-06-19 8:05:59 - PHP Unknown:  Creation of dynamic property Request::$request is deprecated in /home/user/projects/New-Meirelles/system/library/request.php on line 26
 2026-06-19 8:05:59 - PHP Unknown:  Return type of Twig\Node\Node::count() should either be compatible with Countable::count(): int, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/user/projects/New-Meirelles/system/storage/vendor/twig/twig/src/Node/Node.php on line 161
 2026-06-19 8:05:59 - PHP Unknown:  Return type of Twig\Node\Node::getIterator() should either be compatible with IteratorAggregate::getIterator(): Traversable, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/user/projects/New-Meirelles/system/storage/vendor/twig/twig/src/Node/Node.php on line 166
+2026-06-22 14:24:34 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:24:34 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:24:46 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:24:46 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:24:52 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:24:52 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:26:38 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 14:26:38 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 23
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 23
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:46:42 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 23
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/catalog/controller/extension/module/slideshow.php on line 23
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 4:47:30 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 5:02:08 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/catalog/controller/extension/module/carousel.php on line 22
+2026-06-22 6:00:25 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:00:25 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 6:00:25 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:00:25 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 6:01:11 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:01:11 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 6:01:11 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:01:11 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 6:05:07 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:05:07 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 6:05:07 - PHP Notice:  Undefined index: description in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 91
+2026-06-22 6:05:07 - PHP Notice:  Undefined index: button in /home/user/projects/New-Meirelles/admin/model/design/banner.php on line 92
+2026-06-22 19:18:06 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 19:18:06 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 19:18:06 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
+2026-06-22 19:18:06 - PHP Notice:  Trying to access array offset on value of type null in /home/user/projects/New-Meirelles/catalog/controller/common/footer.php on line 5
