@@ -278,3 +278,49 @@ footer h5, #footer .social-block ul li a {
         margin-top: 4px;
     }
 }
+
+.newsletter {
+    text-align: center;
+}
+
+.news-left {
+    width: 100%;
+}
+
+.news-left .contact-info {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 2;
+    color: #fff;
+}
+
+.news-left .contact-info,
+.news-left .contact-info * {
+    color: #fff !important;
+}
+
+.news-left .contact-info p {
+    margin: 0 0 12px;
+}
+
+.news-left .contact-info strong {
+    font-weight: 600;
+}
+
+.subscribe-wrap {
+    margin-top: 25px;
+}
+
+.subscribe-wrap .btn {
+    min-width: 180px;
+    padding: 12px 30px;
+}
+
+.newsletter .btn.btn-lg {
+    position: unset;
+    background: var(--primary-color);
+}
+
+.newsletter .btn.btn-lg:hover {
+    background: #500c03;
+}
