@@ -4,6 +4,57 @@
     --secondary-color: #ab837e;
 }
 
+@font-face {
+    font-family: 'RomanSerif';
+    src: url('../fonts/RomanSerif.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RomanSerif';
+    src: url('../fonts/RomanSerif-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+body {
+    font-family: 'RomanSerif', serif;
+}
+
+.wd-menu ul li > .a-top-link {
+    font: 500 14px / 24px 'RomanSerif', serif !important;
+    font-weight: 700 !important;
+}
+
+.cart_detail .cart_heading {
+    font: 500 12px / 12px 'RomanSerif', serif;
+}
+
+.slider-title {
+    font-family: 'RomanSerif', serif;
+}
+
+#wdcmsservice .wdservice .service-title {
+    font: 500 24px / 28px 'RomanSerif', serif;
+}
+
+#wdcmsservice .wdservice .service-desc, #wdcmstopbanner .top-desc, #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p, #wdcmsbottombanner .bottom-desc {
+    font: 400 14px / 24px 'RomanSerif', serif;
+}
+
+#wdcmstopbanner .box-heading {
+    font: 500 54px / 60px 'RomanSerif', serif;
+}
+
+#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading, #wdcmstestimonial .box-heading, .product-thumb h4 {
+    font-family: 'RomanSerif', serif;
+}
+
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
+    font: 600 22px / 22px 'RomanSerif', serif;
+}
+
 /* html {
     background: var(--primary-bg);
 } */
@@ -81,9 +132,13 @@
     color: #c6bb99;
 }
 
-/* .hometab .row, .ProductbyCategory .row, .featured .row, .product-block .product-details, #content .product-carousel .product-block, #content .product-grid .product-block, #content .box-product .product-block {
-    background-color: var(--primary-bg);
-} */
+#wdcmstestimonial {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+    ),
+    url(../image/webdigify/Edited-Banner-image-01.png);
+}
 
 #content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading {
     color: var(--primary-color);
@@ -137,6 +192,7 @@ footer h5, #footer .social-block ul li a {
     margin-bottom: 40px;
     color: #222;
     text-transform: uppercase;
+    font: 500 54px / 60px 'RomanSerif', serif;
 }
 
 /* General text */
