@@ -237,7 +237,11 @@ class ControllerExtensionModuleWebdigifytabs extends Controller {
 				);
 			}
 		}
-	
+
+		// hardcode for hide this button
+		$data['bestsellersproducts'] = '';
+		$data['specialproducts'] = '';
+		
 			return $this->load->view('extension/module/webdigifytabs', $data); 
 	}
 }

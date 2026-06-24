@@ -1,6 +1,6 @@
 <?php
 // Heading 
-$_['heading_title'] = 'Trending Products';
+$_['heading_title'] = 'Noteworthy Pieces';
 $_['heading_subtitle'] = 'Our Products';
 $_['heading_desc'] = 'Branded collections';
 

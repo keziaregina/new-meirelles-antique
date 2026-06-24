@@ -1,0 +1,224 @@
+:root {
+    --primary-bg: #fff;
+    --primary-color: #69251c;
+    --secondary-color: #ab837e;
+}
+
+/* html {
+    background: var(--primary-bg);
+} */
+
+/* .content-top, .content-bottom {
+    background-color: var(--primary-bg);
+} */
+
+.header-logo img {
+    height: 80px;
+}
+
+.col-sm-4.header-logo {
+    padding: 20px 0;
+}
+
+.wd-menu ul li > .a-top-link, .cart_detail .cart_heading, #cart .mycart, #cart-total, #cart .item-count {
+    color: var(--primary-color) !important;
+}
+
+/* =================================
+   Service Section
+================================= */
+
+#wdcmsservice .wdservice .service-title {
+    color: var(--primary-color);
+}
+
+#wdcmsservice .wdservice .service-desc {
+    color: var(--secondary-color);
+}
+
+#wdcmsservice .wd-enquire.wdservice .service-icon {
+	background-position: center;
+    background-image: url(../image/webdigify/text-chat.png);
+}
+
+#wdcmsservice .wd-antique.wdservice .service-icon {
+	background-position: center;
+    background-image: url(../image/webdigify/antique.png);
+}
+
+#wdcmsservice .wd-global.wdservice .service-icon {
+	background-position: center;
+    background-image: url(../image/webdigify/distribution.png);
+}
+
+#wdcmsservice .wd-collection.wdservice .service-icon {
+	background-position: center;
+    background-image: url(../image/webdigify/reload.png);
+}
+
+#wdcmsservice .wd-decade.wdservice .service-icon {
+	background-position: center;
+    background-image: url(../image/webdigify/badge.png);
+}
+
+#wdcmstopbanner .box-heading {
+    color: var(--primary-color);
+}
+/* 
+#wdcmstopbanner .top-desc {
+    color: var(--secondary-color);
+} */
+
+.topbanner-btn.btn {
+    background: var(--primary-color);
+}
+
+.topbanner-btn.btn:hover {
+    background: #500c03;
+}
+
+.top-image-bg {
+    color: #c6bb99;
+}
+
+/* .hometab .row, .ProductbyCategory .row, .featured .row, .product-block .product-details, #content .product-carousel .product-block, #content .product-grid .product-block, #content .box-product .product-block {
+    background-color: var(--primary-bg);
+} */
+
+#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading {
+    color: var(--primary-color);
+}
+
+.bottombanner-btn.btn {
+    background: var(--primary-color);
+}
+
+.bottombanner-btn.btn:hover {
+    background: #500c03;
+}
+
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+    background: var(--primary-color);
+}
+
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a:hover {
+    background: #500c03;
+}
+
+#wdcmsbottombanner .bottom-content {
+    text-align: left;
+}
+
+#footer, .bottomfooter, .common-home .header_top.fixed {
+    background: var(--primary-bg);
+}
+
+footer h5, #footer .social-block ul li a {
+    color: var(--primary-color);
+}
+
+#content ul.list-unstyled li a, .footer-blocks .footerleft .contact-block span {
+    color: var(--secondary-color);
+}
+
+.pull-left #form-currency .btn-group span {
+    color: #999;
+}
+
+/* =================================
+   Appointment Section
+================================= */
+
+/* Heading */
+#wdcmsbottombanner .box-heading{
+    font-size: 58px;
+    line-height: 1.15;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #222;
+    text-transform: uppercase;
+}
+
+/* General text */
+#wdcmsbottombanner .bottom-desc{
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+#wdcmsbottombanner .bottom-desc p{
+    margin: 0 0 15px;
+    text-transform: none;
+}
+
+/* Appointment box */
+#wdcmsbottombanner .appointment-box{
+    background: #f5f8ff;
+    border-left: 4px solid #1f45ff;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+#wdcmsbottombanner .appointment-box h4{
+    margin: 0 0 10px;
+    color: #1f45ff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Opening hours */
+#wdcmsbottombanner .opening-hours{
+    margin-bottom: 30px;
+}
+
+#wdcmsbottombanner .opening-hours h4,
+#wdcmsbottombanner .warehouse-box h4{
+    margin-bottom: 15px;
+    color: #222;
+    font-size: 22px;
+}
+
+#wdcmsbottombanner .hours-row{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+#wdcmsbottombanner .hours-note{
+    margin: 10px 0;
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
+
+/* Warehouse box */
+#wdcmsbottombanner .warehouse-box{
+    background: #fafafa;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+/* Image */
+#wdcmsbottombanner .bottom-image img{
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Mobile */
+@media(max-width:767px){
+
+    #wdcmsbottombanner .box-heading{
+        font-size: 38px;
+    }
+
+    #wdcmsbottombanner .hours-row{
+        display: block;
+    }
+
+    #wdcmsbottombanner .hours-row strong{
+        display: block;
+        margin-top: 4px;
+    }
+}
