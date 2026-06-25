@@ -44,7 +44,7 @@ class ControllerCommonFooter extends Controller {
 		$data['currency'] = $this->load->controller('common/currency');
 		
 
-		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
+		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()), 'ABN 86 357 310 031');
 		
 		$data['footerleft'] = $this->load->controller('common/footerleft');
 		$data['footertop'] = $this->load->controller('common/footertop');
