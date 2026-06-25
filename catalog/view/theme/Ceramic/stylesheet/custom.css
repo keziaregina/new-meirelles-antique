@@ -164,7 +164,7 @@ body {
     text-align: left;
 }
 
-#footer, .bottomfooter, .common-home .header_top.fixed {
+#footer, .bottomfooter, .common-home .header_top.fixed, .header_top {
     background: var(--primary-bg);
 }
 
