@@ -55,14 +55,6 @@ body {
     font: 600 22px / 22px 'RomanSerif', serif;
 }
 
-/* html {
-    background: var(--primary-bg);
-} */
-
-/* .content-top, .content-bottom {
-    background-color: var(--primary-bg);
-} */
-
 .header-logo img {
     height: 80px;
 }
@@ -71,8 +63,24 @@ body {
     padding: 20px 0;
 }
 
+.cart_image {
+    background-image: url(../image/webdigify/cart-2.svg);
+}
+
+.myaccount > a {
+    background-image: url(../image/webdigify/user-2.svg);
+}
+
+#search .search_button {
+    background-image: url(../image/webdigify/search-2.svg);
+}
+
 .wd-menu ul li > .a-top-link, .cart_detail .cart_heading, #cart .mycart, #cart-total, #cart .item-count {
     color: var(--primary-color) !important;
+}
+
+.slider-title {
+    color: var(--primary-color);
 }
 
 /* =================================
@@ -140,7 +148,7 @@ body {
     url(../image/webdigify/Edited-Banner-image-01.png);
 }
 
-#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading {
+#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading, #wdcmsbottombanner .box-heading, .news-left .news-title {
     color: var(--primary-color);
 }
 
@@ -190,7 +198,6 @@ footer h5, #footer .social-block ul li a {
     line-height: 1.15;
     font-weight: 400;
     margin-bottom: 40px;
-    color: #222;
     text-transform: uppercase;
     font: 500 54px / 60px 'RomanSerif', serif;
 }
