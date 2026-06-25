@@ -2,6 +2,7 @@
     --primary-bg: #fff;
     --primary-color: #69251c;
     --secondary-color: #ab837e;
+    --hover-color: #500c03;
 }
 
 @font-face {
@@ -133,7 +134,7 @@ body {
 }
 
 .topbanner-btn.btn:hover {
-    background: #500c03;
+    background: var(--hover-color);
 }
 
 .top-image-bg {
@@ -157,7 +158,7 @@ body {
 }
 
 .bottombanner-btn.btn:hover {
-    background: #500c03;
+    background: var(--hover-color);
 }
 
 #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
@@ -165,7 +166,7 @@ body {
 }
 
 #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a:hover {
-    background: #500c03;
+    background: var(--hover-color);
 }
 
 #wdcmsbottombanner .bottom-content {
@@ -329,5 +330,130 @@ footer h5, #footer .social-block ul li a {
 }
 
 .newsletter .btn.btn-lg:hover {
-    background: #500c03;
+    background: var(--hover-color);
+}
+
+
+.enquiry-modal .modal-dialog {
+    width: 800px;
+    max-width: 95%;
+}
+
+.enquiry-modal .modal-content {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.enquiry-modal .modal-header {
+    border-bottom: none;
+    padding: 30px 35px 10px;
+    background: var(--primary-bg);
+}
+
+.enquiry-header{
+    background: #333;
+    border-bottom: 0;
+    padding: 20px 35px;
+    position: relative;
+    min-height: 90px;
+}
+
+.enquiry-header .modal-title{
+    margin: 0;
+    line-height: 1.2;
+    font-size: 48px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    color: #a97445;
+}
+
+.enquiry-header .close{
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    color: #fff;
+    opacity: 1;
+    font-size: 42px;
+    font-weight: 300;
+    text-shadow: none;
+}
+
+.enquiry-header .close:hover{
+    opacity: .8;
+}
+.enquiry-modal .modal-title {
+    font-size: 42px;
+    font-family: Georgia, serif;
+    color: var(--primary-color);
+    font-weight: normal;
+}
+
+.enquiry-modal .close {
+    font-size: 28px;
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+.enquiry-modal .modal-body {
+    padding: 10px 35px 35px;
+}
+
+.form-section-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.enquiry-modal label {
+    font-weight: normal;
+    color: var(--primary-color);
+}
+
+.required {
+    color: #999;
+    font-size: 12px;
+    margin-left: 3px;
+}
+
+.enquiry-modal .form-control {
+    border: 1px solid var(--primary-color);
+    border-radius: 0;
+    box-shadow: none;
+    height: 38px;
+}
+
+.enquiry-modal textarea.form-control {
+    height: 120px;
+    resize: vertical;
+}
+
+.checkbox-inline,
+.checkbox-block {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.checkbox-block {
+    display: block;
+}
+
+.btn-submit {
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+    background: var(--hover-color) !important;
+    color: #fff;
+}
+
+.field-group {
+    margin-bottom: 20px;
 }
