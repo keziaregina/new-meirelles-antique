@@ -457,3 +457,8 @@ footer h5, #footer .social-block ul li a {
 .field-group {
     margin-bottom: 20px;
 }
+
+.form-group.qty #button-enquiry {
+    padding: 10px 10px 10px 10px;
+    margin: 0 0 0 10px;
+}
