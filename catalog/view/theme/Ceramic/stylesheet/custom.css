@@ -471,3 +471,16 @@ footer h5, #footer .social-block ul li a {
     background: var(--primary-color);
     border-color: var(--primary-color);
 }
+
+.productpage .description {
+    border-top: none;
+}
+
+.productpage .rating-wrapper, .quickview .rating-wrapper {
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+#tab-description, #tab-specification {
+    font-size: 15px;
+}
