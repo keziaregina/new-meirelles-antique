@@ -153,6 +153,10 @@ body {
     color: var(--primary-color);
 }
 
+.product-block button.cart_button:hover {
+    background: var(--hover-color);
+}
+
 .bottombanner-btn.btn {
     background: var(--primary-color);
 }
@@ -161,7 +165,7 @@ body {
     background: var(--hover-color);
 }
 
-#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a, .product-block button.cart_button {
     background: var(--primary-color);
 }
 
@@ -461,4 +465,9 @@ footer h5, #footer .social-block ul li a {
 .form-group.qty #button-enquiry {
     padding: 10px 10px 10px 10px;
     margin: 0 0 0 10px;
+}
+
+.htabs a.selected {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
 }
