@@ -457,6 +457,22 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
+			if (!empty($product_info['_dimensions'])) {
+				$data['attribute_groups'][0]['attribute'][] = [
+					'attribute_id' => 0,
+					'name'         => 'Dimension',
+					'text'         => $product_info['_dimensions']
+				];
+			}
+
+			if (!empty($product_info['_condition_report'])) {
+				$data['attribute_groups'][0]['attribute'][] = [
+					'attribute_id' => 0,
+					'name'         => 'Condition Report',
+					'text'         => $product_info['_condition_report']
+				];
+			}
+
 			$data['tags'] = array();
 
                           // check live price update for option module is enable or not

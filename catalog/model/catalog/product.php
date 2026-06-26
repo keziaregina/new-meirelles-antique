@@ -91,7 +91,9 @@ class ModelCatalogProduct extends Model {
 				'date_added'       => $query->row['date_added'],
 				'date_modified'    => $query->row['date_modified'],
 				'viewed'           => $query->row['viewed'],
-				'special_end'      => $query->row['special_end']
+				'special_end'      => $query->row['special_end'],
+				'_dimensions'		=> $query->row['_dimensions'],
+				'_condition_report'	=> $query->row['_condition_report'],
 			);
 		} else {
 			return false;
