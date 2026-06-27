@@ -803,6 +803,22 @@ class ControllerCatalogProduct extends Controller {
 			$data['weight_class_id'] = $this->config->get('config_weight_class_id');
 		}
 
+		if (isset($this->request->post['_dimensions'])) {
+			$data['_dimensions'] = $this->request->post['_dimensions'];
+		} elseif (!empty($product_info)) {
+			$data['_dimensions'] = $product_info['_dimensions'];
+		} else {
+			$data['_dimensions'] = '';
+		}
+
+		if (isset($this->request->post['_condition_report'])) {
+			$data['_condition_report'] = $this->request->post['_condition_report'];
+		} elseif (!empty($product_info)) {
+			$data['_condition_report'] = $product_info['_condition_report'];
+		} else {
+			$data['_condition_report'] = '';
+		}
+
 		if (isset($this->request->post['length'])) {
 			$data['length'] = $this->request->post['length'];
 		} elseif (!empty($product_info)) {
