@@ -456,21 +456,15 @@ class ControllerProductProduct extends Controller {
 					$this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),
 				);
 			}
-
+			
+			$data['_dimensions'] = '';
 			if (!empty($product_info['_dimensions'])) {
-				$data['attribute_groups'][0]['attribute'][] = [
-					'attribute_id' => 0,
-					'name'         => 'Dimension',
-					'text'         => $product_info['_dimensions']
-				];
+				$data['_dimensions'] = $product_info['_dimensions'];
 			}
 
+			$data['_condition_report'] = '';
 			if (!empty($product_info['_condition_report'])) {
-				$data['attribute_groups'][0]['attribute'][] = [
-					'attribute_id' => 0,
-					'name'         => 'Condition Report',
-					'text'         => $product_info['_condition_report']
-				];
+				$data['_condition_report'] = $product_info['_condition_report'];
 			}
 
 			$data['tags'] = array();
