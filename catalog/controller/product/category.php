@@ -9,6 +9,12 @@ class ControllerProductCategory extends Controller {
 
 		$this->load->model('tool/image');
 
+		if (isset($this->request->get['sold'])) {	// 0: available, 1: sold, 2: all
+			$sold = $this->request->get['sold'];
+		} else {
+			$sold = 0;
+		}
+
 		if (isset($this->request->get['filter'])) {
 			$filter = $this->request->get['filter'];
 		} else {
@@ -39,6 +45,8 @@ class ControllerProductCategory extends Controller {
 			$limit = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit');
 		}
 
+		$data['filter_sold'] = $sold;
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -59,6 +67,10 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['sold'])) {
+				$url .= '&sold=' . $this->request->get['sold'];
 			}
 
 			$path = '';
@@ -160,13 +172,25 @@ class ControllerProductCategory extends Controller {
 
 			$data['products'] = array();
 
+			if($sold == 1){	//get sold product
+				$filter_stock_status_custom = 'sold';
+				$data['navigate_url'] = $this->url->link('product/category', 'path=' . $this->request->get['path']);
+				$data['navigate_string'] = 'View available items in this category';
+			}
+			else{	//get available product
+				$filter_stock_status_custom = 'available';
+				// $data['navigate_url'] = $this->url->link('product/category', 'path=' . $this->request->get['path']. '&sold=1');
+				// $data['navigate_string'] = 'View sold items in this category';
+			}
+
 			$filter_data = array(
 				'filter_category_id' => $category_id,
 				'filter_filter'      => $filter,
 				'sort'               => $sort,
 				'order'              => $order,
 				'start'              => ($page - 1) * $limit,
-				'limit'              => $limit
+				'limit'              => $limit,
+				'filter_stock_status_custom'=>$filter_stock_status_custom,
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);

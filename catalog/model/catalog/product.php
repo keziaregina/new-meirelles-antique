@@ -197,6 +197,14 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+		if (!empty($data['filter_stock_status_custom'])) {
+			if($data['filter_stock_status_custom'] == 'sold')
+				$sql .= " AND p._stock_status_custom = 'sold'";
+			
+			else if($data['filter_stock_status_custom'] == 'available')
+				$sql .= " AND p._stock_status_custom != 'sold'";
+		}
+
 		$sql .= " GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -552,6 +560,14 @@ class ModelCatalogProduct extends Model {
 
 		if (!empty($data['filter_manufacturer_id'])) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
+		}
+
+		if (!empty($data['filter_stock_status_custom'])) {
+			if($data['filter_stock_status_custom'] == 'sold')
+				$sql .= " AND p._stock_status_custom = 'sold'";
+			
+			else if($data['filter_stock_status_custom'] == 'available')
+				$sql .= " AND p._stock_status_custom != 'sold'";
 		}
 
 		$query = $this->db->query($sql);
