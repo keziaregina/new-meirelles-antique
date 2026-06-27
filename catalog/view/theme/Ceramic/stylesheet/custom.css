@@ -185,8 +185,12 @@ footer h5, #footer .social-block ul li a {
     color: var(--primary-color);
 }
 
-#content ul.list-unstyled li a, .footer-blocks .footerleft .contact-block span {
+#content ul.list-unstyled li a, .footer-blocks .footerleft .contact-block span, #footer .column li a {
     color: var(--secondary-color);
+}
+
+#content ul.list-unstyled li a:hover, .footer-blocks .footerleft .contact-block span:hover, #footer .column li a:hover {
+    color: #9c7974;
 }
 
 .pull-left #form-currency .btn-group span {
