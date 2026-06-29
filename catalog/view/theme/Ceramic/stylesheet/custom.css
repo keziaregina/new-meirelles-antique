@@ -503,3 +503,69 @@ footer h5, #footer .social-block ul li a {
     width: 100%;
     display: block;
 }
+
+@media (max-width: 479px) {
+    #blog-carousel .owl-item {
+        width: 100% !important;
+    }   
+}
+
+@media (max-width: 768px) {
+    #blog-carousel .owl-wrapper {
+        width: 100% !important;
+    }
+
+    #blog-carousel .owl-item {
+        width: 50% !important;
+    }  
+}
+
+@media (max-width: 1024px) {
+    #blog-carousel .owl-wrapper {
+        width: 100% !important;
+    }
+
+    #blog-carousel .owl-item {
+        width: 50% !important;
+    }  
+}
+
+@media (max-width: 767px) {
+    #blog-carousel .owl-item {
+        width: 100% !important;
+    }
+
+    #blog-carousel .owl-wrapper {
+        width: 100% !important;
+    }
+
+    .col-sm-4.header-logo {
+        padding: 19px 0 20px 0px;
+        padding-inline-start: 35px;
+        right: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdcmstopbanner .box-heading {
+        font-size: 29px;
+        line-height: 33px;
+    }
+
+    #wdcmsbottombanner .box-heading {
+        font-size: 29px;
+        line-height: 33px;
+    }
+}
+
+@media (max-width: 479px) {
+    #wdcmstopbanner .box-heading {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    #wdcmsbottombanner .box-heading {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
