@@ -1,3 +1,6 @@
+/* =================================================
+   1. ROOT VARIABLES
+================================================= */
 :root {
     --primary-bg: #fff;
     --primary-color: #69251c;
@@ -5,6 +8,9 @@
     --hover-color: #500c03;
 }
 
+/* =================================================
+   2. FONTS
+================================================= */
 @font-face {
     font-family: 'RomanSerif';
     src: url('../fonts/RomanSerif.ttf') format('truetype');
@@ -40,7 +46,10 @@ body {
     font: 500 24px / 28px 'RomanSerif', serif;
 }
 
-#wdcmsservice .wdservice .service-desc, #wdcmstopbanner .top-desc, #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p, #wdcmsbottombanner .bottom-desc {
+#wdcmsservice .wdservice .service-desc,
+#wdcmstopbanner .top-desc,
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p,
+#wdcmsbottombanner .bottom-desc {
     font: 400 14px / 24px 'RomanSerif', serif;
 }
 
@@ -48,7 +57,12 @@ body {
     font: 500 54px / 60px 'RomanSerif', serif;
 }
 
-#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading, #wdcmstestimonial .box-heading, .product-thumb h4 {
+#content .box .box-heading,
+.box.related_prd .box-heading,
+.wd_category_feature .box-heading,
+#wdcmsparallax .box-heading,
+#wdcmstestimonial .box-heading,
+.product-thumb h4 {
     font-family: 'RomanSerif', serif;
 }
 
@@ -56,6 +70,9 @@ body {
     font: 600 22px / 22px 'RomanSerif', serif;
 }
 
+/* =================================================
+   3. HEADER
+================================================= */
 .header-logo img {
     height: 80px;
 }
@@ -76,7 +93,11 @@ body {
     background-image: url(../image/webdigify/search-2.svg);
 }
 
-.wd-menu ul li > .a-top-link, .cart_detail .cart_heading, #cart .mycart, #cart-total, #cart .item-count {
+.wd-menu ul li > .a-top-link,
+.cart_detail .cart_heading,
+#cart .mycart,
+#cart-total,
+#cart .item-count {
     color: var(--primary-color) !important;
 }
 
@@ -84,10 +105,9 @@ body {
     color: var(--primary-color);
 }
 
-/* =================================
-   Service Section
-================================= */
-
+/* =================================================
+   4. SERVICE SECTION
+================================================= */
 #wdcmsservice .wdservice .service-title {
     color: var(--primary-color);
 }
@@ -97,37 +117,42 @@ body {
 }
 
 #wdcmsservice .wd-enquire.wdservice .service-icon {
-	background-position: center;
+    background-position: center;
     background-image: url(../image/webdigify/text-chat.png);
 }
 
 #wdcmsservice .wd-antique.wdservice .service-icon {
-	background-position: center;
+    background-position: center;
     background-image: url(../image/webdigify/antique.png);
 }
 
 #wdcmsservice .wd-global.wdservice .service-icon {
-	background-position: center;
+    background-position: center;
     background-image: url(../image/webdigify/distribution.png);
 }
 
 #wdcmsservice .wd-collection.wdservice .service-icon {
-	background-position: center;
+    background-position: center;
     background-image: url(../image/webdigify/reload.png);
 }
 
 #wdcmsservice .wd-decade.wdservice .service-icon {
-	background-position: center;
+    background-position: center;
     background-image: url(../image/webdigify/badge.png);
 }
 
+/* =================================================
+   5. TOP BANNER
+================================================= */
 #wdcmstopbanner .box-heading {
     color: var(--primary-color);
 }
-/* 
+
+/*
 #wdcmstopbanner .top-desc {
     color: var(--secondary-color);
-} */
+}
+*/
 
 .topbanner-btn.btn {
     background: var(--primary-color);
@@ -141,6 +166,25 @@ body {
     color: #c6bb99;
 }
 
+#wdcmstopbanner .top-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#wdcmstopbanner .topbanner,
+#wdcmstopbanner .topcontent {
+    width: 50%;
+}
+
+#wdcmstopbanner .top-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =================================================
+   6. TESTIMONIAL
+================================================= */
 #wdcmstestimonial {
     background-image: linear-gradient(
         rgba(0, 0, 0, 0.4),
@@ -149,7 +193,15 @@ body {
     url(../image/webdigify/Edited-Banner-image-01.png);
 }
 
-#content .box .box-heading, .box.related_prd .box-heading, .wd_category_feature .box-heading, #wdcmsparallax .box-heading, #wdcmsbottombanner .box-heading, .news-left .news-title {
+/* =================================================
+   7. CONTENT BOX / RELATED PRODUCT / PARALLAX
+================================================= */
+#content .box .box-heading,
+.box.related_prd .box-heading,
+.wd_category_feature .box-heading,
+#wdcmsparallax .box-heading,
+#wdcmsbottombanner .box-heading,
+.news-left .news-title {
     color: var(--primary-color);
 }
 
@@ -157,6 +209,9 @@ body {
     background: var(--hover-color);
 }
 
+/* =================================================
+   8. BOTTOM BANNER / APPOINTMENT SECTION
+================================================= */
 .bottombanner-btn.btn {
     background: var(--primary-color);
 }
@@ -165,7 +220,8 @@ body {
     background: var(--hover-color);
 }
 
-#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a, .product-block button.cart_button {
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a,
+.product-block button.cart_button {
     background: var(--primary-color);
 }
 
@@ -177,32 +233,8 @@ body {
     text-align: left;
 }
 
-#footer, .bottomfooter, .common-home .header_top.fixed, .header_top {
-    background: var(--primary-bg);
-}
-
-footer h5, #footer .social-block ul li a {
-    color: var(--primary-color);
-}
-
-#content ul.list-unstyled li a, .footer-blocks .footerleft .contact-block span, #footer .column li a {
-    color: var(--secondary-color);
-}
-
-#content ul.list-unstyled li a:hover, .footer-blocks .footerleft .contact-block span:hover, #footer .column li a:hover {
-    color: #9c7974;
-}
-
-.pull-left #form-currency .btn-group span {
-    color: #999;
-}
-
-/* =================================
-   Appointment Section
-================================= */
-
 /* Heading */
-#wdcmsbottombanner .box-heading{
+#wdcmsbottombanner .box-heading {
     font-size: 58px;
     line-height: 1.15;
     font-weight: 400;
@@ -212,26 +244,26 @@ footer h5, #footer .social-block ul li a {
 }
 
 /* General text */
-#wdcmsbottombanner .bottom-desc{
+#wdcmsbottombanner .bottom-desc {
     color: #666;
     font-size: 16px;
     line-height: 1.8;
 }
 
-#wdcmsbottombanner .bottom-desc p{
+#wdcmsbottombanner .bottom-desc p {
     margin: 0 0 15px;
     text-transform: none;
 }
 
 /* Appointment box */
-#wdcmsbottombanner .appointment-box{
+#wdcmsbottombanner .appointment-box {
     background: #f5f8ff;
     border-left: 4px solid #1f45ff;
     padding: 20px;
     margin-bottom: 30px;
 }
 
-#wdcmsbottombanner .appointment-box h4{
+#wdcmsbottombanner .appointment-box h4 {
     margin: 0 0 10px;
     color: #1f45ff;
     font-size: 18px;
@@ -239,25 +271,26 @@ footer h5, #footer .social-block ul li a {
 }
 
 /* Opening hours */
-#wdcmsbottombanner .opening-hours{
+#wdcmsbottombanner .opening-hours {
     margin-bottom: 30px;
+    padding-left: 25px;
 }
 
 #wdcmsbottombanner .opening-hours h4,
-#wdcmsbottombanner .warehouse-box h4{
+#wdcmsbottombanner .warehouse-box h4 {
     margin-bottom: 15px;
     color: #222;
     font-size: 22px;
 }
 
-#wdcmsbottombanner .hours-row{
+#wdcmsbottombanner .hours-row {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #eee;
     padding: 10px 0;
 }
 
-#wdcmsbottombanner .hours-note{
+#wdcmsbottombanner .hours-note {
     margin: 10px 0;
     font-size: 14px;
     color: #888;
@@ -265,36 +298,63 @@ footer h5, #footer .social-block ul li a {
 }
 
 /* Warehouse box */
-#wdcmsbottombanner .warehouse-box{
+#wdcmsbottombanner .warehouse-box {
     background: #fafafa;
     padding: 25px;
     border-radius: 8px;
 }
 
 /* Image */
-#wdcmsbottombanner .bottom-image img{
+#wdcmsbottombanner .bottom-image img {
     width: 100%;
     display: block;
     border-radius: 12px;
 }
 
-/* Mobile */
-@media(max-width:767px){
-
-    #wdcmsbottombanner .box-heading{
-        font-size: 38px;
-    }
-
-    #wdcmsbottombanner .hours-row{
-        display: block;
-    }
-
-    #wdcmsbottombanner .hours-row strong{
-        display: block;
-        margin-top: 4px;
-    }
+.bottom-wrapper {
+    display: flex;
+    align-items: center;
 }
 
+.bottomcontent,
+.bottombanner {
+    width: 50%;
+}
+
+/* =================================================
+   9. FOOTER
+================================================= */
+#footer,
+.bottomfooter,
+.common-home .header_top.fixed,
+.header_top {
+    background: var(--primary-bg);
+}
+
+footer h5,
+#footer .social-block ul li a {
+    color: var(--primary-color);
+}
+
+#content ul.list-unstyled li a,
+.footer-blocks .footerleft .contact-block span,
+#footer .column li a {
+    color: var(--secondary-color);
+}
+
+#content ul.list-unstyled li a:hover,
+.footer-blocks .footerleft .contact-block span:hover,
+#footer .column li a:hover {
+    color: #9c7974;
+}
+
+.pull-left #form-currency .btn-group span {
+    color: #999;
+}
+
+/* =================================================
+   10. NEWSLETTER
+================================================= */
 .newsletter {
     text-align: center;
 }
@@ -341,7 +401,9 @@ footer h5, #footer .social-block ul li a {
     background: var(--hover-color);
 }
 
-
+/* =================================================
+   11. ENQUIRY MODAL / FORM
+================================================= */
 .enquiry-modal .modal-dialog {
     width: 800px;
     max-width: 95%;
@@ -359,7 +421,7 @@ footer h5, #footer .social-block ul li a {
     background: var(--primary-bg);
 }
 
-.enquiry-header{
+.enquiry-header {
     background: #333;
     border-bottom: 0;
     padding: 20px 35px;
@@ -367,7 +429,7 @@ footer h5, #footer .social-block ul li a {
     min-height: 90px;
 }
 
-.enquiry-header .modal-title{
+.enquiry-header .modal-title {
     margin: 0;
     line-height: 1.2;
     font-size: 48px;
@@ -376,7 +438,7 @@ footer h5, #footer .social-block ul li a {
     color: #a97445;
 }
 
-.enquiry-header .close{
+.enquiry-header .close {
     position: absolute;
     right: 25px;
     top: 50%;
@@ -389,9 +451,10 @@ footer h5, #footer .social-block ul li a {
     text-shadow: none;
 }
 
-.enquiry-header .close:hover{
+.enquiry-header .close:hover {
     opacity: .8;
 }
+
 .enquiry-modal .modal-title {
     font-size: 42px;
     font-family: Georgia, serif;
@@ -476,16 +539,21 @@ footer h5, #footer .social-block ul li a {
     border-color: var(--primary-color);
 }
 
+/* =================================================
+   12. PRODUCT PAGE
+================================================= */
 .productpage .description {
     border-top: none;
 }
 
-.productpage .rating-wrapper, .quickview .rating-wrapper {
+.productpage .rating-wrapper,
+.quickview .rating-wrapper {
     padding: 0 0 15px 0;
     border-bottom: 1px solid #eaeaea;
 }
 
-#tab-description, #tab-specification {
+#tab-description,
+#tab-specification {
     font-size: 15px;
 }
 
@@ -504,10 +572,13 @@ footer h5, #footer .social-block ul li a {
     display: block;
 }
 
+/* =================================================
+   13. RESPONSIVE / MEDIA QUERIES
+================================================= */
 @media (max-width: 479px) {
     #blog-carousel .owl-item {
         width: 100% !important;
-    }   
+    }
 }
 
 @media (max-width: 768px) {
@@ -517,7 +588,7 @@ footer h5, #footer .social-block ul li a {
 
     #blog-carousel .owl-item {
         width: 50% !important;
-    }  
+    }
 }
 
 @media (max-width: 1024px) {
@@ -527,7 +598,7 @@ footer h5, #footer .social-block ul li a {
 
     #blog-carousel .owl-item {
         width: 50% !important;
-    }  
+    }
 }
 
 @media (max-width: 767px) {
@@ -555,17 +626,107 @@ footer h5, #footer .social-block ul li a {
     #wdcmsbottombanner .box-heading {
         font-size: 29px;
         line-height: 33px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmstopbanner .top-wrapper {
+        flex-direction: column;
+    }
+
+    #wdcmstopbanner .topbanner,
+    #wdcmstopbanner .topcontent {
+        width: 100%;
+    }
+
+    #wdcmstopbanner .topbanner {
+        order: 1;
+    }
+
+    #wdcmstopbanner .topcontent {
+        order: 2;
+        margin-top: 25px;
     }
 }
 
 @media (max-width: 479px) {
-    #wdcmstopbanner .box-heading {
-        font-size: 20px;
-        line-height: 22px;
+    #wdcmstopbanner .top-desc {
+        display: block;
     }
 
+    .top-wrapper,
+    .bottom-wrapper {
+        border: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .bottom-wrapper {
+        flex-direction: column;
+    }
+
+    .bottombanner {
+        order: 1;
+        width: 100%;
+    }
+
+    .bottomcontent {
+        order: 2;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmsbottombanner .bottomcontent {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .bottombanner.banner.col-sm-6 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (max-width: 767px) {
     #wdcmsbottombanner .box-heading {
-        font-size: 20px;
-        line-height: 22px;
+        font-size: 38px;
+    }
+
+    #wdcmsbottombanner .hours-row {
+        display: block;
+    }
+
+    #wdcmsbottombanner .hours-row strong {
+        display: block;
+        margin-top: 4px;
+    }
+}
+
+@media (max-width: 479px) {
+    #wdcmsbottombanner .bottom-desc {
+        display: block;
+    }
+}
+
+@media (max-width: 991px) {
+    .footer-blocks .footerleft .contact-block ul {
+        display: block;
+    }
+
+    .social-block {
+        float: unset;
+    }
+
+    .social-block ul {
+        display: block;
+    }
+}
+
+@media (max-width: 991px) {
+    #content ul.list-unstyled {
+        padding: 0px 11px;
     }
 }
