@@ -133,7 +133,7 @@ body {
 /* Shift menu slightly to the right */
 @media (min-width: 992px) {
     .headertop {
-        padding-left: 50px;
+        padding-left: 30px;
     }
 }
 
