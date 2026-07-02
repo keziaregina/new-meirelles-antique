@@ -325,14 +325,14 @@ body {
 /* Appointment box */
 #wdcmsbottombanner .appointment-box {
     background: #f5f8ff;
-    border-left: 4px solid #1f45ff;
+    border-left: 4px solid var(--primary-color);
     padding: 20px;
     margin-bottom: 30px;
 }
 
 #wdcmsbottombanner .appointment-box h4 {
     margin: 0 0 10px;
-    color: #1f45ff;
+    color: var(--primary-color);
     font-size: 18px;
     font-weight: 700;
 }
@@ -418,6 +418,36 @@ footer h5,
 .pull-left #form-currency .btn-group span {
     color: #999;
 }
+
+/* Opsi 1: background-image with blur (ACTIVE) */
+.footer-top {
+    position: relative;
+    overflow: hidden;
+    background: none;
+}
+
+.footer-top::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(../image/webdigify/bg-contact-us-3.png);
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: 0;
+}
+
+.footer-top > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Opsi 2: background-image original without blur (non-active) */
+
+/* .footer-top {
+    background-image: url(../image/webdigify/bg-contact-us-3.png);
+} */
+
 
 /* =================================================
    10. NEWSLETTER
@@ -659,6 +689,18 @@ footer h5,
 #additional-carousel img {
     width: 100%;
     display: block;
+}
+
+#tabs_info.product-tab li.active a, #tabs_info.product-tab li a:hover {
+    color: #fff !important;
+}
+
+.productpage .nav-tabs > li.active > a {
+    font-size: 14px !important;
+}
+
+.productpage #tabs_info {
+    padding: 0px;
 }
 
 /* =================================================
