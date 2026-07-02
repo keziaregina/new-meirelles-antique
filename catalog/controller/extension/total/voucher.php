@@ -1,7 +1,7 @@
 <?php
 class ControllerExtensionTotalVoucher extends Controller {
 	public function index() {
-		if ($this->config->get('total_voucher_status')) {
+		if ($this->config->get('total_voucher_status') && false) {
 			$this->load->language('extension/total/voucher');
 
 			if (isset($this->session->data['voucher'])) {
