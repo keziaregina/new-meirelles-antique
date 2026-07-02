@@ -36,6 +36,82 @@ class ControllerCheckoutShippingMethod extends Controller {
 
 			array_multisort($sort_order, SORT_ASC, $method_data);
 
+			// Per-product shipping methods (Local Collection, Australia Post, Courier)
+			$this->load->model('catalog/product');
+
+			$cart_products = $this->cart->getProducts();
+
+			$allow_local_collection = true;
+			$allow_australia_post = true;
+			$allow_courier = true;
+
+			foreach ($cart_products as $cart_product) {
+				$product_info = $this->model_catalog_product->getProduct($cart_product['product_id']);
+
+				if (empty($product_info['shipping_local_collection'])) {
+					$allow_local_collection = false;
+				}
+				if (empty($product_info['shipping_australia_post'])) {
+					$allow_australia_post = false;
+				}
+				if (empty($product_info['shipping_courier'])) {
+					$allow_courier = false;
+				}
+			}
+
+			$sort_order = count($method_data) + 1;
+
+			if ($allow_local_collection) {
+				$method_data['local_collection'] = array(
+					'title'      => 'Local Collection',
+					'quote'      => array(
+						'local_collection' => array(
+							'code'         => 'local_collection.local_collection',
+							'title'        => 'Local Collection',
+							'cost'         => 0.00,
+							'tax_class_id' => 0,
+							'text'         => $this->currency->format(0.00, $this->session->data['currency'])
+						)
+					),
+					'sort_order' => $sort_order++,
+					'error'      => false
+				);
+			}
+
+			if ($allow_australia_post) {
+				$method_data['australia_post'] = array(
+					'title'      => 'Australia Post',
+					'quote'      => array(
+						'australia_post' => array(
+							'code'         => 'australia_post.australia_post',
+							'title'        => 'Australia Post',
+							'cost'         => 0.00,
+							'tax_class_id' => 0,
+							'text'         => $this->currency->format(0.00, $this->session->data['currency'])
+						)
+					),
+					'sort_order' => $sort_order++,
+					'error'      => false
+				);
+			}
+
+			if ($allow_courier) {
+				$method_data['courier'] = array(
+					'title'      => 'Courier',
+					'quote'      => array(
+						'courier' => array(
+							'code'         => 'courier.courier',
+							'title'        => 'Courier',
+							'cost'         => 0.00,
+							'tax_class_id' => 0,
+							'text'         => $this->currency->format(0.00, $this->session->data['currency'])
+						)
+					),
+					'sort_order' => $sort_order++,
+					'error'      => false
+				);
+			}
+
 			$this->session->data['shipping_methods'] = $method_data;
 		}
 

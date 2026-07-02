@@ -683,12 +683,44 @@ class ControllerCatalogProduct extends Controller {
 			$data['product_store'] = array(0);
 		}
 
-		if (isset($this->request->post['shipping'])) {
-			$data['shipping'] = $this->request->post['shipping'];
+		if (isset($this->request->post['shipping_local_collection'])) {
+			$data['shipping_local_collection'] = $this->request->post['shipping_local_collection'];
 		} elseif (!empty($product_info)) {
-			$data['shipping'] = $product_info['shipping'];
+			$data['shipping_local_collection'] = $product_info['shipping_local_collection'];
 		} else {
-			$data['shipping'] = 1;
+			$data['shipping_local_collection'] = 1;
+		}
+
+		if (isset($this->request->post['shipping_australia_post'])) {
+			$data['shipping_australia_post'] = $this->request->post['shipping_australia_post'];
+		} elseif (!empty($product_info)) {
+			$data['shipping_australia_post'] = $product_info['shipping_australia_post'];
+		} else {
+			$data['shipping_australia_post'] = 1;
+		}
+
+		if (isset($this->request->post['shipping_courier'])) {
+			$data['shipping_courier'] = $this->request->post['shipping_courier'];
+		} elseif (!empty($product_info)) {
+			$data['shipping_courier'] = $product_info['shipping_courier'];
+		} else {
+			$data['shipping_courier'] = 1;
+		}
+
+		$data['collection_locations'] = $this->model_catalog_product->getCollectionLocations();
+
+		if (isset($this->request->post['collection_location_id'])) {
+			$data['collection_location_id'] = $this->request->post['collection_location_id'];
+		} elseif (!empty($product_info)) {
+			$data['collection_location_id'] = $product_info['collection_location_id'];
+		} else {
+			$data['collection_location_id'] = 0;
+		}
+
+		if (isset($this->error['collection_location'])) {
+			$data['error_collection_location'] = $this->error['collection_location'];
+		} else {
+			$data['error_collection_location'] = '';
 		}
 
 		if (isset($this->request->post['price'])) {
@@ -1204,6 +1236,10 @@ class ControllerCatalogProduct extends Controller {
 
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
+		}
+
+		if (!empty($this->request->post['shipping_local_collection']) && empty($this->request->post['collection_location_id'])) {
+			$this->error['collection_location'] = 'Please select a collection location';
 		}
 
 		if ($this->request->post['product_seo_url']) {

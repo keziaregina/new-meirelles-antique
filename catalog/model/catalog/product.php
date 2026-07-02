@@ -94,6 +94,10 @@ class ModelCatalogProduct extends Model {
 				'special_end'      => $query->row['special_end'],
 				'_dimensions'		=> $query->row['_dimensions'],
 				'_condition_report'	=> $query->row['_condition_report'],
+				'shipping_local_collection'	=> $query->row['shipping_local_collection'],
+				'shipping_australia_post'	=> $query->row['shipping_australia_post'],
+				'shipping_courier'	=> $query->row['shipping_courier'],
+				'collection_location_id'	=> $query->row['collection_location_id'],
 			);
 		} else {
 			return false;
@@ -585,6 +589,12 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("SELECT rd.* FROM " . DB_PREFIX . "product_recurring pr JOIN " . DB_PREFIX . "recurring_description rd ON (rd.language_id = " . (int)$this->config->get('config_language_id') . " AND rd.recurring_id = pr.recurring_id) JOIN " . DB_PREFIX . "recurring r ON r.recurring_id = rd.recurring_id WHERE pr.product_id = " . (int)$product_id . " AND status = '1' AND pr.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' ORDER BY sort_order ASC");
 
 		return $query->rows;
+	}
+
+	public function getCollectionLocation($collection_location_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "collection_location WHERE collection_location_id = '" . (int)$collection_location_id . "'");
+
+		return $query->row;
 	}
 
 	public function getTotalProductSpecials() {

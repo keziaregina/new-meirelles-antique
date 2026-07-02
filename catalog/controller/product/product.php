@@ -467,6 +467,18 @@ class ControllerProductProduct extends Controller {
 				$data['_condition_report'] = $product_info['_condition_report'];
 			}
 
+			$data['shipping_local_collection'] = !empty($product_info['shipping_local_collection']);
+			$data['shipping_australia_post'] = !empty($product_info['shipping_australia_post']);
+			$data['shipping_courier'] = !empty($product_info['shipping_courier']);
+
+			$data['collection_location'] = '';
+			if (!empty($product_info['collection_location_id'])) {
+				$collection_location_info = $this->model_catalog_product->getCollectionLocation($product_info['collection_location_id']);
+				if ($collection_location_info) {
+					$data['collection_location'] = $collection_location_info['name'];
+				}
+			}
+
 			$data['tags'] = array();
 
                           // check live price update for option module is enable or not

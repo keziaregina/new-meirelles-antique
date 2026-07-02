@@ -837,3 +837,43 @@ footer h5,
         max-height: 40px;
     }
 }
+
+/* Delivery & Collection section */
+.delivery-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeaea;
+}
+
+.delivery-heading {
+    font-family: 'RomanSerif', serif;
+    font-size: 18px;
+    color: var(--primary-color);
+    margin: 0 0 14px;
+    font-weight: 600;
+}
+
+.delivery-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.delivery-label {
+    color: var(--secondary-color);
+    flex-shrink: 0;
+}
+
+.delivery-value {
+    color: #444;
+}
+
+.delivery-note {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--secondary-color);
+    line-height: 1.5;
+    font-style: italic;
+}

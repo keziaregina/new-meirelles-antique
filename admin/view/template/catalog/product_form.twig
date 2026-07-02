@@ -238,22 +238,69 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">{{ entry_shipping }}</label>
-                <div class="col-sm-10">
-                  <label class="radio-inline"> {% if shipping %}
-                      <input type="radio" name="shipping" value="1" checked="checked"/>
-                      {{ text_yes }}
-                    {% else %}
-                      <input type="radio" name="shipping" value="1"/>
-                      {{ text_yes }}
-                    {% endif %} </label> <label class="radio-inline"> {% if not shipping %}
-                      <input type="radio" name="shipping" value="0" checked="checked"/>
-                      {{ text_no }}
-                    {% else %}
-                      <input type="radio" name="shipping" value="0"/>
-                      {{ text_no }}
-                    {% endif %} </label>
+              <div class="well well-sm" style="margin-bottom:20px;">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" style="font-weight:700;color:var(--primary-color);font-size:15px;">Shipping Methods</label>
+                  <div class="col-sm-10">
+                    <label class="checkbox-inline"> {% if shipping_local_collection %}
+                        <input type="checkbox" name="shipping_local_collection" value="1" checked="checked"/>
+                      {% else %}
+                        <input type="checkbox" name="shipping_local_collection" value="1"/>
+                      {% endif %}
+                      Local Collection</label>
+                    <label class="checkbox-inline"> {% if shipping_australia_post %}
+                        <input type="checkbox" name="shipping_australia_post" value="1" checked="checked"/>
+                      {% else %}
+                        <input type="checkbox" name="shipping_australia_post" value="1"/>
+                      {% endif %}
+                      Australia Post</label>
+                    <label class="checkbox-inline"> {% if shipping_courier %}
+                        <input type="checkbox" name="shipping_courier" value="1" checked="checked"/>
+                      {% else %}
+                        <input type="checkbox" name="shipping_courier" value="1"/>
+                      {% endif %}
+                      Courier</label>
+                  </div>
+                </div>
+                <div class="form-group required" id="collection-location-group"{% if not shipping_local_collection %} style="display:none"{% endif %}>
+                  <label class="col-sm-2 control-label" for="input-collection-location">Location</label>
+                  <div class="col-sm-10">
+                    <select name="collection_location_id" id="input-collection-location" class="form-control">
+                      <option value="0">{{ text_none }}</option>
+                      {% for collection_location in collection_locations %}
+                        {% if collection_location.collection_location_id == collection_location_id %}
+                          <option value="{{ collection_location.collection_location_id }}" selected="selected">{{ collection_location.name }}</option>
+                        {% else %}
+                          <option value="{{ collection_location.collection_location_id }}">{{ collection_location.name }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                    {% if error_collection_location %}
+                      <div class="text-danger">{{ error_collection_location }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">{{ entry_dimension }}</label>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <input type="text" name="shipping_length" value="{{ shipping_length }}" placeholder="{{ entry_length }}" id="input-shipping-length" class="form-control"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="shipping_width" value="{{ shipping_width }}" placeholder="{{ entry_width }}" id="input-shipping-width" class="form-control"/>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="text" name="shipping_height" value="{{ shipping_height }}" placeholder="{{ entry_height }}" id="input-shipping-height" class="form-control"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-shipping-weight">{{ entry_weight }}</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="shipping_weight" value="{{ shipping_weight }}" placeholder="{{ entry_weight }}" id="input-shipping-weight" class="form-control"/>
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -266,11 +313,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-length">{{ entry_dimension }}</label>
+                <label class="col-sm-2 control-label" for="input-length">Packaged {{ entry_dimension }}</label>
                 <div class="col-sm-10">
-                  <input type="text" name="_dimensions" value="{{ _dimensions }}" placeholder="{{ entry_dimension }}" id="input-_dimensions" class="form-control"/>
-                </div>
-                {# <div class="col-sm-10">
                   <div class="row">
                     <div class="col-sm-4">
                       <input type="text" name="length" value="{{ length }}" placeholder="{{ entry_length }}" id="input-length" class="form-control"/>
@@ -282,7 +326,7 @@
                       <input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control"/>
                     </div>
                   </div>
-                </div> #}
+                </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-length">Condition Report</label>
@@ -317,7 +361,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-weight">{{ entry_weight }}</label>
+                <label class="col-sm-2 control-label" for="input-weight">Packaged {{ entry_weight }}</label>
                 <div class="col-sm-10">
                   <input type="text" name="weight" value="{{ weight }}" placeholder="{{ entry_weight }}" id="input-weight" class="form-control"/>
                 </div>
@@ -1635,6 +1679,14 @@
   <script type="text/javascript"><!--
   $('#language a:first').tab('show');
   $('#option a:first').tab('show');
+
+  $('input[name="shipping_local_collection"]').on('change', function() {
+    if ($(this).is(':checked')) {
+      $('#collection-location-group').show();
+    } else {
+      $('#collection-location-group').hide();
+    }
+  });
   //--></script>
 </div>
 {{ footer }} 
