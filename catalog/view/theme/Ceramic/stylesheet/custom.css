@@ -267,7 +267,10 @@ body {
 .box.related_prd .box-heading,
 .wd_category_feature .box-heading,
 #wdcmsparallax .box-heading,
-#wdcmsbottombanner .box-heading {
+#wdcmsbottombanner .box-heading,
+#content.productpage .product-title,
+.product-description td span,
+#tabs_info.product-tab li a {
     color: var(--primary-color);
 }
 
@@ -278,12 +281,21 @@ body {
 /* =================================================
    8. BOTTOM BANNER / APPOINTMENT SECTION
 ================================================= */
-.bottombanner-btn.btn {
+.bottombanner-btn.btn,
+.form-group.qty #button-cart,
+.form-group.qty #button-enquiry {
     background: var(--primary-color);
 }
 
-.bottombanner-btn.btn:hover {
+.bottombanner-btn.btn:hover,
+.form-group.qty #button-cart:hover,
+.form-group.qty #button-enquiry:hover {
     background: var(--hover-color);
+}
+
+#tabs_info.product-tab li.active a, #tabs_info.product-tab li a:hover {
+    background: var(--primary-color);
+    color: var(--primary-bg);
 }
 
 #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a,
