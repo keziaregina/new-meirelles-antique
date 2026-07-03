@@ -169,7 +169,7 @@ body {
 }
 
 .slider-title {
-    color: var(--primary-color);
+    color: var(--primary-bg);
 }
 
 /* =================================================
@@ -283,13 +283,15 @@ body {
 ================================================= */
 .bottombanner-btn.btn,
 .form-group.qty #button-cart,
-.form-group.qty #button-enquiry {
+.form-group.qty #button-enquiry,
+.slider-button a {
     background: var(--primary-color);
 }
 
 .bottombanner-btn.btn:hover,
 .form-group.qty #button-cart:hover,
-.form-group.qty #button-enquiry:hover {
+.form-group.qty #button-enquiry:hover,
+.slider-button a:hover {
     background: var(--hover-color);
 }
 
@@ -973,4 +975,12 @@ footer h5,
 
 .shopping-cart .input-group .form-control {
     display: none;
+}
+
+/* =================================================
+   14. HERO SECTION
+================================================= */
+
+.main-slider img {
+  filter: brightness(80%);
 }
