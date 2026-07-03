@@ -283,15 +283,13 @@ body {
 ================================================= */
 .bottombanner-btn.btn,
 .form-group.qty #button-cart,
-.form-group.qty #button-enquiry,
-.slider-button a {
+.form-group.qty #button-enquiry {
     background: var(--primary-color);
 }
 
 .bottombanner-btn.btn:hover,
 .form-group.qty #button-cart:hover,
-.form-group.qty #button-enquiry:hover,
-.slider-button a:hover {
+.form-group.qty #button-enquiry:hover {
     background: var(--hover-color);
 }
 
@@ -983,4 +981,14 @@ footer h5,
 
 .main-slider img {
   filter: brightness(80%);
+}
+
+.slider-button a {
+    background: var(--primary-color);
+    color: var(--primary-bg);
+}
+
+.slider-button a:hover {
+    background: var(--primary-bg);
+    color: var(--primary-color);
 }
