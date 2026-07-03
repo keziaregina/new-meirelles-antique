@@ -241,8 +241,17 @@ class ControllerProductCategory extends Controller {
 					$rating = false;
 				}
 
+				$cart_has_product = false;
+				foreach ($this->cart->getProducts() as $cart_product) {
+					if ($cart_product['product_id'] == $result['product_id']) {
+						$cart_has_product = true;
+						break;
+					}
+				}
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'cart_has_product' => $cart_has_product,
 					'thumb'       => $image,
 					'qty'    	  => $result['quantity'],
 					'name'        => $result['name'],

@@ -315,6 +315,12 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 
+			foreach ($this->cart->getProducts() as $cart_product) {
+				if ($cart_product['product_id'] == $product_id) {
+					$json['error']['warning'] = $this->language->get('error_already_in_cart'); 
+				}
+			}
+
 			if (!$json) {
 				$this->cart->add($this->request->post['product_id'], $quantity, $option, $recurring_id);
 
@@ -413,6 +419,14 @@ class ControllerCheckoutCart extends Controller {
 
 		// Remove
 		if (isset($this->request->post['key'])) {
+			$json['product_id'] = 0;
+
+			foreach ($this->cart->getProducts() as $cart_product) {
+				if ($cart_product['cart_id'] == $this->request->post['key']) {
+					$json['product_id'] = $cart_product['product_id'];
+					break;
+				}
+			}
 			$this->cart->remove($this->request->post['key']);
 
 			unset($this->session->data['vouchers'][$this->request->post['key']]);

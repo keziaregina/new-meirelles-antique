@@ -142,6 +142,9 @@ var cart = {
 				}
 
 				if (json['success']) {
+					$('.btn-crt[data-product-id="' + product_id + '"]')
+						.addClass('has-cart')
+						.prop('disabled', true);
 				     $.notify({
 				     	message: json['success'],
 				     	target: '_blank'
@@ -185,6 +188,45 @@ var cart = {
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
 						$('#cart > button').html('<div class="cart_detail"><div class="cart_image"><i class="material-icons-outlined shopping-cart"></i></div><span id="cart-total"><span class="cart_heading">Cart</span> ' + json['total'] + '</span>'  + '</div>');
 				}
+
+				if (json['error'] && json['error']['warning']) {
+					$.notify({
+						message: json['error']['warning']
+					},{
+						// settings
+						element: 'body',
+						position: null,
+						type: "danger",
+						allow_dismiss: true,
+						newest_on_top: false,
+						placement: {
+							from: "top",
+							align: "center"
+						},
+						offset: 0,
+						spacing: 10,
+						z_index: 2031,
+						delay: 5000,
+						timer: 1000,
+						mouse_over: null,
+						animate: {
+							enter: 'animated fadeInDown'
+							//exit: 'animated fadeOutUp'
+						},
+						onShow: null,
+						onShown: null,
+						onClose: null,
+						onClosed: null,
+						icon_type: 'class',
+						template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger" role="alert">' +
+							'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+							'<span data-notify="message"><i class="fa fa-exclamation-circle"></i>&nbsp; {2}</span>' +
+							'<div class="progress" data-notify="progressbar">' +
+								'<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+							'</div>' +
+						'</div>'
+					});
+				}
 			}
 		});
 	},
@@ -214,6 +256,9 @@ var cart = {
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
 				} else {
+					$('.btn-crt[data-product-id="' + json['product_id'] + '"]')
+						.removeClass('has-cart')
+						.prop('disabled', false);
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
                                         $('#cart > button').html('<div class="cart_detail"><div class="cart_image"><i class="material-icons-outlined shopping-cart"></i></div><span id="cart-total"><span class="cart_heading">Cart</span> ' + json['total'] + '</span>'  + '</div>');
 				}

@@ -267,8 +267,7 @@ body {
 .box.related_prd .box-heading,
 .wd_category_feature .box-heading,
 #wdcmsparallax .box-heading,
-#wdcmsbottombanner .box-heading,
-.news-left .news-title {
+#wdcmsbottombanner .box-heading {
     color: var(--primary-color);
 }
 
@@ -420,7 +419,7 @@ footer h5,
 }
 
 /* Opsi 1: background-image with blur (ACTIVE) */
-.footer-top {
+/* .footer-top {
     position: relative;
     overflow: hidden;
     background: none;
@@ -440,13 +439,15 @@ footer h5,
 .footer-top > * {
     position: relative;
     z-index: 1;
-}
+} */
 
 /* Opsi 2: background-image original without blur (non-active) */
 
-/* .footer-top {
-    background-image: url(../image/webdigify/bg-contact-us-3.png);
-} */
+.footer-top {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../image/webdigify/bg-contact-us-1.png);
+    background-size: cover;
+    background-position: center;
+}
 
 
 /* =================================================
@@ -491,11 +492,14 @@ footer h5,
 
 .newsletter .btn.btn-lg {
     position: unset;
-    background: var(--primary-color);
+    background: var(--primary-bg);
+    color: var(--primary-color) !important;
+    font-weight: 800;
 }
 
 .newsletter .btn.btn-lg:hover {
-    background: var(--hover-color);
+    background: var(--primary-color);
+    color: var(--primary-bg) !important;
 }
 
 /* =================================================
@@ -701,6 +705,41 @@ footer h5,
 
 .productpage #tabs_info {
     padding: 0px;
+}
+
+/* Sembunyikan teks asli, tampilkan teks pengganti via pseudo-element */
+.btn-crt.has-cart {
+	position: relative;
+	pointer-events: none;      /* matikan interaksi klik */
+	cursor: not-allowed;
+	opacity: 0.6;
+	color: transparent !important;   /* sembunyikan teks/ikon asli */
+	background-color: #6c757d !important;
+	border-color: #6c757d !important;
+}
+
+.btn-crt.has-cart::before {
+    visibility: hidden;
+}
+
+.btn-crt.has-cart::after {
+	content: "Added to Cart";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+/* kalau tombolnya ada icon <i> di dalamnya, pastikan ikut ke-hide */
+.btn-crt.has-cart i {
+	visibility: hidden;
 }
 
 /* =================================================
@@ -918,4 +957,8 @@ footer h5,
     color: var(--secondary-color);
     line-height: 1.5;
     font-style: italic;
+}
+
+.shopping-cart .input-group .form-control {
+    display: none;
 }

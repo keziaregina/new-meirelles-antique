@@ -497,6 +497,13 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$data['recurrings'] = $this->model_catalog_product->getProfiles($this->request->get['product_id']);
+			
+			$data['cart_has_product'] = false;
+			foreach ($this->cart->getProducts() as $cart_product) {
+				if ($cart_product['product_id'] == $product_id) {
+					$data['cart_has_product'] = true; 
+				}
+			}
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 			

@@ -122,6 +122,14 @@ class ControllerProductSpecial extends Controller {
 				$rating = false;
 			}
 
+			$cart_has_product = false;
+			foreach ($this->cart->getProducts() as $cart_product) {
+				if ($cart_product['product_id'] == $result['product_id']) {
+					$cart_has_product = true;
+					break;
+				}
+			}
+
 			$data['products'][] = array(
 				'product_id'  => $result['product_id'],
 				'thumb'       => $image,
@@ -137,6 +145,7 @@ class ControllerProductSpecial extends Controller {
 				'rating'      => $result['rating'],
 				'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
 				'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
+				'cart_has_product' => $cart_has_product,
 				'percentsaving' 	 => round((( $result['price'] -  $result['special'])/ $result['price'])*100, 0),
 				'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), 
 				$this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),
