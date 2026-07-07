@@ -278,6 +278,8 @@ body {
     background: var(--hover-color);
 }
 
+#load-spinner img { width: 60px; height: auto; }
+
 /* =================================================
    8. BOTTOM BANNER / APPOINTMENT SECTION
 ================================================= */
