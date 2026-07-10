@@ -12,20 +12,6 @@
    2. FONTS
 ================================================= */
 @font-face {
-    font-family: 'RomanSerif';
-    src: url('../fonts/RomanSerif.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'RomanSerif';
-    src: url('../fonts/RomanSerif-Oblique.ttf') format('truetype');
-    font-weight: normal;
-    font-style: oblique;
-}
-
-@font-face {
     font-family: 'TeX Gyre Termes';
     src: url('../fonts/texgyretermes-bold.otf') format('opentype');
     font-weight: normal;
@@ -33,35 +19,35 @@
 }
 
 body {
-    font-family: 'RomanSerif', serif;
+    font-family: 'Times New Roman', serif;
 }
 
 .wd-menu ul li > .a-top-link {
-    font: 500 14px / 24px 'RomanSerif', serif !important;
+    font: 500 14px / 24px 'Times New Roman', serif !important;
     font-weight: 700 !important;
 }
 
 .cart_detail .cart_heading {
-    font: 500 12px / 12px 'RomanSerif', serif;
+    font: 500 12px / 12px 'Times New Roman', serif;
 }
 
-.slider-title {
-    font-family: 'RomanSerif', serif;
+.slider-title, .slider-button a {
+    font-family: 'Times New Roman', serif;
 }
 
 #wdcmsservice .wdservice .service-title {
-    font: 500 24px / 28px 'RomanSerif', serif;
+    font: 500 24px / 28px 'Times New Roman', serif;
 }
 
 #wdcmsservice .wdservice .service-desc,
 #wdcmstopbanner .top-desc,
 #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p,
 #wdcmsbottombanner .bottom-desc {
-    font: 400 14px / 24px 'RomanSerif', serif;
+    font: 400 14px / 24px 'Times New Roman', serif;
 }
 
 #wdcmstopbanner .box-heading {
-    font: 500 54px / 60px 'RomanSerif', serif;
+    font: 500 54px / 60px 'Times New Roman', serif;
 }
 
 #content .box .box-heading,
@@ -70,11 +56,11 @@ body {
 #wdcmsparallax .box-heading,
 #wdcmstestimonial .box-heading,
 .product-thumb h4 {
-    font-family: 'RomanSerif', serif;
+    font-family: 'Times New Roman', serif;
 }
 
 #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
-    font: 600 22px / 22px 'RomanSerif', serif;
+    font: 600 22px / 22px 'Times New Roman', serif;
 }
 
 /* =================================================
@@ -114,7 +100,7 @@ body {
 }
 
 .logo-subtitle {
-    font-family: 'RomanSerif', serif;
+    font-family: 'Times New Roman', serif;
     font-size: clamp(10px, 1.3vw, 13px);
     color: var(--primary-color);
     line-height: 1.3;
@@ -131,11 +117,11 @@ body {
 }
 
 /* Shift menu slightly to the right */
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     .headertop {
         padding-left: 30px;
     }
-}
+} */
 
 /* Mobile: logo on top, cart/account/search below */
 @media (max-width: 991px) {
@@ -223,6 +209,9 @@ body {
 
 .topbanner-btn.btn {
     background: var(--primary-color);
+    margin-bottom: 40px;
+    font-size: 30px;
+    padding: 20px 28px;
 }
 
 .topbanner-btn.btn:hover {
@@ -320,7 +309,7 @@ body {
     font-weight: 400;
     margin-bottom: 40px;
     text-transform: uppercase;
-    font: 500 54px / 60px 'RomanSerif', serif;
+    font: 500 54px / 60px 'Times New Roman', serif;
 }
 
 /* General text */
@@ -649,6 +638,15 @@ footer h5,
     margin: 0 10px;
 }
 
+#itemEnquiryModal #postcodeField label {
+    font-size: 10px;
+}
+
+#itemEnquiryModal #postcodeField #postcode {
+    font-size: 10px;
+    height: 25px;
+}
+
 @media (max-width: 767px) {
     .form-group.qty #button-cart,
     .form-group.qty #button-enquiry {
@@ -941,7 +939,7 @@ footer h5,
 }
 
 .delivery-heading {
-    font-family: 'RomanSerif', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 18px;
     color: var(--primary-color);
     margin: 0 0 14px;
@@ -993,4 +991,96 @@ footer h5,
 .slider-button a:hover {
     background: var(--primary-bg);
     color: var(--primary-color);
+}
+
+/* =================================================
+    15. PRODUCT CATEGORY GRID — ADAPTIVE
+================================================= */
+
+#product-special.container {
+    max-width: 95%;
+    width: 100%;
+}
+
+#product-special .row.cat_prod {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(280px, calc(100% / 4 - 16px)), 1fr));
+}
+
+#product-special .product-layout.product-grid {
+    width: auto;
+    float: none;
+    min-height: auto;
+}
+
+#product-special .row.cat_prod > .clearfix {
+    display: none;
+}
+
+.row.cat_prod:before {
+    display: none;
+}
+
+/* =================================================
+    16. SIDEBAR CATEGORY
+================================================= */
+
+#column-left .box, #column-left .product-block .product-details {
+    background: rgb(245, 245, 245);
+}
+
+/* =================================================
+    17. FONT SIZE ENHANCEMENTS — CLIENT REQUEST
+================================================= */
+
+.slider-button a {
+    font-size: 18px;
+    padding: 14px 32px;
+    letter-spacing: 1px;
+}
+
+.slider-title {
+    font-size: 96px;
+    line-height: 1.1;
+}
+
+.main-slider .slide-content {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+@media (max-width: 1199px) {
+    .slider-title {
+        font-size: 72px;
+        line-height: 1.15;
+    }
+}
+
+@media (max-width: 991px) {
+    .slider-title {
+        font-size: 52px;
+        line-height: 1.2;
+    }
+    .slider-button a {
+        font-size: 16px;
+        padding: 12px 26px;
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-title {
+        font-size: 42px;
+        line-height: 1.25;
+    }
+}
+
+@media (max-width: 479px) {
+    .slider-title {
+        font-size: 30px;
+        line-height: 1.3;
+    }
+    .slider-button a {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
 }
