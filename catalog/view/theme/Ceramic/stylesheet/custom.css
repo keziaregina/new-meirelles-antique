@@ -382,12 +382,20 @@ body {
 
 .bottom-wrapper {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+}
+
+.bottom-wrapper .box-heading {
+    width: 100%;
+    flex: 0 0 100%;
+    text-align: center;
 }
 
 .bottomcontent,
 .bottombanner {
     width: 50%;
+    flex: 0 0 50%;
 }
 
 /* =================================================
@@ -687,9 +695,46 @@ footer h5,
     border-bottom: 1px solid #eaeaea;
 }
 
+.product-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 30px !important;
+}
+
+.productpage .description table td span {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+.productpage .description table td.description-right {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+.special-price {
+    font-family: 'Times New Roman', serif;
+    font-size: 24px !important;
+}
+
+.form-group.qty #button-cart,
+.form-group.qty #button-enquiry {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+.prd_page button {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px !important;
+}
+
+#tabs_info.product-tab li a {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
 #tab-description,
 #tab-specification {
-    font-size: 15px;
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
 }
 
 #additional-carousel {
@@ -940,17 +985,18 @@ footer h5,
 
 .delivery-heading {
     font-family: 'Times New Roman', serif;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--primary-color);
     margin: 0 0 14px;
     font-weight: 600;
 }
 
 .delivery-row {
+    font-family: 'Times New Roman', serif;
     display: flex;
     gap: 8px;
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
 }
 
@@ -964,11 +1010,105 @@ footer h5,
 }
 
 .delivery-note {
+    font-family: 'Times New Roman', serif;
     margin: 14px 0 0;
-    font-size: 13px;
+    font-size: 15px;
     color: var(--secondary-color);
     line-height: 1.5;
     font-style: italic;
+}
+
+.shopping-cart td {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.shopping-cart td a {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.shopping-cart td strong {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+.shopping-cart .total {
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#content h3 {
+    font-family: 'Times New Roman', serif;
+    font-size: 26px;
+}
+
+#content > p {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.panel-title,
+.panel-title a {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px !important;
+}
+
+.form-horizontal .control-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+#button-quote {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.buttons .btn {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.col-sm-offset-8 .table-bordered td {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+#content h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 30px;
+}
+
+#accordion h2 {
+    font-family: 'Times New Roman', serif;
+    font-size: 22px;
+}
+
+#accordion p {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+#accordion .radio label {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+#button-account,
+#button-login {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+#accordion .control-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+}
+
+#accordion a[href*="forgotten"] {
+    font-family: 'Times New Roman', serif;
+    font-size: 15px;
 }
 
 .shopping-cart .input-group .form-control {
@@ -997,7 +1137,10 @@ footer h5,
     15. PRODUCT CATEGORY GRID — ADAPTIVE
 ================================================= */
 
-#product-special.container {
+#product-special.container,
+#product-product.container,
+#checkout-cart.container,
+#checkout-checkout.container {
     max-width: 95%;
     width: 100%;
 }
@@ -1082,5 +1225,816 @@ footer h5,
     .slider-button a {
         font-size: 14px;
         padding: 10px 20px;
+    }
+}
+
+/* =================================================
+    18. NAVIGATION FONT SIZE & SPACING ENHANCEMENTS
+================================================= */
+
+/* Reduce container-fluid padding */
+.container-fluid {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    max-width: 90% !important;
+}
+@media (max-width: 1199px) {
+    .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Tighter spacing so nav2 doesn't wrap */
+.header_top .account {
+    padding: 35px 0;
+    margin: 0 6px;
+}
+.col-sm-3.header_cart {
+    padding: 35px 0;
+}
+.col-sm-5.header_search {
+    padding: 35px 0;
+}
+@media (max-width: 1459px) {
+    .col-sm-5.header_search,
+    .header_top .account,
+    .col-sm-3.header_cart {
+        padding: 28px 0;
+    }
+}
+@media (max-width: 1199px) {
+    .header_top .account {
+        margin: 0 4px;
+    }
+    .col-sm-5.header_search,
+    .header_top .account,
+    .col-sm-3.header_cart {
+        padding: 22px 0;
+    }
+}
+
+/* Top-level nav links */
+.wd-menu ul li > .a-top-link {
+    font-size: 18px !important;
+    line-height: 30px !important;
+}
+
+/* Sub-menu / dropdown links */
+.horizontal-menu .sub-menu-container ul li a > span,
+.horizontal-menu .sub_menu3-item ul li a {
+    font-size: 16px !important;
+    line-height: 28px !important;
+}
+
+/* Flyout second-level items */
+.a-second-link span {
+    font-size: 16px;
+}
+
+/* Cart section */
+.cart_detail .cart_heading {
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+#cart .mycart {
+    font-size: 16px;
+}
+#cart .price {
+    font-size: 15px;
+}
+#cart .item-count {
+    font-size: 15px;
+}
+
+/* Account & Search labels */
+span.account-title,
+span.search-title {
+    font-size: 16px;
+}
+
+.wd-sub-menu-container .a-second-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.breadcrumb li a,
+.breadcrumb li {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.box-category a {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.box .box-heading,
+#column-left .box .box-heading,
+#column-right .box .box-heading {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 24px !important;
+}
+
+
+
+.box-product .price {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+.page-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 32px;
+}
+
+.category_description {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.refine-search {
+    font-family: 'Times New Roman', serif;
+    font-size: 22px;
+}
+
+.category-item a {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.category_filter label.control-label,
+.category_filter .btn-group button {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+.compare-total a {
+    font-family: 'Times New Roman', serif;
+    font-size: 17px;
+}
+
+@media (max-width: 1199px) {
+    .wd-menu ul li > .a-top-link {
+        font-size: 16px !important;
+        line-height: 28px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .cart_detail .cart_heading {
+        font-size: 15px !important;
+    }
+    #cart .mycart,
+    #cart .price,
+    #cart .item-count {
+        font-size: 14px;
+    }
+    span.account-title,
+    span.search-title {
+        font-size: 15px;
+    }
+}
+
+/* =================================================
+    19. SERVICE SECTION ENHANCEMENTS
+================================================= */
+
+#wdcmsservice .wdservice .service-title {
+    font-size: 32px;
+    line-height: 38px;
+    margin: 25px 0 12px;
+}
+
+#wdcmsservice .wdservice .service-desc {
+    font-size: 18px;
+    line-height: 28px;
+    width: 70%;
+}
+
+#wdcmsservice .wdservice .service-icon {
+    height: 85px;
+    width: 85px;
+    background-size: 65px;
+}
+
+#wdcmsservice {
+    margin: 100px 0 140px;
+}
+
+@media (max-width: 1199px) {
+    #wdcmsservice .wdservice .service-title {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    #wdcmsservice .wdservice .service-desc {
+        font-size: 16px;
+        line-height: 26px;
+        width: 80%;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdcmsservice .wdservice .service-title {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    #wdcmsservice .wdservice .service-desc {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    #wdcmsservice .wdservice .service-icon {
+        height: 72px;
+        width: 72px;
+        background-size: 55px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmsservice .wdservice .service-title {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    #wdcmsservice .wdservice .service-desc {
+        font-size: 14px;
+        line-height: 22px;
+        width: 90%;
+    }
+    #wdcmsservice .wdservice .service-icon {
+        height: 64px;
+        width: 64px;
+        background-size: 48px;
+    }
+    #wdcmsservice {
+        margin: 40px 0 50px;
+    }
+}
+
+/* =================================================
+    20. TOP BANNER ENHANCEMENTS
+================================================= */
+
+#wdcmstopbanner .top-desc {
+    font-size: 18px;
+    line-height: 30px;
+    margin: 0 0 30px;
+}
+
+#wdcmstopbanner .top-content {
+    padding: 0 20px;
+}
+
+.topbanner-btn.btn {
+    font-size: 32px;
+    padding: 22px 34px;
+    margin-bottom: 45px;
+}
+
+@media (max-width: 1199px) {
+    #wdcmstopbanner .top-desc {
+        font-size: 16px;
+        line-height: 28px;
+    }
+    .topbanner-btn.btn {
+        font-size: 26px;
+        padding: 18px 28px;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdcmstopbanner .top-desc {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    .topbanner-btn.btn {
+        font-size: 22px;
+        padding: 16px 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmstopbanner .top-desc {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .topbanner-btn.btn {
+        font-size: 20px;
+        padding: 14px 22px;
+    }
+}
+
+/* =================================================
+    21. HOMETAB / PRODUCT SECTION ENHANCEMENTS
+================================================= */
+
+/* Section heading "Noteworthy Pieces" */
+.hometab-heading.box-heading {
+    font-size: 64px;
+    line-height: 1.15;
+}
+
+/* Tab links (New Products) */
+.htabs a {
+    font-size: 18px;
+    padding: 12px 28px;
+    line-height: 26px;
+}
+
+.etabs {
+    margin: 0 0 40px 0;
+}
+
+/* Product title */
+.product-thumb h4 {
+    font-family: 'Times New Roman', serif;
+    font-size: 30px;
+    line-height: 36px;
+}
+
+/* Description */
+.product-grid .description {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Price */
+.product-thumb .price {
+    font-family: 'Times New Roman', serif;
+    font-size: 22px;
+    line-height: 34px;
+}
+
+/* Add to Cart button */
+.product-block button.cart_button {
+    font-size: 18px;
+    padding: 14px 28px;
+    line-height: 24px;
+}
+
+@media (max-width: 1199px) {
+    .hometab-heading.box-heading {
+        font-size: 52px;
+    }
+    .htabs a {
+        font-size: 16px;
+        padding: 10px 24px;
+    }
+    .product-thumb h4 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .product-thumb .price {
+        font-size: 18px;
+    }
+    .product-block button.cart_button {
+        font-size: 14px;
+        padding: 11px 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .hometab-heading.box-heading {
+        font-size: 42px;
+    }
+    .htabs a {
+        font-size: 15px;
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hometab-heading.box-heading {
+        font-size: 34px;
+    }
+    .htabs a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .product-thumb h4 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .product-thumb .price {
+        font-size: 16px;
+    }
+    .product-block button.cart_button {
+        font-size: 13px;
+        padding: 10px 18px;
+    }
+}
+
+/* =================================================
+    22. TESTIMONIAL SECTION ENHANCEMENTS
+================================================= */
+
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p {
+    font-size: 18px;
+    line-height: 32px;
+}
+
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
+    font-size: 28px;
+    line-height: 32px;
+}
+
+#wdcmstestimonial .testimonial-content {
+    width: 65%;
+}
+
+#wdcmstestimonial {
+    padding: 100px 0;
+    margin: 0 0 160px;
+}
+
+@media (max-width: 1199px) {
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    #wdcmstestimonial {
+        padding: 70px 0;
+        margin: 0 0 120px;
+    }
+    #wdcmstestimonial .testimonial-content {
+        width: 72%;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    #wdcmstestimonial {
+        padding: 50px 0;
+        margin: 0 0 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    #wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    #wdcmstestimonial .testimonial-content {
+        width: 85%;
+    }
+}
+
+/* =================================================
+    23. BOTTOM BANNER ENHANCEMENTS
+================================================= */
+
+#wdcmsbottombanner .box-heading {
+    font-size: 68px;
+    line-height: 1.15;
+    margin-bottom: 45px;
+}
+
+#wdcmsbottombanner .bottom-desc {
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+#wdcmsbottombanner .bottom-desc p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+#wdcmsbottombanner .appointment-box {
+    padding: 25px;
+}
+
+#wdcmsbottombanner .appointment-box h4 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+#wdcmsbottombanner .appointment-box p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+#wdcmsbottombanner .opening-hours h4,
+#wdcmsbottombanner .warehouse-box h4 {
+    font-size: 26px;
+}
+
+#wdcmsbottombanner .hours-row {
+    padding: 12px 0;
+    font-size: 17px;
+}
+
+#wdcmsbottombanner .hours-note {
+    font-size: 16px;
+}
+
+#wdcmsbottombanner .warehouse-box {
+    padding: 30px;
+}
+
+#wdcmsbottombanner .warehouse-box p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+@media (max-width: 1199px) {
+    #wdcmsbottombanner .box-heading {
+        font-size: 52px;
+        line-height: 1.15;
+    }
+    #wdcmsbottombanner .bottom-desc {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdcmsbottombanner .box-heading {
+        font-size: 42px;
+    }
+    #wdcmsbottombanner .bottom-desc {
+        font-size: 15px;
+    }
+    #wdcmsbottombanner .appointment-box h4 {
+        font-size: 20px;
+    }
+    #wdcmsbottombanner .opening-hours h4,
+    #wdcmsbottombanner .warehouse-box h4 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdcmsbottombanner .box-heading {
+        font-size: 34px;
+    }
+    #wdcmsbottombanner .bottom-desc {
+        font-size: 14px;
+    }
+}
+
+/* =================================================
+    24. SUB-BANNER ENHANCEMENTS
+================================================= */
+
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
+    font-size: 68px;
+    line-height: 1.15;
+}
+
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+    font-size: 18px;
+    padding: 16px 34px;
+}
+
+@media (max-width: 1199px) {
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
+        font-size: 52px;
+        line-height: 1.15;
+    }
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+        font-size: 16px;
+        padding: 14px 28px;
+    }
+}
+
+@media (max-width: 991px) {
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
+        font-size: 42px;
+    }
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+        font-size: 15px;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
+        font-size: 32px;
+    }
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+/* =================================================
+    25. BLOG SECTION ENHANCEMENTS
+================================================= */
+
+.box.webdigifyblog .box-heading {
+    font-size: 64px;
+    line-height: 1.15;
+    text-align: center;
+    padding: 0 0 25px 0;
+}
+
+.blog-right h4 a {
+    font-size: 28px;
+    line-height: 34px;
+}
+
+.blog-desc {
+    font-size: 17px;
+    line-height: 26px;
+    margin: 0 0 15px;
+}
+
+.read-more a {
+    font-size: 16px;
+    line-height: 32px;
+}
+
+@media (max-width: 1199px) {
+    .box.webdigifyblog .box-heading {
+        font-size: 48px;
+    }
+    .blog-right h4 a {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .blog-desc {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .read-more a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 991px) {
+    .box.webdigifyblog .box-heading {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 767px) {
+    .box.webdigifyblog .box-heading {
+        font-size: 30px;
+    }
+    .blog-right h4 a {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .blog-desc {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+/* =================================================
+    26. NEWSLETTER / CONTACT SECTION ENHANCEMENTS
+================================================= */
+
+.news-left .news-title {
+    font-size: 68px;
+    line-height: 1.15;
+}
+
+.news-left .contact-info {
+    font-size: 20px;
+    line-height: 2.1;
+}
+
+.newsletter .btn.btn-lg {
+    font-size: 18px;
+    padding: 14px 36px;
+    min-width: 200px;
+}
+
+@media (max-width: 1199px) {
+    .news-left .news-title {
+        font-size: 48px;
+    }
+    .news-left .contact-info {
+        font-size: 18px;
+    }
+    .newsletter .btn.btn-lg {
+        font-size: 16px;
+        padding: 12px 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .news-left .news-title {
+        font-size: 38px;
+    }
+    .news-left .contact-info {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .news-left .news-title {
+        font-size: 30px;
+    }
+    .news-left .contact-info {
+        font-size: 15px;
+    }
+    .newsletter .btn.btn-lg {
+        font-size: 15px;
+        padding: 10px 24px;
+        min-width: 160px;
+    }
+}
+
+/* =================================================
+    27. FOOTER ENHANCEMENTS
+================================================= */
+
+footer h5 {
+    font-size: 28px;
+    line-height: 36px;
+    margin: 0 0 22px;
+}
+
+.footer-blocks .footerleft .contact-block span {
+    font-size: 17px;
+    line-height: 26px;
+}
+
+#footer .column li a {
+    font-size: 17px;
+    line-height: 36px;
+}
+
+.social-block ul li a .fa {
+    font-size: 20px;
+    line-height: 48px;
+}
+
+#footer .social-block ul li a {
+    width: 36px;
+    height: 50px;
+}
+
+@media (max-width: 1199px) {
+    footer h5 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .footer-blocks .footerleft .contact-block span,
+    #footer .column li a {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    footer h5 {
+        font-size: 22px;
+    }
+    .footer-blocks .footerleft .contact-block span,
+    #footer .column li a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    footer h5 {
+        font-size: 20px;
+    }
+}
+
+/* =================================================
+    28. BOTTOM FOOTER ENHANCEMENTS
+================================================= */
+
+.bottomfooter {
+    padding: 30px 0;
+}
+
+p.powered {
+    font-size: 17px;
+    line-height: 30px;
+}
+
+.bottomfooter .btn-link {
+    font-size: 15px;
+}
+
+@media (max-width: 991px) {
+    p.powered {
+        font-size: 15px;
+        line-height: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    p.powered {
+        font-size: 14px;
+        line-height: 26px;
     }
 }
