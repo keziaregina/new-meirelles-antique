@@ -267,28 +267,35 @@ class ControllerProductProduct extends Controller {
 
 			$this->load->model('tool/image');
 
-			if ($product_info['image']) {
-				$data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height'));
-			} else {
-				$data['popup'] = '';
-			}
+		if ($product_info['image']) {
+			// AUTO-RESIZE DISABLED: To re-enable, replace the line below with:
+			// $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height'));
+			$data['popup'] = $this->config->get('config_url') . 'image/' . $product_info['image'];
+		} else {
+			$data['popup'] = '';
+		}
 
-			if ($product_info['image']) {
-				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height'));
-			} else {
-				$data['thumb'] = '';
-			}
+		if ($product_info['image']) {
+			// AUTO-RESIZE DISABLED: To re-enable, replace the line below with:
+			// $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height'));
+			$data['thumb'] = $this->config->get('config_url') . 'image/' . $product_info['image'];
+		} else {
+			$data['thumb'] = '';
+		}
 
 			$data['images'] = array();
 
 			$results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
 
-			foreach ($results as $result) {
-				$data['images'][] = array(
-					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
-					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
-				);
-			}
+		foreach ($results as $result) {
+			// AUTO-RESIZE DISABLED: To re-enable, replace the lines below with:
+			// 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
+			// 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
+			$data['images'][] = array(
+				'popup' => $this->config->get('config_url') . 'image/' . $result['image'],
+				'thumb' => $this->config->get('config_url') . 'image/' . $result['image']
+			);
+		}
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
@@ -338,7 +345,9 @@ class ControllerProductProduct extends Controller {
 							'product_option_value_id' => $option_value['product_option_value_id'],
 							'option_value_id'         => $option_value['option_value_id'],
 							'name'                    => $option_value['name'],
-							'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
+							// AUTO-RESIZE DISABLED: To re-enable, replace the line below with:
+							// 'image' => $this->model_tool_image->resize($option_value['image'], 50, 50),
+							'image'                   => $option_value['image'] ? $this->config->get('config_url') . 'image/' . $option_value['image'] : '',
 							'price'                   => $price,
 							'price_prefix'            => $option_value['price_prefix']
 						);
@@ -394,12 +403,14 @@ class ControllerProductProduct extends Controller {
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
 
-			foreach ($results as $result) {
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
-				}
+		foreach ($results as $result) {
+			// AUTO-RESIZE DISABLED: To re-enable, replace the lines below with:
+			// $image = $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_related_height'));
+			if ($result['image']) {
+				$image = $this->config->get('config_url') . 'image/' . $result['image'];
+			} else {
+				$image = $this->config->get('config_url') . 'image/placeholder.png';
+			}
 				//added for image swap
 				
 			$images = $this->model_catalog_product->getProductImages($result['product_id']);
@@ -452,8 +463,9 @@ class ControllerProductProduct extends Controller {
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
 					'percentsaving' 	 => round((( $result['price'] -  $result['special'])/ $result['price'])*100, 0),
-					'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), 
-					$this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),
+					// AUTO-RESIZE DISABLED: To re-enable, replace the line below with:
+					// 'thumb_swap' => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),
+					'thumb_swap'  => $this->config->get('config_url') . 'image/' . $images,
 				);
 			}
 			

@@ -70,11 +70,13 @@ class ControllerCheckoutCart extends Controller {
 					$data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
 				}
 
-				if ($product['image']) {
-					$image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
-				} else {
-					$image = '';
-				}
+			if ($product['image']) {
+				// AUTO-RESIZE DISABLED: To re-enable, replace the line below with:
+				// $image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
+				$image = $this->config->get('config_url') . 'image/' . $product['image'];
+			} else {
+				$image = '';
+			}
 
 				$option_data = array();
 

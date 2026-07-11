@@ -1115,6 +1115,10 @@ footer h5,
     display: none;
 }
 
+.shopping-cart .img-thumbnail {
+    width: 200px;
+}
+
 /* =================================================
    14. HERO SECTION
 ================================================= */
@@ -1329,7 +1333,10 @@ span.search-title {
     font-size: 17px;
 }
 
-.box .box-heading,
+.tab-head .box-heading {
+    font-size: 54px !important;
+}
+
 #column-left .box .box-heading,
 #column-right .box .box-heading {
     font-family: 'Times New Roman', serif !important;
@@ -2037,4 +2044,12 @@ p.powered {
         font-size: 14px;
         line-height: 26px;
     }
+}
+
+/* =================================================
+    29. ADDRESS DETAIL
+================================================= */
+
+.left .address-detail .img-thumbnail {
+    background: unset;
 }
