@@ -8,11 +8,38 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$method_data = array();
 
 			$this->load->model('setting/extension');
+			
+			// Per-product shipping methods (Local Collection, Australia Post, Courier)
+			$this->load->model('catalog/product');
+			
+			$cart_products = $this->cart->getProducts();
+
+			$allow_local_collection = true;
+			$allow_australia_post = true;
+			$allow_courier = true;
+
+			foreach ($cart_products as $cart_product) {
+				$product_info = $this->model_catalog_product->getProduct($cart_product['product_id']);
+
+				if (empty($product_info['shipping_local_collection'])) {
+					$allow_local_collection = false;
+				}
+				if (empty($product_info['shipping_australia_post'])) {
+					$allow_australia_post = false;
+				}
+				if (empty($product_info['shipping_courier'])) {
+					$allow_courier = false;
+				}
+			}
 
 			$results = $this->model_setting_extension->getExtensions('shipping');
 
 			foreach ($results as $result) {
 				if ($this->config->get('shipping_' . $result['code'] . '_status')) {
+					if($result['code'] == 'auspost' && $allow_australia_post == false) {
+						continue;
+					}
+						
 					$this->load->model('extension/shipping/' . $result['code']);
 
 					$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
@@ -35,29 +62,6 @@ class ControllerCheckoutShippingMethod extends Controller {
 			}
 
 			array_multisort($sort_order, SORT_ASC, $method_data);
-
-			// Per-product shipping methods (Local Collection, Australia Post, Courier)
-			$this->load->model('catalog/product');
-
-			$cart_products = $this->cart->getProducts();
-
-			$allow_local_collection = true;
-			$allow_australia_post = true;
-			$allow_courier = true;
-
-			foreach ($cart_products as $cart_product) {
-				$product_info = $this->model_catalog_product->getProduct($cart_product['product_id']);
-
-				if (empty($product_info['shipping_local_collection'])) {
-					$allow_local_collection = false;
-				}
-				if (empty($product_info['shipping_australia_post'])) {
-					$allow_australia_post = false;
-				}
-				if (empty($product_info['shipping_courier'])) {
-					$allow_courier = false;
-				}
-			}
 
 			$sort_order = count($method_data) + 1;
 
