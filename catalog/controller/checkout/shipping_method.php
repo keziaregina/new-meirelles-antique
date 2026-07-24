@@ -78,23 +78,6 @@ class ControllerCheckoutShippingMethod extends Controller {
 				);
 			}
 
-			if ($allow_australia_post) {
-				$method_data['australia_post'] = array(
-					'title'      => 'Australia Post',
-					'quote'      => array(
-						'australia_post' => array(
-							'code'         => 'australia_post.australia_post',
-							'title'        => 'Australia Post',
-							'cost'         => 0.00,
-							'tax_class_id' => 0,
-							'text'         => $this->currency->format(0.00, $this->session->data['currency'])
-						)
-					),
-					'sort_order' => $sort_order++,
-					'error'      => false
-				);
-			}
-
 			if ($allow_courier) {
 				$method_data['courier'] = array(
 					'title'      => 'Courier',
