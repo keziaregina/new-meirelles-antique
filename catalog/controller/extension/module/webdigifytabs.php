@@ -7,6 +7,8 @@ class ControllerExtensionModuleWebdigifytabs extends Controller {
 		
 		$this->load->model('tool/image');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$data['bannerfirst'] = $this->load->controller('common/bannerfirst');
 
 		// special product
@@ -80,6 +82,7 @@ class ControllerExtensionModuleWebdigifytabs extends Controller {
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'on_hold'     => $result['status'] == '2',
 					'percentsaving'  => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
@@ -168,6 +171,7 @@ class ControllerExtensionModuleWebdigifytabs extends Controller {
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'on_hold'     => $result['status'] == '2',
 					'percentsaving' => round((($result['price'] - $result['special'])/$result['price'])*100, 0),					
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
@@ -239,6 +243,7 @@ class ControllerExtensionModuleWebdigifytabs extends Controller {
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'on_hold'     => $result['status'] == '2',
 					'percentsaving' => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),

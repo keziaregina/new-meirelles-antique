@@ -3,6 +3,8 @@ class ControllerExtensionModuleSpecial extends Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/special');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		if (isset($this->request->get['product_id'])) {
 			$product_id = (int)$this->request->get['product_id'];
 		} else {
@@ -117,6 +119,7 @@ class ControllerExtensionModuleSpecial extends Controller {
 					'percentsaving' 	 => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'on_hold'     => $result['status'] == '2',
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
 					'thumb_swap'  => $this->model_tool_image->resize($images , $setting['width'], $setting['height']),

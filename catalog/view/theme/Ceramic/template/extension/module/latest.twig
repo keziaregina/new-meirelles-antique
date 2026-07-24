@@ -30,7 +30,11 @@
 				
 			<div class="product_hover_block">
 			<div class="action">
+			   {% if not product.on_hold %}
 			   <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }} ');" title="{{ button_cart }}" ><i class="fa fa-shopping-cart" area-hidden="true"></i> </button>
+			   {% else %}
+			   <button type="button" class="cart_button on_hold" title="{{ text_on_hold }}" >{{ text_on_hold }}</button>
+			   {% endif %}
 				 <div class="quickview-button">
 							<a class="quickbox"  title="{{ button_quickview }}" href="{{ product.quick }}"><i class="fa fa-eye"></i></a>
 				 </div>

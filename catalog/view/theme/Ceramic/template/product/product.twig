@@ -100,7 +100,7 @@
            <tr><td><span class="desc">{{ text_reward }}</span> </td><td class="description-right" >{{ reward }}</td></tr>
             {% endif %}
             {% if sku %}
-           <tr><td><span class="desc">SKU :</span> </td><td class="description-right" >{{ sku }}</td></tr>
+           <!-- <tr><td><span class="desc">SKU :</span> </td><td class="description-right" >{{ sku }}</td></tr> -->
             {% endif %}
              {% if stock_qty =='false' %}
            <tr><td><span class="desc">{{ text_stock }}</span> </td><td class="description-right" >
@@ -108,9 +108,6 @@
           </td></tr> {% endif %}
     
           </table>
-          {% if stock_qty =='true' %}
-          	<span class="stock_msg" style="color:#228B22;">{{ text_productavail }} : {{qty_stock}}</span>
-          {% endif %}
 
       </div>
 
@@ -118,7 +115,7 @@
           <ul class="list-unstyled">
             {% if not special %}
             <li>
-              <h4 class="special-price"><span class="old-prices">{{ price }}</span></h4>
+              <h4 class="special-price"><span class="old-prices">{{ price }}</span> including GST</h4>
             </li>
             {% else %}
             <li><h4 class="special-price"><span class="new-prices">{{ special }}</span></h4>
@@ -127,7 +124,7 @@
             </li>
             {% endif %}
             {% if tax %}
-            <li class="price-tax">{{ text_tax }} <span class="product-tax">{{ tax }}</span></li>
+            <!-- <li class="price-tax">{{ text_tax }} <span class="product-tax">{{ tax }}</span></li> -->
             {% endif %}
             {% if points %}
             <li class="rewardpoint">{{ text_points }} {{ points }}</li>
@@ -139,6 +136,11 @@
             {% endfor %}
             {% endif %}
           </ul>
+          {% if on_hold %}
+          <div class="on-hold-label">
+            <span class="label label-warning" style="font-size:14px;padding:8px 15px;margin-top:10px;display:inline-block;">{{ text_on_hold }}</span>
+          </div>
+          {% endif %}
           {% endif %}
           <div id="product">
        {% if options %}
@@ -255,18 +257,14 @@
             </div>
             {% endif %}
             <div class="form-group qty">
-              {% if stock_qty =='true' %} 
-              <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 op-box qty-plus-minus">
-                  <button type="button" class="form-control pull-left btn-number btnminus" disabled="disabled" data-type="minus" data-field="quantity"></button>
-                {# <label class="control-label" for="input-quantity">{{ entry_qty }}</label> #}
-                 <input id="input-quantity" type="text" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" class="form-control input-number pull-left" />
-                  <input type="hidden" name="product_id" value="{{ product_id }}" />
-                   <button type="button" class="form-control pull-left btn-number btnplus" data-type="plus" data-field="quantity"></button>
-                   </div>
-              <button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">{{ button_cart }}</button>
+              {% if on_hold %}
+              <button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block disabled">{{ text_on_hold }}</button>
+              {% elseif stock_qty =='true' %} 
+              <button type="button" id="button-cart" onclick="cart.add('{{ product_id }}');" data-product-id="{{ product_id }}" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block btn-crt {% if cart_has_product %} has-cart {% endif %}">{{ button_cart }}</button>
               {% else %}
               <button type="button" id="button" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block disabled">{{ text_outstock }}</button> 
               {% endif %}
+              <button type="button" id="button-enquiry" onclick="document.getElementById('product_model').value='{{ model }}';" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#itemEnquiryModal">Make an enquiry</button>
                <div class="btn-group prd_page">
 
             <button type="button" class="btn btn-default wishlist" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');">{{ button_wishlist }}</button>
@@ -279,7 +277,82 @@
             {% endif %}
             </div>
 
-           
+            <!-- Description & Specification tabs moved here, below the Add to Cart / Enquiry / Wishlist / Compare buttons -->
+            <div id="tabs_info" class="product-tab">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-description" data-toggle="tab">{{ tab_description }}</a></li>
+                <li><a href="#tab-specification" data-toggle="tab">{{ tab_attribute }}</a></li>
+                {% if attribute_groups %}
+                {% endif %}
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab-description">
+                  {{ description }} </br>
+                  <strong>Status: </strong> {% if stock_qty =='true' %} Available {% else %} Sold {% endif %}
+
+                  {% if shipping_local_collection or shipping_australia_post or shipping_courier %}
+                    <div class="delivery-section">
+                      <p class="delivery-heading">Delivery & Collection</p>
+
+                      {% if shipping_local_collection and collection_location %}
+                        <div class="delivery-row">
+                          <span class="delivery-label">Collection Location</span>
+                          <span class="delivery-value">{{ collection_location }}</span>
+                        </div>
+                      {% endif %}
+
+                      <div class="delivery-row">
+                        <span class="delivery-label">Available Delivery Methods</span>
+                        <span class="delivery-value">
+                          {%- if shipping_local_collection %}Local Collection{% endif -%}
+                          {%- if shipping_australia_post %}{% if shipping_local_collection or shipping_courier %}, {% endif %}Australia Post{% endif -%}
+                          {%- if shipping_courier %}{% if shipping_local_collection or shipping_australia_post %}, {% endif %}Courier{% endif -%}
+                        </span>
+                      </div>
+
+                      {% if shipping_courier %}
+                        <p class="delivery-note">International delivery can also be arranged. Please contact us for further information.</p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="tab-pane" id="tab-specification">
+                  <table class="table table-bordered">
+                    <tbody>
+                    {% if(_dimensions) %}
+                    <tr>
+                      <td>Dimension</td>
+                      <td>{{ _dimensions }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if(_condition_report) %}
+                    <tr>
+                      <td>Condition Report</td>
+                      <td>{{ _condition_report }}</td>
+                    </tr>
+                    {% endif %}
+                      </tbody>
+                  </table>
+                  {# <table class="table table-bordered">
+                    {% for attribute_group in attribute_groups %}
+                    <thead>
+                      <tr>
+                        <td colspan="2"><strong>{{ attribute_group.name }}</strong></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for attribute in attribute_group.attribute %}
+                    <tr>
+                      <td>{{ attribute.name }}</td>
+                      <td>{{ attribute.text }}</td>
+                    </tr>
+                    {% endfor %}
+                      </tbody>
+                    {% endfor %}
+                  </table> #}
+                </div>
+              </div>
+            </div>
 
            <hr>
        <!-- AddThis Button BEGIN -->
@@ -309,46 +382,7 @@
    
     {{ column_right }}
     
-     <!-- product page tab code start-->
-     {% if column_left and column_right %}
-         {% set class = 'col-sm-6' %}
-         {%  elseif column_left or column_right %}
-         {% set class = 'col-sm-12' %}
-         {% else %}
-         {% set class = 'col-sm-12' %}
-        {% endif %}
-    <div id="tabs_info" class="product-tab {{ class }}">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-description" data-toggle="tab">{{ tab_description }}</a></li>
-            {% if attribute_groups %}
-            <li><a href="#tab-specification" data-toggle="tab">{{ tab_attribute }}</a></li>
-            {% endif %}
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab-description">{{ description }}</div>
-            {% if attribute_groups %}
-            <div class="tab-pane" id="tab-specification">
-              <table class="table table-bordered">
-                {% for attribute_group in attribute_groups %}
-                <thead>
-                  <tr>
-                    <td colspan="2"><strong>{{ attribute_group.name }}</strong></td>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for attribute in attribute_group.attribute %}
-                <tr>
-                  <td>{{ attribute.name }}</td>
-                  <td>{{ attribute.text }}</td>
-                </tr>
-                {% endfor %}
-                  </tbody>
-                {% endfor %}
-              </table>
-            </div>
-            {% endif %}
-            </div>
-      </div>
+     <!-- product page tab code moved into product-right column above -->
       <div class="product-review">
 
         {% if review_status %}
@@ -496,8 +530,10 @@
             {% endif %}
       
             <div class="action">
-              {% if product.qty > 0 %}
+              {% if product.qty > 0 and not product.on_hold %}
              <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }}');" title="{{ button_cart }}" >{{ button_cart }}</button>
+             {% elseif product.on_hold %}
+                 <button type="button" class="cart_button on_hold" title="{{ text_on_hold }}" >{{ text_on_hold }}</button>
              {% else %}
                  <button type="button" class="cart_button out_of_stock" title="{{text_outstock}}" >{{text_outstock}}</button>
              {% endif %}
@@ -540,96 +576,97 @@ $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
 });
 </script> 
 <script type="text/javascript">
-$('#button-cart').on('click', function() {
-  $.ajax({
-    url: 'index.php?route=checkout/cart/add',
-    type: 'post',
-    data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
-    dataType: 'json',
-    beforeSend: function() {
-      $('#button-cart').button('loading');
-    },
-    complete: function() {
-      $('#button-cart').button('reset');
-    },
-    success: function(json) {
-      $('.alert-dismissible, .text-danger').remove();
-      $('.form-group').removeClass('has-error');
+// $('#button-cart').on('click', function() {
+//   $.ajax({
+//     url: 'index.php?route=checkout/cart/add',
+//     type: 'post',
+//     data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+//     dataType: 'json',
+//     beforeSend: function() {
+//       $('#button-cart').button('loading');
+//     },
+//     complete: function() {
+//       $('#button-cart').button('reset');
+//     },
+//     success: function(json) {
+//       console.log(json);
+//       $('.alert-dismissible, .text-danger').remove();
+//       $('.form-group').removeClass('has-error');
 
-      if (json['error']) {
-        if (json['error']['option']) {
-          for (i in json['error']['option']) {
-            var element = $('#input-option' + i.replace('_', '-'));
+//       if (json['error']) {
+//         if (json['error']['option']) {
+//           for (i in json['error']['option']) {
+//             var element = $('#input-option' + i.replace('_', '-'));
 
-            if (element.parent().hasClass('input-group')) {
-              element.parent().before('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-            } else {
-              element.before('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-            }
-          }
-        }
+//             if (element.parent().hasClass('input-group')) {
+//               element.parent().before('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+//             } else {
+//               element.before('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+//             }
+//           }
+//         }
 
-        if (json['error']['recurring']) {
-          $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
-        }
+//         if (json['error']['recurring']) {
+//           $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+//         }
 
-        // Highlight any found errors
-        $('.text-danger').parent().addClass('has-error');
-      }
+//         // Highlight any found errors
+//         $('.text-danger').parent().addClass('has-error');
+//       }
 
-      if (json['success']) {
-        $.notify({
-          message: json['success'],
-          target: '_blank'
-        },{
-          // settings
-          element: 'body',
-          position: null,
-          type: "info",
-          allow_dismiss: true,
-          newest_on_top: false,
-          placement: {
-            from: "top",
-            align: "center"
-          },
-          offset: 0,
-          spacing: 10,
-          z_index: 2031,
-          delay: 5000,
-          timer: 1000,
-          url_target: '_blank',
-          mouse_over: null,
-          animate: {
-            enter: 'animated fadeInDown',
-            exit: 'animated fadeOutUp'
-          },
-          onShow: null,
-          onShown: null,
-          onClose: null,
-          onClosed: null,
-          icon_type: 'class',
-          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
-            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
-            '<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
-            '<div class="progress" data-notify="progressbar">' +
-              '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-            '</div>' +
-            '<a href="{3}" target="{4}" data-notify="url"></a>' +
-          '</div>' 
-        });
+//       if (json['success']) {
+//         $.notify({
+//           message: json['success'],
+//           target: '_blank'
+//         },{
+//           // settings
+//           element: 'body',
+//           position: null,
+//           type: "info",
+//           allow_dismiss: true,
+//           newest_on_top: false,
+//           placement: {
+//             from: "top",
+//             align: "center"
+//           },
+//           offset: 0,
+//           spacing: 10,
+//           z_index: 2031,
+//           delay: 5000,
+//           timer: 1000,
+//           url_target: '_blank',
+//           mouse_over: null,
+//           animate: {
+//             enter: 'animated fadeInDown',
+//             exit: 'animated fadeOutUp'
+//           },
+//           onShow: null,
+//           onShown: null,
+//           onClose: null,
+//           onClosed: null,
+//           icon_type: 'class',
+//           template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
+//             '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+//             '<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
+//             '<div class="progress" data-notify="progressbar">' +
+//               '<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+//             '</div>' +
+//             '<a href="{3}" target="{4}" data-notify="url"></a>' +
+//           '</div>' 
+//         });
 
-        $('#cart > button').html('<div class="cart_detail"><div class="cart_image"></div><span id="cart-total"> ' + json['total'] + '</span>'  + '</div>');
+//         $('#cart > button').html('<div class="cart_detail"><div class="cart_image"></div><span id="cart-total"> ' + json['total'] + '</span>'  + '</div>');
 
-        //$('html, body').animate({ scrollTop: 0 }, 'slow');
+//         //$('html, body').animate({ scrollTop: 0 }, 'slow');
 
-        $('#cart > ul').load('index.php?route=common/cart/info ul li');
-      }
-    },
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-  });
-});
+//         $('#cart > ul').load('index.php?route=common/cart/info ul li');
+//       }
+//     },
+//         error: function(xhr, ajaxOptions, thrownError) {
+//             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+//         }
+//   });
+// });
 </script> 
 <script type="text/javascript">
 $('.date').datetimepicker({
@@ -769,30 +806,8 @@ $(document).ready(function() {
 $(document).ready(function() {
 if ($(window).width() > 767) {
     $("#tmzoom").elevateZoom({
-        
-        gallery:'additional-carousel',
-        //inner zoom         
-                 
-        zoomType : "inner", 
-        cursor: "crosshair" 
-        
-        /*//tint
-        
-        tint:true, 
-        tintColour:'#F90', 
-        tintOpacity:0.5
-        
-        //lens zoom
-        
-        zoomType : "lens", 
-        lensShape : "round", 
-        lensSize : 200 
-        
-        //Mousewheel zoom
-        
-        scrollZoom : true*/
-        
-        
+        zoomType : "inner",
+        cursor: "crosshair"
       });
     var z_index = 0;
                   
@@ -804,9 +819,27 @@ if ($(window).width() > 767) {
                   $('.additional-carousel a').click(function() {
                     var smallImage = $(this).attr('data-image');
                     var largeImage = $(this).attr('data-zoom-image');
-                    var ez =   $('#tmzoom').data('elevateZoom');  
-                    $('.thumbnail').attr('href', largeImage);  
-                    ez.swaptheimage(smallImage, largeImage); 
+                    var $thumbnail = $('.thumbnail');
+                    $thumbnail.attr('href', largeImage);
+
+                    $('#tmzoom').remove();
+                    $('.zoomContainer').remove();
+                    $('.zoomWindowContainer').remove();
+
+                    var $newImg = $('<img>').attr({
+                      'id': 'tmzoom',
+                      'src': smallImage,
+                      'data-zoom-image': largeImage,
+                      'title': $thumbnail.find('img').attr('title'),
+                      'alt': $thumbnail.find('img').attr('alt')
+                    });
+                    $newImg.appendTo($thumbnail);
+
+                    $newImg.elevateZoom({
+                      zoomType : "inner",
+                      cursor: "crosshair"
+                    });
+
                     z_index = $(this).index('.additional-carousel a');
                     return false;
                   });

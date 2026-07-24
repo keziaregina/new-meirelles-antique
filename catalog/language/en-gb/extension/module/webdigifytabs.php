@@ -13,3 +13,4 @@ $_['text_no_products'] = 'No more products found!';
 $_['text_view_more'] = 'View More Products';
 // Text
 $_['text_tax']      = 'Ex Tax:';
+$_['text_on_hold']  = 'On Hold';

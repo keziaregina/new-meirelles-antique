@@ -3,6 +3,8 @@ class ControllerProductSpecial extends Controller {
 	public function index() {
 		$this->load->language('product/special');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('catalog/product');
 
 		$this->load->model('tool/image');
@@ -145,6 +147,7 @@ class ControllerProductSpecial extends Controller {
 				'rating'      => $result['rating'],
 				'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
 				'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
+				'on_hold' => $result['status'] == '2',
 				'cart_has_product' => $cart_has_product,
 				'percentsaving' 	 => round((( $result['price'] -  $result['special'])/ $result['price'])*100, 0),
 				'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), 

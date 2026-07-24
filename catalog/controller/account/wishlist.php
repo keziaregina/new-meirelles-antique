@@ -9,6 +9,8 @@ class ControllerAccountWishList extends Controller {
 
 		$this->load->language('account/wishlist');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('account/wishlist');
 
 		$this->load->model('catalog/product');
@@ -93,6 +95,7 @@ class ControllerAccountWishList extends Controller {
 					'stock'      => $stock,
 					'price'      => $price,
 					'special'    => $special,
+					'on_hold'    => $product_info['status'] == '2',
 					'href'       => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
 					'remove'     => $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'])
 				);

@@ -114,8 +114,12 @@
         <tr>
           <td></td>
           {% for product in products %}
-          <td><input type="button" value="{{ button_cart }}" class="btn btn-primary btn-block" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');" />
-            <a href="{{ product.remove }}" class="btn btn-danger btn-block">{{ button_remove }}</a></td>
+            <td>{% if not product.on_hold %}
+              <input type="button" value="{{ button_cart }}" class="btn btn-primary btn-block" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');" />
+              {% else %}
+              <button type="button" class="btn btn-primary btn-block disabled">{{ text_on_hold }}</button>
+              {% endif %}
+              <a href="{{ product.remove }}" class="btn btn-danger btn-block">{{ button_remove }}</a></td>
           {% endfor %} </tr>
       </table>
       {% else %}

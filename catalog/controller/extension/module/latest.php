@@ -3,6 +3,8 @@ class ControllerExtensionModuleLatest extends Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/latest');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('catalog/product');
 
 		$this->load->model('tool/image');
@@ -71,6 +73,7 @@ class ControllerExtensionModuleLatest extends Controller {
 					'special'     => $special,
 					'tax'         => $tax,
 					'rating'      => $rating,
+					'on_hold'     => $result['status'] == '2',
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'thumb_swap'  => $this->model_tool_image->resize($images , $setting['width'], $setting['height']),
 				);

@@ -366,7 +366,8 @@ class ControllerCatalogProduct extends Controller {
 				'price'      => $this->currency->format($result['price'], $this->config->get('config_currency')),
 				'special'    => $special,
 				'quantity'   => $result['quantity'],
-				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     => $result['status'] == '2' ? $this->language->get('text_on_hold') : ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+			'status_raw' => $result['status'],
 				'edit'       => $this->url->link('catalog/product/edit', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $result['product_id'] . $url, true)
 			);
 		}

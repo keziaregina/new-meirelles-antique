@@ -24,6 +24,7 @@
 <script src="catalog/view/javascript/jquery.countdown.js"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> 
 <link href="catalog/view/theme/{{ mytemplate }}/stylesheet/stylesheet.css" rel="stylesheet" />
+<link href="catalog/view/theme/{{ mytemplate }}/stylesheet/custom.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cormorant:300,400,500,600,700" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/magnific/magnific-popup.css" />
@@ -130,7 +131,16 @@ $(document).ready(function(){
   <div class="container-fluid">
 <div class="row">
   <div class="col-sm-4 header-logo">
-    <div id="logo">{% if logo %}<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>{% else %}
+    <div id="logo">
+      {% if logo %}
+      <a href="{{ home }}">
+        <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+        <span class="logo-text">
+          <span class="logo-title">{{ name }}</span>
+          <span class="logo-subtitle">Parisian & French Provincial Interiors.</span>
+        </span>
+      </a>
+      {% else %}
       <h1><a href="{{ home }}">{{ name }}</a></h1>
       {% endif %}
     </div>

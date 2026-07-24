@@ -3,6 +3,8 @@ class ControllerExtensionModuleProductcategory extends Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/productcategory');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$data['lang'] = $this->language->get('code');
 
 		$data['heading_title'] = $this->language->get('heading_title');
@@ -105,6 +107,7 @@ class ControllerExtensionModuleProductcategory extends Controller {
 							'special'     => $special,
 							'tax'         => $tax,
 							'rating'      => $rating,
+							'on_hold'     => $result['status'] == '2',
 							'percentsaving' => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
 							'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 							'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),

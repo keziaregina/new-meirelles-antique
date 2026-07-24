@@ -46,7 +46,11 @@
                 {{ product.price }}
                 {% else %} <b>{{ product.special }}</b> <s>{{ product.price }}</s> {% endif %} </div>
               {% endif %}</td>
-            <td class="text-right"><button type="button" onclick="cart.add('{{ product.product_id }}');" data-toggle="tooltip" title="{{ button_cart }}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
+            <td class="text-right">{% if not product.on_hold %}
+              <button type="button" onclick="cart.add('{{ product.product_id }}');" data-toggle="tooltip" title="{{ button_cart }}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
+              {% else %}
+              <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ text_on_hold }}">{{ text_on_hold }}</button>
+              {% endif %}
               <a href="{{ product.remove }}" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-times"></i></a></td>
           </tr>
           {% endfor %}

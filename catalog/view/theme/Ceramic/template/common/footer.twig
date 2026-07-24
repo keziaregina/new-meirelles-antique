@@ -15,7 +15,7 @@
      <div class="footer-blocks">
       {{ footerleft }}
       {% if informations %}
-      <div id="info" class="col-sm-3 column">
+      <div id="info" class="col-sm-4 column">
         <h5>{{ text_information }}</h5>
         <ul class="list-unstyled">
          {% for information in informations %}
@@ -25,7 +25,7 @@
         </ul>
       </div>
       {% endif %}
-    <div class="col-sm-3 column">
+    {# <div class="col-sm-3 column">
         <h5>{{ text_service }}</h5>
         <ul class="list-unstyled">
           <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
@@ -34,8 +34,8 @@
           <li><a href="{{ order }}">{{ text_order }}</a></li>
           <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
         </ul>
-      </div>
-     <div id="account_link" class="col-sm-3 column">
+      </div> #}
+     <div id="account_link" class="col-sm-4 column">
         <h5>{{ text_account }}</h5>
         <ul class="list-unstyled">
           <li><a href="{{ account }}">{{ text_account }}</a></li>
@@ -85,6 +85,258 @@
 </div>
 	
 </footer>
+
+<!-- Modal -->
+<div id="itemEnquiryModal" class="modal fade enquiry-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header enquiry-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+
+                <h2 class="modal-title">
+                    Item Enquiry Form
+                </h2>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Name -->
+                <div class="field-group">
+                    <div class="form-section-title">Name</div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="first_name">
+                                First Name
+                                <span class="required">(required)</span>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="first_name"
+                                name="first_name"
+                            >
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="last_name">
+                                Last Name
+                                <span class="required">(required)</span>
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="last_name"
+                                name="last_name"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="field-group">
+                    <label for="email">
+                        Email
+                        <span class="required">(required)</span>
+                    </label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                    >
+                </div>
+
+                <!-- Phone -->
+                <div class="field-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                    >
+                </div>
+
+                <!-- Message -->
+                <div class="field-group">
+                    <label for="message">
+                        Message
+                        <span class="required">(required)</span>
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        id="message"
+                        name="message"
+                    ></textarea>
+                </div>
+
+                <!-- Product Name -->
+                <div class="field-group">
+                    <label for="product_model">Product Stock ID</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="product_model"
+                        name="product_model"
+                    >
+
+                    <div class="checkbox-inline" style="margin-top:10px;">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="shipping_quote"
+                                name="shipping_quote"
+                            >
+                            I would like a quotation for delivery.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Suburb -->
+                <div
+                    class="field-group"
+                    id="suburbField"
+                    style="display:none;"
+                >
+                    <label for="suburb">Suburb</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="suburb"
+                        name="suburb"
+                    >
+                </div>
+
+                <!-- Postcode -->
+                <div
+                    class="field-group"
+                    id="postcodeField"
+                    style="display:none;"
+                >
+                    <label for="postcode">Postcode</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="postcode"
+                        name="postcode"
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-submit">
+                    Submit
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const shippingCheckbox = document.getElementById('shipping_quote');
+    const suburbField = document.getElementById('suburbField');
+    const suburbInput = document.getElementById('suburb');
+    const postcodeField = document.getElementById('postcodeField');
+    const postcodeInput = document.getElementById('postcode');
+    const phoneInput = document.getElementById('phone');
+
+    // Show / Hide Suburb & Postcode
+    shippingCheckbox.addEventListener('change', function () {
+
+        if (this.checked) {
+            suburbField.style.display = 'block';
+            postcodeField.style.display = 'block';
+        } else {
+            suburbField.style.display = 'none';
+            suburbInput.value = '';
+            postcodeField.style.display = 'none';
+            postcodeInput.value = '';
+        }
+
+    });
+
+    phoneInput.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    postcodeInput.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Submit Enquiry
+    $('.btn-submit').on('click', function (e) {
+        e.preventDefault();
+
+        var btn = $(this);
+
+        $.ajax({
+            url: 'index.php?route=information/contact/enquiry',
+            type: 'post',
+            data: $('#itemEnquiryModal input, #itemEnquiryModal textarea').serialize(),
+            dataType: 'json',
+            beforeSend: function () {
+                btn.button('loading');
+            },
+            complete: function () {
+                btn.button('reset');
+            },
+            success: function (json) {
+                $('.alert-dismissible, .text-danger').remove();
+
+                if (json['error']) {
+                    if (json['error']['first_name']) {
+                        $('#first_name').before('<div class="text-danger">' + json['error']['first_name'] + '</div>');
+                    }
+                    if (json['error']['last_name']) {
+                        $('#last_name').before('<div class="text-danger">' + json['error']['last_name'] + '</div>');
+                    }
+                    if (json['error']['email']) {
+                        $('#email').before('<div class="text-danger">' + json['error']['email'] + '</div>');
+                    }
+                    if (json['error']['message']) {
+                        $('#message').before('<div class="text-danger">' + json['error']['message'] + '</div>');
+                    }
+                }
+
+                if (json['success']) {
+                    $.notify({
+                        message: json['success']
+                    }, {
+                        element: 'body',
+                        type: 'success',
+                        allow_dismiss: true,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        },
+                        z_index: 2031,
+                        delay: 5000,
+                        timer: 1000,
+                        animate: {
+                            enter: 'animated fadeInDown'
+                        }
+                    });
+
+                    $('#itemEnquiryModal').modal('hide');
+
+                    $('#itemEnquiryModal input, #itemEnquiryModal textarea').val('');
+                    suburbField.style.display = 'none';
+                    postcodeField.style.display = 'none';
+                }
+            }
+        });
+    });
+
+});
+</script>
+
 {% for script in scripts %}
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}

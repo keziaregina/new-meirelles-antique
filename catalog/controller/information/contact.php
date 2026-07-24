@@ -196,4 +196,80 @@ class ControllerInformationContact extends Controller {
 
 		$this->response->setOutput($this->load->view('common/success', $data));
 	}
+
+	public function enquiry() {
+		$json = array();
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			if ((utf8_strlen($this->request->post['first_name']) < 1) || (utf8_strlen($this->request->post['first_name']) > 32)) {
+				$json['error']['first_name'] = 'First Name must be between 1 and 32 characters!';
+			}
+
+			if ((utf8_strlen($this->request->post['last_name']) < 1) || (utf8_strlen($this->request->post['last_name']) > 32)) {
+				$json['error']['last_name'] = 'Last Name must be between 1 and 32 characters!';
+			}
+
+			if (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+				$json['error']['email'] = 'E-Mail Address does not appear to be valid!';
+			}
+
+			if ((utf8_strlen($this->request->post['message']) < 1) || (utf8_strlen($this->request->post['message']) > 3000)) {
+				$json['error']['message'] = 'Message must be between 1 and 3000 characters!';
+			}
+
+			if (empty($json['error'])) {
+				try {
+					$mail = new Mail($this->config->get('config_mail_engine'));
+					$mail->parameter = $this->config->get('config_mail_parameter');
+					$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+					$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+					$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+					$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+					$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+					$fullname = trim($this->request->post['first_name'] . ' ' . $this->request->post['last_name']);
+
+					$enquiry  = "Name: " . $fullname . "\n";
+					$enquiry .= "Email: " . $this->request->post['email'] . "\n";
+
+					if (!empty($this->request->post['phone'])) {
+						$enquiry .= "Phone: " . $this->request->post['phone'] . "\n";
+					}
+
+					if (!empty($this->request->post['product_model'])) {
+						$enquiry .= "Product Stock ID: " . $this->request->post['product_model'] . "\n";
+					}
+
+					if (!empty($this->request->post['shipping_quote'])) {
+						$enquiry .= "Shipping Quote: Yes\n";
+
+						if (!empty($this->request->post['suburb'])) {
+							$enquiry .= "Suburb: " . $this->request->post['suburb'] . "\n";
+						}
+
+						if (!empty($this->request->post['postcode'])) {
+							$enquiry .= "Postcode: " . $this->request->post['postcode'] . "\n";
+						}
+					}
+
+					$enquiry .= "\nMessage:\n" . $this->request->post['message'];
+
+					$mail->setTo($this->config->get('config_email'));
+					$mail->setFrom($this->request->post['email']);
+					$mail->setReplyTo($this->request->post['email']);
+					$mail->setSender(html_entity_decode($fullname, ENT_QUOTES, 'UTF-8'));
+					$mail->setSubject(html_entity_decode('Item Enquiry from ' . $fullname, ENT_QUOTES, 'UTF-8'));
+					$mail->setText($enquiry);
+					$mail->send();
+
+					$json['success'] = 'Thank you for contacting us. Your enquiry has been received and a member of our team will be in touch as soon as possible.';
+				} catch (Exception $e) {
+					$json['error']['warning'] = 'Email sending failed: ' . $e->getMessage();
+				}
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }

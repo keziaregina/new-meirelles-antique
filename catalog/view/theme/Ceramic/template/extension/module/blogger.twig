@@ -50,7 +50,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-$('.blogcarousel').owlCarousel({
+  /* $('.blogcarousel').owlCarousel({
 		items: 3,
 		autoPlay: false,
 		singleItem: false,
@@ -60,6 +60,22 @@ $('.blogcarousel').owlCarousel({
 		itemsDesktop : [1199,2],
 		itemsDesktopSmall:[991,2],
 		itemsTablet :	[575,1]
-	});
+  }); */
+  $('.blogcarousel').owlCarousel({
+    items: 3,
+    autoPlay: false,
+    singleItem: false,
+    navigation: true,
+    navigationText: [
+        '<i class="fa fa-chevron-left fa-5x"></i>',
+        '<i class="fa fa-chevron-right fa-5x"></i>'
+    ],
+    pagination: true,
+
+    itemsDesktop: [1199, 3],
+    itemsDesktopSmall: [991, 2],
+    itemsTablet: [768, 2],
+    itemsMobile: [479, 1]
+});
 });	
 </script>

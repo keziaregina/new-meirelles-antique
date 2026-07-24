@@ -158,6 +158,9 @@
             {% endfor %}
             {% endif %}
           </ul>
+          {% if on_hold %}
+          <li><span class="label label-warning">{{ text_on_hold }}</span></li>
+          {% endif %}
           {% endif %}
           <div id="product"> {% if options %}
             <hr>
@@ -274,11 +277,15 @@
             </div>
             {% endif %}
             <div class="form-group">
+              {% if on_hold %}
+              <button type="button" class="btn btn-primary btn-lg btn-block disabled">{{ text_on_hold }}</button>
+              {% else %}
               <label class="control-label" for="input-quantity">{{ entry_qty }}</label>
               <input type="text" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" class="form-control" />
               <input type="hidden" name="product_id" value="{{ product_id }}" />
               <br/>
               <button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">{{ button_cart }}</button>
+              {% endif %}
             </div>
             {% if minimum > 1 %}
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
@@ -325,7 +332,11 @@
                 {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p>
               {% endif %} </div>
             <div class="button-group">
+              {% if not product.on_hold %}
               <button type="button" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');"><span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span> <i class="fa fa-shopping-cart"></i></button>
+              {% else %}
+              <button type="button" class="btn btn-default disabled">{{ text_on_hold }}</button>
+              {% endif %}
               <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
               <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
             </div>

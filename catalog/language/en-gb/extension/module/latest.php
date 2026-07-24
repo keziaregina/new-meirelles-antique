@@ -4,3 +4,4 @@ $_['heading_title'] = 'Latest';
 
 // Text
 $_['text_tax']      = 'Ex Tax:';
+$_['text_on_hold']  = 'On Hold';

@@ -3,6 +3,8 @@ class ControllerProductSearch extends Controller {
 	public function index() {
 		$this->load->language('product/search');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('catalog/category');
 
 		$this->load->model('catalog/product');
@@ -247,7 +249,8 @@ class ControllerProductSearch extends Controller {
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
-					'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
+					'on_hold'      => $result['status'] == '2',
+				'quick'        => $this->url->link('product/quick_view','&product_id=' . $result['product_id']),
 					'percentsaving' 	 => round((( $result['price'] -  $result['special'])/ $result['price'])*100, 0),
 					'thumb_swap'  => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), 
 					$this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),

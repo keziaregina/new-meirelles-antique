@@ -15,6 +15,7 @@ $_['text_model']        = 'Product Code:';
 $_['text_points']       = 'Reward Points:';
 $_['text_price']        = 'Price:';
 $_['text_tax']          = 'Ex Tax:';
+$_['text_on_hold']      = 'On Hold';
 $_['text_reviews']      = 'Based on %s reviews.';
 $_['text_compare']      = 'Product Compare (%s)';
 $_['text_sort']         = 'Sort By:';

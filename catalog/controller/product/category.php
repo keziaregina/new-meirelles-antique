@@ -9,6 +9,8 @@ class ControllerProductCategory extends Controller {
 
 		$this->load->model('tool/image');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		if (isset($this->request->get['sold'])) {	// 0: available, 1: sold, 2: all
 			$sold = $this->request->get['sold'];
 		} else {
@@ -252,6 +254,7 @@ class ControllerProductCategory extends Controller {
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'cart_has_product' => $cart_has_product,
+					'on_hold' => $result['status'] == '2',
 					'thumb'       => $image,
 					'qty'    	  => $result['quantity'],
 					'name'        => $result['name'],

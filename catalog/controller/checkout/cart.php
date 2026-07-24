@@ -277,6 +277,10 @@ class ControllerCheckoutCart extends Controller {
 		$product_info = $this->model_catalog_product->getProduct($product_id);
 
 		if ($product_info) {
+			if ($product_info['status'] == '2') {
+				$json['error']['warning'] = $this->language->get('error_on_hold');
+			}
+
 			if (isset($this->request->post['quantity'])) {
 				$quantity = (int)$this->request->post['quantity'];
 			} else {

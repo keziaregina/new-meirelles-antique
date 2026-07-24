@@ -59,7 +59,11 @@
 
               <div class="action">
                   {% if product.qty > 0 %}
+                    {% if not product.on_hold %}
                  <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }}');" title="{{ button_cart }}" >{{ button_cart }}</button>
+                    {% else %}
+                 <button type="button" class="cart_button disabled" title="{{ text_on_hold }}" >{{ text_on_hold }}</button>
+                    {% endif %}
                  {% else %}
                      <button type="button" class="cart_button out_of_stock" title="{{text_outstock}}" >{{text_outstock}}</button>
                  {% endif %}

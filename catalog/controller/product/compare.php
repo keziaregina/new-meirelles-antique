@@ -3,6 +3,8 @@ class ControllerProductCompare extends Controller {
 	public function index() {
 		$this->load->language('product/compare');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('catalog/product');
 
 		$this->load->model('tool/image');
@@ -100,6 +102,7 @@ class ControllerProductCompare extends Controller {
 					'thumb'        => $image,
 					'price'        => $price,
 					'special'      => $special,
+					'on_hold'      => $product_info['status'] == '2',
 					'description'  => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'model'        => $product_info['model'],
 					'manufacturer' => $product_info['manufacturer'],

@@ -39,5 +39,6 @@ $_['error_stock']              = 'Products marked with *** are not available in 
 $_['error_minimum']            = 'Minimum order amount for %s is %s!';
 $_['error_required']           = '%s required!';
 $_['error_already_in_cart']    = 'Product is already exist in cart';
+$_['error_on_hold']            = 'This product is currently On Hold and cannot be added to cart.';
 $_['error_product']            = 'Warning: There are no products in your cart!';
 $_['error_recurring_required'] = 'Please select a payment recurring!';

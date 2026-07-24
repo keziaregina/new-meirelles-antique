@@ -3,6 +3,8 @@ class ControllerExtensionModuleFeatured extends Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/featured');
 
+		$data['text_on_hold'] = $this->language->get('text_on_hold');
+
 		$this->load->model('catalog/product');
 
 		$this->load->model('tool/image');
@@ -75,6 +77,7 @@ class ControllerExtensionModuleFeatured extends Controller {
 						'special'     => $special,
 						'tax'         => $tax,
 						'rating'      => $rating,
+						'on_hold'     => $product_info['status'] == '2',
 						'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
 						'quick'        => $this->url->link('product/quick_view','&product_id=' . $product_info['product_id']),
 						'percentsaving' => round((($product_info['price'] - $product_info['special'])/$product_info['price'])*100, 0),

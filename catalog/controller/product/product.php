@@ -245,6 +245,8 @@ class ControllerProductProduct extends Controller {
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['sku'] = $product_info['sku'];
+			$data['status'] = $product_info['status'];
+			$data['on_hold'] = $product_info['status'] == '2';
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 

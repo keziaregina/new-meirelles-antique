@@ -392,20 +392,18 @@
                   <select name="status" id="input-status" class="form-control">
 
 
-                    {% if status %}
-
-
+                    {% if status == '2' %}
+                      <option value="1">{{ text_enabled }}</option>
+                      <option value="0">{{ text_disabled }}</option>
+                      <option value="2" selected="selected">{{ text_on_hold }}</option>
+                    {% elseif status %}
                       <option value="1" selected="selected">{{ text_enabled }}</option>
                       <option value="0">{{ text_disabled }}</option>
-
-
+                      <option value="2">{{ text_on_hold }}</option>
                     {% else %}
-
-
                       <option value="1">{{ text_enabled }}</option>
                       <option value="0" selected="selected">{{ text_disabled }}</option>
-
-
+                      <option value="2">{{ text_on_hold }}</option>
                     {% endif %}
 
 
