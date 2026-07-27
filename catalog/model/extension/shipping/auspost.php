@@ -34,7 +34,20 @@ class ModelExtensionShippingAusPost extends Model {
 
 			if ($address['iso_code_2'] == 'AU') {
 
-				foreach ($this->cart->getProducts() as $product) {
+				$cart_products = $this->cart->getProducts();
+
+				$debug_products = array();
+				foreach ($cart_products as $product) {
+					$debug_products[] = array(
+						'id'     => $product['product_id'],
+						'name'   => $product['name'],
+						'length' => $product['length'],
+						'width'  => $product['width'],
+						'height' => $product['height'],
+						'qty'    => $product['quantity'],
+						'lc_id'  => $product['length_class_id']
+					);
+
 					if ($product['height'] > $height) {
 						$height = $product['height'];
 					}
@@ -43,32 +56,46 @@ class ModelExtensionShippingAusPost extends Model {
 						$width = $product['width'];
 					}
 
-					$length += ($product['length']*$product['quantity']);
+					$length += ($product['length'] * $product['quantity']);
 				}
+
+				$this->log->write('AUSPOST DEBUG: Cart Products -> ' . json_encode($debug_products));
+				$this->log->write('AUSPOST DEBUG: Aggregated -> length=' . $length . ', width=' . $width . ', height=' . $height . ', weight=' . $weight);
+
+				$api_url = 'https://digitalapi.auspost.com.au/postage/parcel/domestic/service.json?from_postcode=' . urlencode($this->config->get('shipping_auspost_postcode')) . '&to_postcode=' . urlencode($address['postcode']) . '&height=' . $height . '&width=' . $width . '&length=' . $length . '&weight=' . urlencode($weight);
+
+				$this->log->write('AUSPOST DEBUG: API URL -> ' . $api_url);
 
 				$curl = curl_init();
 
 				curl_setopt($curl, CURLOPT_HTTPHEADER, array('AUTH-KEY: ' . $api_key));
-				curl_setopt($curl, CURLOPT_URL, 'https://digitalapi.auspost.com.au/postage/parcel/domestic/service.json?from_postcode=' . urlencode($this->config->get('shipping_auspost_postcode')) . '&to_postcode=' . urlencode($address['postcode']) . '&height=' . $height . '&width=' . $width . '&length=' . $height . '&weight=' . urlencode($weight));
+				curl_setopt($curl, CURLOPT_URL, $api_url);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 
 				$response = curl_exec($curl);
 
+				if (curl_errno($curl)) {
+					$this->log->write('AUSPOST DEBUG: CURL ERROR -> ' . curl_error($curl) . ' (errno: ' . curl_errno($curl) . ')');
+				}
+
 				curl_close($curl);
 
 				if ($response) {
-					$response_info = array();
+					$this->log->write('AUSPOST DEBUG: API Response -> ' . $response);
 
 					$response_parts = json_decode($response, true);
 
 					if (isset($response_parts['error'])) {
 						$error = $response_parts['error']['errorMessage'];
+						$this->log->write('AUSPOST DEBUG: API Error -> ' . $error);
 					} else {
 						$response_services = $response_parts['services']['service'];
 
 						foreach ($response_services as $response_service) {
+							$this->log->write('AUSPOST DEBUG: Service -> ' . $response_service['name'] . ', Price -> ' . $response_service['price']);
+
 							$quote_data[$response_service['name']] = array(
 								'code'         => 'auspost.' .  $response_service['name'],
 								'title'        => $response_service['name'],
@@ -78,31 +105,45 @@ class ModelExtensionShippingAusPost extends Model {
 							);
 						}
 					}
+				} else {
+					$this->log->write('AUSPOST DEBUG: No response from API');
 				}
 			} else {
+				$intl_url = 'https://digitalapi.auspost.com.au/postage/parcel/international/service.json?country_code=' . urlencode($address['iso_code_2']) . '&weight=' . urlencode($weight);
+
+				$this->log->write('AUSPOST DEBUG: International URL -> ' . $intl_url);
+				$this->log->write('AUSPOST DEBUG: International weight -> ' . $weight);
+
 				$curl = curl_init();
 
 				curl_setopt($curl, CURLOPT_HTTPHEADER, array('AUTH-KEY: ' .  $api_key));
-				curl_setopt($curl, CURLOPT_URL, 'https://digitalapi.auspost.com.au/postage/parcel/international/service.json?country_code=' . urlencode($address['iso_code_2']) . '&weight=' . urlencode($weight));
+				curl_setopt($curl, CURLOPT_URL, $intl_url);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 
 				$response = curl_exec($curl);
 
+				if (curl_errno($curl)) {
+					$this->log->write('AUSPOST DEBUG: INTL CURL ERROR -> ' . curl_error($curl));
+				}
+
 				curl_close($curl);
 
 				if ($response) {
-					$response_info = array();
+					$this->log->write('AUSPOST DEBUG: INTL Response -> ' . $response);
 
 					$response_parts = json_decode($response, true);
 
 					if (isset($response_parts['error'])) {
 						$error = $response_parts['error']['errorMessage'];
+						$this->log->write('AUSPOST DEBUG: INTL Error -> ' . $error);
 					} else {
 						$response_services = $response_parts['services']['service'];
 
 						foreach ($response_services as $response_service) {
+							$this->log->write('AUSPOST DEBUG: INTL Service -> ' . $response_service['name'] . ', Price -> ' . $response_service['price']);
+
 							$quote_data[$response_service['name']] = array(
 								'code'         => 'auspost.' .  $response_service['name'],
 								'title'        => $response_service['name'],
@@ -112,13 +153,15 @@ class ModelExtensionShippingAusPost extends Model {
 							);
 						}
 					}
+				} else {
+					$this->log->write('AUSPOST DEBUG: No response from International API');
 				}
 			}
 		}
 
 		$method_data = array();
 
-		if ($quote_data) {
+		if ($quote_data || $error) {
 			$method_data = array(
 				'code'       => 'auspost',
 				'title'      => $this->language->get('text_title'),
