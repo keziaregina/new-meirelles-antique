@@ -1259,7 +1259,7 @@ footer h5,
 .container-fluid {
     padding-left: 5px !important;
     padding-right: 5px !important;
-    max-width: 90% !important;
+    max-width: 95% !important;
 }
 @media (max-width: 1199px) {
     .container-fluid {
