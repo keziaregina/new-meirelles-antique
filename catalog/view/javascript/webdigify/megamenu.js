@@ -152,7 +152,7 @@ $(document).ready(function() {
 			});
 		}
 		$(document).ready(function() {
-		menuMaxItem();
+		// menuMaxItem();
 		});
 		$(window).resize(function() {
 		//    menuMaxItem();
