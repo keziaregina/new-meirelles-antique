@@ -2076,3 +2076,156 @@ p.powered {
 .left .address-detail .img-thumbnail {
     background: unset;
 }
+
+/* =================================================
+    30. INFORMATION PAGE — RESTORATIONS
+================================================= */
+
+#information-information.container {
+    max-width: 95%;
+    width: 100%;
+}
+
+#information-information .page-title {
+    display: none;
+}
+
+#information-information #content > .row > .col-sm-12,
+#information-information #content > p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Section title */
+#information-information #content .section-title {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin: 0 0 40px;
+    text-align: center;
+}
+
+/* Before/After image titles */
+#information-information #content .image-title {
+    font-size: 30px;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* Before/After image row */
+#information-information #content .container > .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -12px 30px;
+}
+
+#information-information #content .col-md-6 {
+    width: 50%;
+    float: left;
+    padding: 0 12px;
+}
+
+#information-information #content .col-md-6 a {
+    display: block;
+}
+
+#information-information #content .col-md-6 .img-fluid {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Description text below images */
+#information-information #content .image-description {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    margin: 25px auto 0;
+}
+
+#information-information hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+/* Restoration section heading */
+.cms-title {
+    font-size: 32px !important;
+    color: var(--primary-color) !important;
+    margin: 0 0 15px !important;
+    text-align: center !important;
+}
+
+/* Restoration description text */
+.restoration-thumb > p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 18px;
+}
+
+/* 3-column grid for restoration items */
+.restoration-thumb .product-layout.product-grid {
+    width: 25%;
+    float: left;
+    padding: 0 12px;
+    margin-bottom: 30px;
+}
+
+.restoration-thumb .product-thumb {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    background: #fff;
+}
+
+.restoration-thumb .product-thumb .image {
+    width: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
+    min-height: 295px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restoration-thumb .product-thumb .image img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    display: block;
+}
+
+.restoration-thumb .product-thumb .caption {
+    padding: 6px 0 0;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restoration-thumb .product-thumb .caption h4 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.restoration-thumb .product-thumb .caption h4 a {
+    color: var(--primary-color);
+}
+
+@media (max-width: 991px) {
+    .restoration-thumb .product-layout.product-grid {
+        width: 50%;
+    }
+}
+
+@media (max-width: 479px) {
+    .restoration-thumb .product-layout.product-grid {
+        width: 100%;
+    }
+}

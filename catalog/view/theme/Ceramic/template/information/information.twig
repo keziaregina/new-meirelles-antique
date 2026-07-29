@@ -14,8 +14,29 @@
     {% set class = 'col-sm-12' %}
     {% endif %}
     <div id="content" class="{{ class }}">{{ content_top }}
+      {% if slug_page %}
+      <h1 class="page-title">{{ slug_page.title }}</h1>
+      <div class="section-title text-center">{{ slug_page.section_title }}</div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="image-title">{{ slug_page.before_label }}</div>
+          <a href="{{ slug_page.before_image }}">
+            <img class="img-fluid" src="{{ slug_page.before_image }}" alt="Before">
+          </a>
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="image-title">{{ slug_page.after_label }}</div>
+          <a href="{{ slug_page.after_image }}">
+            <img class="img-fluid" src="{{ slug_page.after_image }}" alt="After">
+          </a>
+        </div>
+      </div>
+      <div class="image-description text-center">{{ slug_page.description }}</div>
+      {% else %}
       <h1 class="page-title">{{ heading_title }}</h1>
-      {{ description }}{{ content_bottom }}</div>
+      {{ description }}
+      {% endif %}
+      {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
 {{ footer }}
