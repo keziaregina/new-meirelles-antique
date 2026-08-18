@@ -1504,6 +1504,7 @@ span.search-title {
     font-size: 18px;
     line-height: 30px;
     margin: 0 0 30px;
+    text-transform: none;
 }
 
 #wdcmstopbanner .top-content {
