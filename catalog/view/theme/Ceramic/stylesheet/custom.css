@@ -2560,3 +2560,445 @@ p.powered {
         flex: 0 0 100% !important;
     }
 }
+
+/* =================================================
+    16. CHECKOUT ONE-PAGE LAYOUT
+================================================= */
+
+.checkout-sections {
+    margin-top: 20px;
+}
+
+.checkout-section {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+}
+
+.checkout-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.checkout-section .section-content {
+    min-height: 50px;
+}
+
+.contact-section .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-section .checkbox {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.contact-section .checkbox label {
+    font-weight: normal;
+    color: #555;
+}
+
+.contact-signin {
+    margin-top: 10px;
+}
+
+.contact-signin a {
+    color: #337ab7;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact-signin a:hover {
+    text-decoration: underline;
+    color: #23527c;
+}
+
+/* Delivery Toggle */
+.delivery-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: #f5f5f5;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.toggle-btn + .toggle-btn {
+    border-left: 1px solid #ddd;
+}
+
+.toggle-btn:hover {
+    background: #e8e8e8;
+    color: #333;
+}
+
+.toggle-btn.active {
+    background: #337ab7;
+    color: #fff;
+}
+
+.toggle-btn.active:hover {
+    background: #286090;
+    color: #fff;
+}
+
+/* Delivery Panels */
+.delivery-panel {
+    display: none;
+}
+
+/* Billing Address Toggle */
+/* Billing Address Cards */
+.billing-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0;
+}
+
+.billing-card {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+}
+
+.billing-card:hover {
+    border-color: #337ab7;
+}
+
+.billing-card-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0;
+    gap: 12px;
+}
+
+.billing-card-option input[type="radio"] {
+    margin-top: 4px;
+}
+
+.billing-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.billing-card-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+.billing-card-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.billing-card:has(input[type="radio"]:checked) {
+    border-color: #337ab7;
+    border-width: 2px;
+}
+
+.billing-panel {
+    display: none;
+    margin-top: 15px;
+}
+
+.delivery-panel.active {
+    display: block;
+}
+
+.panel-loading {
+    padding: 30px 0;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Local Pickup Cards */
+.pickup-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s ease;
+}
+
+.pickup-card:hover {
+    border-color: #337ab7;
+}
+
+.pickup-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0;
+    gap: 12px;
+}
+
+.pickup-option input[type="radio"] {
+    margin-top: 4px;
+}
+
+.pickup-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.pickup-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+.pickup-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.pickup-schedule {
+    margin-top: 20px;
+}
+
+.pickup-schedule .control-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Delivery Subsection (Shipping Method inside tab) */
+.delivery-subsection {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.delivery-subsection h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Shipping Method Cards */
+.shipping-method-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s ease;
+}
+
+.shipping-method-card:hover {
+    border-color: #337ab7;
+}
+
+.shipping-method-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0;
+    gap: 12px;
+}
+
+.shipping-method-option input[type="radio"] {
+    margin-top: 4px;
+}
+
+.shipping-method-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.shipping-method-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+.shipping-method-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Payment Method Cards */
+.payment-method-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s ease;
+}
+
+.payment-method-card:hover {
+    border-color: #337ab7;
+}
+
+.payment-method-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0;
+    gap: 12px;
+}
+
+.payment-method-option input[type="radio"] {
+    margin-top: 4px;
+}
+
+.payment-method-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.payment-method-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+.payment-method-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Confirm Agreement */
+.confirm-agreement {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.agree-checkbox {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.agree-checkbox input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+/* Place Order Section */
+#section-place-order {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.place-order-actions {
+    text-align: center;
+}
+
+.place-order-actions .agree-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.place-order-actions .agree-checkbox input[type="checkbox"] {
+    margin-left: 0;
+}
+
+@media (max-width: 767px) {
+    .place-order-actions .agree-checkbox {
+        justify-content: flex-start;
+        gap: 6px;
+        font-size: 13px;
+    }
+}
+
+.btn-place-order {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 14px 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-place-order:hover,
+.btn-place-order:focus {
+    background: var(--hover-color);
+    border-color: var(--hover-color);
+    color: #fff;
+}
+
+.btn-place-order:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Payment Button Container */
+#payment-button-container {
+    text-align: center;
+}
+
+#payment-button-container h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#payment-button-container .well {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#payment-button-container .buttons {
+    text-align: center;
+}
+
+#payment-button-container .buttons .pull-right {
+    float: none;
+    display: inline-block;
+}
+
+#payment-button-container #button-confirm,
+#payment-button-container .btn {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+#payment-button-container #button-confirm:hover,
+#payment-button-container .btn:hover {
+    background: var(--hover-color);
+    border-color: var(--hover-color);
+    color: #fff;
+}

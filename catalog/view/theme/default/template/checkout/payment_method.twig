@@ -4,40 +4,42 @@
 {% if payment_methods %}
 <p>{{ text_payment_method }}</p>
 {% for payment_method in payment_methods %}
-<div class="radio">
-  <label>{% if payment_method.code == code or not code %}
+<div class="payment-method-card">
+  <label class="payment-method-option">
+    {% if payment_method.code == code or not code %}
     {% set code = payment_method.code %}
     <input type="radio" name="payment_method" value="{{ payment_method.code }}" checked="checked" />
     {% else %}
     <input type="radio" name="payment_method" value="{{ payment_method.code }}" />
     {% endif %}
-    {{ payment_method.title }}
-    {% if payment_method.terms %}
-    ({{ payment_method.terms }})
-    {% endif %} </label>
+    <div class="payment-method-info">
+      <strong>{{ payment_method.title }}</strong>
+      {% if payment_method.terms %}
+      <span>{{ payment_method.terms }}</span>
+      {% endif %}
+    </div>
+  </label>
 </div>
 {% endfor %}
 {% endif %}
-<p><strong>{{ text_comments }}</strong></p>
-<p>
-  <textarea name="comment" rows="8" class="form-control">{{ comment }}</textarea>
-</p>
-{% if text_agree %}
-<div class="buttons">
-  <div class="pull-right">{{ text_agree }}
-    {% if agree %}
-    <input type="checkbox" name="agree" value="1" checked="checked" />
-    {% else %}
-    <input type="checkbox" name="agree" value="1" />
-    {% endif %}
-    &nbsp;
-    <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
-  </div>
-</div>
-{% else %}
-<div class="buttons">
-  <div class="pull-right">
-    <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
-  </div>
-</div>
-{% endif %} 
+<script type="text/javascript"><!--
+var paymentMethodTimer = null;
+$(document).on('change', 'input[name=\'payment_method\']', function() {
+  clearTimeout(paymentMethodTimer);
+  paymentMethodTimer = setTimeout(function() {
+    $.ajax({
+      url: 'index.php?route=checkout/payment_method/save',
+      type: 'post',
+      data: $('#section-payment-method input[type=\'radio\']:checked, #section-payment-method textarea').serialize() + '&agree=1',
+      dataType: 'json',
+      success: function(json) {
+        if (!json['redirect'] && !json['error']) {
+          if (typeof loadPaymentButton === 'function') {
+            loadPaymentButton();
+          }
+        }
+      }
+    });
+  }, 600);
+});
+//--></script>

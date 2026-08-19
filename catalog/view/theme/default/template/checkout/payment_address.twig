@@ -216,26 +216,26 @@ $('input[name=\'payment_address\']').on('change', function() {
 //--></script>
 <script type="text/javascript"><!--
 // Sort the custom fields
-$('#collapse-payment-address .form-group[data-sort]').detach().each(function() {
-	if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#collapse-payment-address .form-group').length-2) {
-		$('#collapse-payment-address .form-group').eq(parseInt($(this).attr('data-sort'))+2).before(this);
+$('#billing-different .form-group[data-sort]').detach().each(function() {
+	if ($(this).attr('data-sort') >= 0 && $(this).attr('data-sort') <= $('#billing-different .form-group').length-2) {
+		$('#billing-different .form-group').eq(parseInt($(this).attr('data-sort'))+2).before(this);
 	}
 
-	if ($(this).attr('data-sort') > $('#collapse-payment-address .form-group').length-2) {
-		$('#collapse-payment-address .form-group:last').after(this);
+	if ($(this).attr('data-sort') > $('#billing-different .form-group').length-2) {
+		$('#billing-different .form-group:last').after(this);
 	}
 
-	if ($(this).attr('data-sort') == $('#collapse-payment-address .form-group').length-2) {
-		$('#collapse-payment-address .form-group:last').after(this);
+	if ($(this).attr('data-sort') == $('#billing-different .form-group').length-2) {
+		$('#billing-different .form-group:last').after(this);
 	}
 
-	if ($(this).attr('data-sort') < -$('#collapse-payment-address .form-group').length-2) {
-		$('#collapse-payment-address .form-group:first').before(this);
+	if ($(this).attr('data-sort') < -$('#billing-different .form-group').length-2) {
+		$('#billing-different .form-group:first').before(this);
 	}
 });
 //--></script>
 <script type="text/javascript"><!--
-$('#collapse-payment-address button[id^=\'button-payment-custom-field\']').on('click', function() {
+$('#billing-different button[id^=\'button-payment-custom-field\']').on('click', function() {
 	var element = this;
 
 	$('#form-upload').remove();
@@ -305,21 +305,21 @@ $('.datetime').datetimepicker({
 });
 //--></script>
 <script type="text/javascript"><!--
-$('#collapse-payment-address select[name=\'country_id\']').on('change', function() {
+$('#billing-different select[name=\'country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', true);
+			$('#billing-different select[name=\'country_id\']').prop('disabled', true);
 		},
 		complete: function() {
-			$('#collapse-payment-address select[name=\'country_id\']').prop('disabled', false);
+			$('#billing-different select[name=\'country_id\']').prop('disabled', false);
 		},
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
-				$('#collapse-payment-address input[name=\'postcode\']').parent().parent().addClass('required');
+				$('#billing-different input[name=\'postcode\']').parent().parent().addClass('required');
 			} else {
-				$('#collapse-payment-address input[name=\'postcode\']').parent().parent().removeClass('required');
+				$('#billing-different input[name=\'postcode\']').parent().parent().removeClass('required');
 			}
 
 			html = '<option value="">{{ text_select }}</option>';
@@ -338,7 +338,7 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 				html += '<option value="0" selected="selected">{{ text_none }}</option>';
 			}
 
-			$('#collapse-payment-address select[name=\'zone_id\']').html(html);
+			$('#billing-different select[name=\'zone_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -346,5 +346,5 @@ $('#collapse-payment-address select[name=\'country_id\']').on('change', function
 	});
 });
 
-$('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+$('#billing-different select[name=\'country_id\']').trigger('change');
 //--></script>

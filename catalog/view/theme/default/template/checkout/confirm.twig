@@ -11,7 +11,6 @@
       </tr>
     </thead>
     <tbody>
-    
     {% for product in products %}
     <tr>
       <td class="text-left"><a href="{{ product.href }}">{{ product.name }}</a> {% for option in product.option %} <br/>
@@ -33,23 +32,36 @@
       <td class="text-right">{{ voucher.amount }}</td>
     </tr>
     {% endfor %}
-      </tbody>
-    
+    </tbody>
     <tfoot>
-    
     {% for total in totals %}
     <tr>
       <td colspan="4" class="text-right"><strong>{{ total.title }}:</strong></td>
       <td class="text-right">{{ total.text }}</td>
     </tr>
     {% endfor %}
-      </tfoot>
-    
+    </tfoot>
   </table>
 </div>
-{{ payment }}
-{% else %} 
+<div class="confirm-agreement">
+  {% if text_agree %}
+  <div class="agree-checkbox">
+    {{ text_agree }}
+    {% if agree %}
+    <input type="checkbox" name="agree" value="1" checked="checked" />
+    {% else %}
+    <input type="checkbox" name="agree" value="1" />
+    {% endif %}
+  </div>
+  {% endif %}
+  <div class="buttons">
+    <div class="pull-right">
+      {{ payment }}
+    </div>
+  </div>
+</div>
+{% else %}
 <script type="text/javascript"><!--
 location = '{{ redirect }}';
-//--></script> 
-{% endif %} 
+//--></script>
+{% endif %}

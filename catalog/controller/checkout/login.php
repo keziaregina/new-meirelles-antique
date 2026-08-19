@@ -12,6 +12,9 @@ class ControllerCheckoutLogin extends Controller {
 		}
 
 		$data['forgotten'] = $this->url->link('account/forgotten', '', true);
+		$data['login_url'] = $this->url->link('account/login', '', true);
+		$data['text_newsletter'] = $this->language->get('text_newsletter');
+		$data['text_sign_in'] = $this->language->get('text_sign_in');
 
 		$this->response->setOutput($this->load->view('checkout/login', $data));
 	}

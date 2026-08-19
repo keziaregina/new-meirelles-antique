@@ -4,17 +4,16 @@
 {% if shipping_methods %}
 <p>{{ text_shipping_method }}</p>
 {% for shipping_method in shipping_methods %}
-<p><strong>{{ shipping_method.title }}</strong></p>
 {% if not shipping_method.error %}
 {% for quote in shipping_method.quote %}
-<div class="radio">
-  <label> {% if quote.code == code or not code %}
-    {% set code = quote.code %}
-    <input type="radio" name="shipping_method" value="{{ quote.code }}" checked="checked" />
-    {% else %}
-    <input type="radio" name="shipping_method" value="{{ quote.code }}" />
-    {% endif %}
-    {{ quote.title }} - {{ quote.text }}</label>
+<div class="shipping-method-card">
+  <label class="shipping-method-option">
+    <input type="radio" name="shipping_method" value="{{ quote.code }}" {% if quote.code == code or not code %}checked="checked"{% endif %} />
+    <div class="shipping-method-info">
+      <strong>{{ quote.title }}</strong>
+      <span>{{ shipping_method.title }} - {{ quote.text }}</span>
+    </div>
+  </label>
 </div>
 {% endfor %}
 {% else %}
@@ -22,12 +21,33 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-<p><strong>{{ text_comments }}</strong></p>
+<p><strong>Delivery Instructions</strong></p>
 <p>
   <textarea name="comment" rows="8" class="form-control">{{ comment }}</textarea>
 </p>
-<div class="buttons">
-  <div class="pull-right">
-    <input type="button" value="{{ button_continue }}" id="button-shipping-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
-  </div>
-</div>
+<script type="text/javascript"><!--
+var shippingMethodTimer = null;
+$(document).on('change', 'input[name=\'shipping_method\']', function() {
+  clearTimeout(shippingMethodTimer);
+  shippingMethodTimer = setTimeout(function() {
+    $.ajax({
+      url: 'index.php?route=checkout/shipping_method/save',
+      type: 'post',
+      data: $('#delivery-shipping-method-section input[type=\'radio\']:checked, #delivery-shipping-method-section textarea'),
+      dataType: 'json',
+      success: function(json) {
+        if (!json['redirect'] && !json['error']) {
+          $.ajax({
+            url: 'index.php?route=checkout/payment_method',
+            dataType: 'html',
+            success: function(html) {
+              updateCheckoutOrder();
+              $('#section-payment-method .section-content').html(html);
+            }
+          });
+        }
+      }
+    });
+  }, 600);
+});
+//--></script>
