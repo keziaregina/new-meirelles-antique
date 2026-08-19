@@ -251,6 +251,11 @@ class ControllerProductCategory extends Controller {
 					}
 				}
 
+				$percentsaving = 0;
+				if ((float)$result['price'] > 0 && (float)$result['special'] > 0) {
+					$percentsaving = round((($result['price'] - $result['special']) / $result['price']) * 100, 0);
+				}
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'cart_has_product' => $cart_has_product,
@@ -265,7 +270,7 @@ class ControllerProductCategory extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
-					'percentsaving' => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
+					'percentsaving' => $percentsaving,
 					
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
 					'quick'        => $this->url->link('product/quick_view','path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
@@ -595,6 +600,11 @@ class ControllerProductCategory extends Controller {
 				}
 			}
 
+			$percentsaving = 0;
+			if ((float)$result['price'] > 0 && (float)$result['special'] > 0) {
+				$percentsaving = round((($result['price'] - $result['special']) / $result['price']) * 100, 0);
+			}
+
 			$products[] = array(
 				'product_id'     => $result['product_id'],
 				'cart_has_product' => $cart_has_product,
@@ -608,7 +618,7 @@ class ControllerProductCategory extends Controller {
 				'tax'            => $tax,
 				'minimum'        => $result['minimum'] > 0 ? $result['minimum'] : 1,
 				'rating'         => $result['rating'],
-				'percentsaving'  => round((($result['price'] - $result['special'])/$result['price'])*100, 0),
+				'percentsaving'  => $percentsaving,
 				'href'           => $this->url->link('product/product', 'path=' . $path . '&product_id=' . $result['product_id']),
 				'quick'          => $this->url->link('product/quick_view', 'path=' . $path . '&product_id=' . $result['product_id']),
 				'thumb_swap'     => $this->model_tool_image->resize($images, $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height')),
