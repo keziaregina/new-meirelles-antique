@@ -91,6 +91,29 @@ class ControllerCheckoutCheckout extends Controller {
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
 		$data['text_sign_in'] = $this->language->get('text_sign_in');
 
+		// Earliest available pickup datetime
+		$now = new DateTime();
+		$today_noon = new DateTime('today 12:30');
+		if ($now < $today_noon) {
+			$earliest = $today_noon;
+		} else {
+			$earliest = new DateTime('tomorrow 12:30');
+		}
+
+		$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+		$months = array('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+
+		$data['earliest_available_text'] = sprintf(
+			'Earliest available - %s, %s %d, %s at 17.00 pm',
+			$days[(int)$earliest->format('w')],
+			$months[(int)$earliest->format('m')],
+			$earliest->format('d'),
+			$earliest->format('Y')
+		);
+
+		// Pickup locations for Local Collection tab
+		$data['pickup_locations'] = $this->getPickupLocations();
+
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');
@@ -162,6 +185,44 @@ class ControllerCheckoutCheckout extends Controller {
 
 				unset($this->session->data['shipping_method']);
 				unset($this->session->data['shipping_methods']);
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function save_payment_address() {
+		$json = array();
+
+		if (!$json) {
+			$this->load->model('localisation/country');
+			$this->load->model('localisation/zone');
+
+			$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+			$zone_info = $this->model_localisation_zone->getZone($this->request->post['zone_id']);
+
+			if ($country_info && $zone_info) {
+				$this->session->data['payment_address'] = array(
+					'firstname'      => $this->request->post['firstname'],
+					'lastname'       => $this->request->post['lastname'],
+					'company'        => isset($this->request->post['company']) ? $this->request->post['company'] : '',
+					'address_1'      => $this->request->post['address_1'],
+					'address_2'      => isset($this->request->post['address_2']) ? $this->request->post['address_2'] : '',
+					'postcode'       => $this->request->post['postcode'],
+					'city'           => $this->request->post['city'],
+					'zone_id'        => $this->request->post['zone_id'],
+					'zone'           => $zone_info['name'],
+					'zone_code'      => $zone_info['code'],
+					'country_id'     => $this->request->post['country_id'],
+					'country'        => $country_info['name'],
+					'iso_code_2'     => $country_info['iso_code_2'],
+					'iso_code_3'     => $country_info['iso_code_3'],
+					'address_format' => $country_info['address_format']
+				);
+
+				unset($this->session->data['payment_method']);
+				unset($this->session->data['payment_methods']);
 			}
 		}
 
@@ -284,6 +345,14 @@ class ControllerCheckoutCheckout extends Controller {
 			$order_data['email'] = isset($this->session->data['guest']['email']) ? $this->session->data['guest']['email'] : '';
 			$order_data['telephone'] = $this->session->data['guest']['telephone'] ?? '';
 			$order_data['custom_field'] = isset($this->session->data['guest']['custom_field']) ? $this->session->data['guest']['custom_field'] : array();
+		} else {
+			$order_data['customer_id'] = 0;
+			$order_data['customer_group_id'] = $this->config->get('config_customer_group_id');
+			$order_data['firstname'] = '';
+			$order_data['lastname'] = '';
+			$order_data['email'] = '';
+			$order_data['telephone'] = '';
+			$order_data['custom_field'] = array();
 		}
 
 		$order_data['payment_firstname'] = $this->session->data['payment_address']['firstname'];
@@ -355,6 +424,9 @@ class ControllerCheckoutCheckout extends Controller {
 			$order_data['shipping_method'] = '';
 			$order_data['shipping_code'] = '';
 		}
+
+		$order_data['collection_location_id'] = isset($this->session->data['collection_location_id']) ? $this->session->data['collection_location_id'] : 0;
+		$order_data['pickup_datetime'] = isset($this->session->data['pickup_datetime']) ? $this->session->data['pickup_datetime'] : '';
 
 		$order_data['products'] = array();
 
@@ -562,5 +634,137 @@ class ControllerCheckoutCheckout extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function save_pickup() {
+		$json = array();
+
+		if (!$this->cart->hasShipping()) {
+			$json['redirect'] = $this->url->link('checkout/checkout', '', true);
+		}
+
+		if (!isset($this->request->post['collection_location_id']) || !$this->request->post['collection_location_id']) {
+			$json['error'] = 'Please select a collection location';
+		}
+
+		if (!$json) {
+			$pickup_locations = $this->getPickupLocations();
+			$location = null;
+			foreach ($pickup_locations as $loc) {
+				if ($loc['collection_location_id'] == $this->request->post['collection_location_id']) {
+					$location = $loc;
+					break;
+				}
+			}
+
+			if (!$location) {
+				$json['error'] = 'Invalid collection location';
+			}
+		}
+
+		if (!$json) {
+			$firstname = '';
+			$lastname = '';
+			if ($this->customer->isLogged()) {
+				$this->load->model('account/customer');
+				$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+				$firstname = $customer_info['firstname'];
+				$lastname = $customer_info['lastname'];
+			} elseif (isset($this->session->data['guest'])) {
+				$firstname = $this->session->data['guest']['firstname'] ?? '';
+				$lastname = $this->session->data['guest']['lastname'] ?? '';
+			}
+
+			$this->session->data['shipping_address'] = array(
+				'firstname'      => $firstname,
+				'lastname'       => $lastname,
+				'company'        => '',
+				'address_1'      => $location['address_1'],
+				'address_2'      => $location['address_2'] ?? '',
+				'postcode'       => $location['postcode'],
+				'city'           => $location['city'],
+				'zone_id'        => $location['zone_id'],
+				'zone'           => $location['zone'],
+				'zone_code'      => $location['zone_code'],
+				'country_id'     => $location['country_id'],
+				'country'        => $location['country'],
+				'iso_code_2'     => $location['iso_code_2'],
+				'iso_code_3'     => $location['iso_code_3'],
+				'address_format' => $location['address_format'],
+			);
+
+			$this->session->data['shipping_method'] = array(
+				'code'         => 'pickup.pickup',
+				'title'        => 'Local Collection',
+				'cost'         => 0.00,
+				'tax_class_id' => 0,
+				'text'         => 'Free'
+			);
+
+			$this->session->data['collection_location_id'] = (int)$this->request->post['collection_location_id'];
+			$this->session->data['pickup_datetime'] = isset($this->request->post['pickup_datetime']) ? $this->request->post['pickup_datetime'] : '';
+
+			$this->session->data['payment_address'] = $this->session->data['shipping_address'];
+
+			unset($this->session->data['shipping_methods']);
+			unset($this->session->data['payment_methods']);
+
+			$json['success'] = true;
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	private function getPickupLocations() {
+		$this->load->model('localisation/zone');
+		$this->load->model('localisation/country');
+
+		$query = $this->db->query(
+			"SELECT * FROM " . DB_PREFIX . "collection_location WHERE status = 1 ORDER BY sort_order ASC"
+		);
+
+		$locations = array();
+		foreach ($query->rows as $row) {
+			$loc = array(
+				'collection_location_id' => $row['collection_location_id'],
+				'name'                   => $row['name'],
+				'address_1'              => $row['address_1'] ?? '',
+				'address_2'              => $row['address_2'] ?? '',
+				'city'                   => $row['city'] ?? '',
+				'zone_id'                => $row['zone_id'] ?? 0,
+				'zone'                   => '',
+				'zone_code'              => '',
+				'country_id'             => $row['country_id'] ?? 0,
+				'country'                => '',
+				'iso_code_2'             => '',
+				'iso_code_3'             => '',
+				'postcode'               => $row['postcode'] ?? '',
+			'phone'                  => $row['phone'] ?? '',
+			'address_format'         => '',
+			);
+
+			if ($loc['zone_id']) {
+				$zone = $this->model_localisation_zone->getZone($loc['zone_id']);
+				if ($zone) {
+					$loc['zone'] = $zone['name'];
+					$loc['zone_code'] = $zone['code'];
+				}
+			}
+
+			if ($loc['country_id']) {
+				$country = $this->model_localisation_country->getCountry($loc['country_id']);
+				if ($country) {
+					$loc['country'] = $country['name'];
+					$loc['iso_code_2'] = $country['iso_code_2'];
+					$loc['iso_code_3'] = $country['iso_code_3'];
+					$loc['address_format'] = $country['address_format'];
+				}
+			}
+
+			$locations[] = $loc;
+		}
+
+		return $locations;
 	}
 }

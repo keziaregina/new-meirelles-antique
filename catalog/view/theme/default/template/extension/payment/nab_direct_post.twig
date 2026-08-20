@@ -1,0 +1,59 @@
+{% if testmode %}
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ text_testmode }}</div>
+{% endif %}
+<form  class="form-horizontal" action="{{ action }}" method="post">
+	<fieldset id="payment">
+		<legend>{{ text_credit_card }}</legend>
+		  <input type="hidden" name="EPS_MERCHANT" value="{{ merchant_id }}" />
+		  <input type="hidden" name="EPS_TXNTYPE" value="{{ transaction_type }}" />
+		  <input type="hidden" name="EPS_REFERENCEID" value="{{ ref_id }}" />
+		  <input type="hidden" name="EPS_AMOUNT" value="{{ amount }}" />
+		  <input type="hidden" name="EPS_CURRENCY" value="{{ currency}}" />
+		  <input type="hidden" name="EPS_TIMESTAMP" value="{{ timestamp }}" />
+		  <input type="hidden" name="EPS_FINGERPRINT" value="{{ fingerprint }}" />
+		  <input type="hidden" name="EPS_RESULTURL" value="{{ result_url }}" />
+		  <input type="hidden" name="EPS_REDIRECT" value="TRUE" />
+		  {% if (transaction_type == '2') or (transaction_type == '3') %}
+		  <input type="hidden" name="EPS_IP" value="{{ ip }}" />
+		  <input type="hidden" name="EPS_ZIPCODE" value="{{ zip_code }}" />
+		  <input type="hidden" name="EPS_TOWN" value="{{ city }}" />
+		  <input type="hidden" name="EPS_BILLINGCOUNTRY" value="{{ billing_country }}" />
+		  <input type="hidden" name="EPS_DELIVERYCOUNTRY" value="{{ delivery_country }}" />
+		  <input type="hidden" name="EPS_EMAILADDRESS" value="{{ email }}" />
+		  {% endif %}
+		  <div class="form-group required">
+			  <label class="col-sm-2 control-label" for="input-cc-number">{{ entry_cc_number }}</label>
+			  <div class="col-sm-10">
+				  <input type="text" name="EPS_CARDNUMBER" value="" placeholder="{{ entry_cc_number}}" id="input-cc-number" class="form-control" />
+			  </div>
+		  </div>
+		  <div class="form-group required">
+			  <label class="col-sm-2 control-label" for="input-cc-expire-date">{{ entry_cc_expire_date }}</label>
+			  <div class="col-sm-3">
+				<select name="EPS_EXPIRYMONTH" id="input-cc-expire-date" class="form-control">
+				  {% for month in months %}
+				  <option value="{{ month['value'] }}">{{ month['text'] }}</option>
+				  {% endfor %}
+				</select>
+			  </div>
+			  <div class="col-sm-3">
+				<select name="EPS_EXPIRYYEAR" class="form-control">
+				  {% for year in year_expire %}
+				  <option value="{{ year['value'] }}">{{ year['text'] }}</option>
+				  {% endfor %}
+				</select>
+			  </div>
+		  </div>
+		  <div class="form-group required">
+		       <label class="col-sm-2 control-label" for="input-cc-ccv">{{ entry_cc_ccv }}</label>
+		       <div class="col-sm-10">
+			     <input type="text" name="EPS_CCV" value="" placeholder="{{ entry_cc_ccv }}" id="input-cc-ccv" class="form-control" />
+		       </div>
+		  </div>
+	</fieldset>
+  <div class="buttons">
+    <div class="pull-right">
+      <input type="submit" value="{{ button_confirm }}" class="btn btn-primary" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
+    </div>
+  </div>
+</form>

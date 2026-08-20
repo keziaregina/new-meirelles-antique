@@ -30,8 +30,8 @@
         <div class="checkout-section" id="section-delivery">
           <h3>{{ text_delivery }}</h3>
           <div class="delivery-toggle">
-            <button type="button" class="toggle-btn active" data-target="shipping">Shipping Methods</button>
-            <button type="button" class="toggle-btn" data-target="local-pickup">Local Pickup</button>
+            <button type="button" class="toggle-btn active" data-target="shipping">Delivery Methods</button>
+            <button type="button" class="toggle-btn" data-target="local-pickup">Local Collection</button>
           </div>
           <div class="section-content">
             <div id="delivery-shipping" class="delivery-panel active">
@@ -48,32 +48,42 @@
               {% endif %}
             </div>
             <div id="delivery-local-pickup" class="delivery-panel">
+              {% for location in pickup_locations %}
               <div class="pickup-card">
                 <label class="pickup-option">
-                  <input type="radio" name="local_pickup_address" value="1" checked="checked" />
+                  <input type="radio" name="collection_location_id" value="{{ location.collection_location_id }}" {{ loop.first ? 'checked="checked"' : '' }} />
                   <div class="pickup-info">
-                    <strong>Meirelles Store - Centro</strong>
-                    <span>Rua XV de Novembro, 123 - Centro, Joinville - SC</span>
-                    <span>Seg-Sex: 09:00 - 18:00 | Sab: 09:00 - 13:00</span>
+                    <strong>{{ location.name }}</strong>
+                    <span>{{ location.address_1 }}, {{ location.city }}</span>
+                    <span>{{ location.phone }}</span>
                   </div>
                 </label>
               </div>
-              <div class="pickup-card">
-                <label class="pickup-option">
-                  <input type="radio" name="local_pickup_address" value="2" />
-                  <div class="pickup-info">
-                    <strong>Meirelles Store - Boa Vista</strong>
-                    <span>Av. Getúlio Vargas, 456 - Boa Vista, Joinville - SC</span>
-                    <span>Seg-Sex: 09:00 - 18:00 | Sab: 09:00 - 13:00</span>
-                  </div>
-                </label>
-              </div>
+              {% endfor %}
               <div class="pickup-schedule">
                 <label class="control-label" for="select-pickup-datetime">Select Date Time</label>
                 <select id="select-pickup-datetime" name="pickup_datetime" class="form-control">
-                  <option value="">-- Select --</option>
-                  <option value="1">Earliest available - Tuesday, August 18, 2026 at 06:30 am</option>
+                  <option value="">-- Select a date time --</option>
+                  <option value="earliest">{{ earliest_available_text }}</option>
+                  <option value="custom">Choose date and time...</option>
                 </select>
+
+                <div id="custom-datetime" class="custom-datetime-picker" style="display:none;">
+                  <div class="form-group">
+                    <label class="control-label" for="pickup-date">Select Date</label>
+                    <input type="date" id="pickup-date" name="pickup_date" class="form-control" min="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="pickup-time">Select Time</label>
+                    <select id="pickup-time" name="pickup_time" class="form-control">
+                      <option value="">-- Select Time --</option>
+                      <option value="09:00-11:00">Time: 9.00am - 11.00am</option>
+                      <option value="11:00-13:00">Time: 11.00am - 1.00pm</option>
+                      <option value="13:00-15:00">Time: 1.00pm - 3.00pm</option>
+                      <option value="15:00-17:00">Time: 3.00pm - 5.00pm</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -111,13 +121,13 @@
 
         <div id="section-place-order" class="checkout-section">
           <div class="place-order-actions">
-            <label class="agree-checkbox">
-              <input type="checkbox" name="agree" value="1" />
-              <span>I have read and agree to the <a href="/index.php?route=information/information&information_id=3" target="_blank"><strong>Terms &amp; Conditions</strong></a></span>
-            </label>
             <div id="payment-button-container">
               <button type="button" id="button-place-order" class="btn btn-primary btn-block btn-place-order" disabled>Choose payment method</button>
             </div>
+            <label class="agree-checkbox">
+              {# <input type="checkbox" name="agree" value="1" /> #}
+              <span>I have read and agree to the <a href="/index.php?route=information/information&information_id=3" target="_blank"><strong>Terms &amp; Conditions</strong></a></span>
+            </label>
           </div>
         </div>
       </div>
@@ -146,7 +156,105 @@ $(document).ready(function() {
     $(this).addClass('active');
     $('.delivery-panel').removeClass('active');
     $('#delivery-' + target).addClass('active');
+
+    if (target == 'local-pickup') {
+      forceBillingDifferent();
+      savePickup();
+    } else {
+      resetBillingDefault();
+    }
   });
+
+  // Custom datetime picker toggle
+  $(document).on('change', '#select-pickup-datetime', function() {
+    if ($(this).val() == 'custom') {
+      $('#custom-datetime').show();
+      var today = new Date().toISOString().split('T')[0];
+      $('#pickup-date').attr('min', today);
+    } else {
+      $('#custom-datetime').hide();
+      $('#pickup-date').val('');
+      $('#pickup-time').val('');
+    }
+  });
+
+  // Bypass customSelect plugin for pickup datetime selects
+  setTimeout(function() {
+    $('#select-pickup-datetime, #pickup-time').each(function() {
+      var $select = $(this);
+      $select.removeAttr('style').removeClass('hasCustomSelect');
+      $select.next('.customSelect').remove();
+    });
+  }, 500);
+
+  // Auto-save pickup location
+  $(document).on('change', 'input[name="collection_location_id"]', function() {
+    savePickup();
+  });
+
+  // Auto-save pickup datetime
+  $(document).on('change', '#select-pickup-datetime', function() {
+    savePickup();
+  });
+
+  $(document).on('change', '#pickup-time', function() {
+    savePickup();
+  });
+
+  function savePickup() {
+    var locationId = $('input[name="collection_location_id"]:checked').val();
+    var datetime = $('#select-pickup-datetime').val();
+    var pickupDate = $('#pickup-date').val();
+    var pickupTime = $('#pickup-time').val();
+
+    if (!locationId) return;
+
+    if (datetime == 'custom' && pickupDate && pickupTime) {
+      datetime = pickupDate + ' ' + pickupTime;
+    } else if (datetime == 'custom') {
+      return;
+    }
+
+    $.ajax({
+      url: 'index.php?route=checkout/checkout/save_pickup',
+      type: 'post',
+      data: {
+        collection_location_id: locationId,
+        pickup_datetime: datetime
+      },
+      dataType: 'json',
+      success: function(json) {
+        if (json.error) {
+          alert(json.error);
+        } else {
+          reloadPaymentMethods();
+        }
+      }
+    });
+  }
+
+  function forceBillingDifferent() {
+    $('.billing-options').hide();
+    $('input[name="billing_address"][value="different"]').prop('checked', true);
+    $('#billing-different').show();
+
+    if (!$('#billing-different').html().trim()) {
+      $.ajax({
+        url: 'index.php?route=checkout/payment_address',
+        dataType: 'html',
+        success: function(html) {
+          $('#billing-different').html(html);
+        }
+      });
+    }
+  }
+
+  function resetBillingDefault() {
+    $('.billing-options').show();
+    $('input[name="billing_address"][value="same"]').prop('checked', true);
+    $('#billing-different').hide();
+    $('#billing-different').html('');
+  }
 
   // Load Delivery section (using shipping address form)
   $.ajax({
@@ -242,7 +350,7 @@ $(document).ready(function() {
   // Save billing address (when "Different" is selected)
   $(document).delegate('#button-payment-address', 'click', function() {
     $.ajax({
-      url: 'index.php?route=checkout/payment_address/save',
+      url: 'index.php?route=checkout/checkout/save_payment_address',
       type: 'post',
       data: $('#billing-different input[type=\'text\'], #billing-different input[type=\'date\'], #billing-different input[type=\'datetime-local\'], #billing-different input[type=\'time\'], #billing-different input[type=\'checkbox\']:checked, #billing-different input[type=\'radio\']:checked, #billing-different input[type=\'hidden\'], #billing-different textarea, #billing-different select'),
       dataType: 'json',
@@ -283,6 +391,43 @@ $(document).ready(function() {
       }
     });
   });
+
+  // Auto-save billing address when fields change
+  var autoSaveBillingTimer = null;
+  $(document).on('input change', '#billing-different input[type=\'text\'], #billing-different select', function() {
+    clearTimeout(autoSaveBillingTimer);
+    autoSaveBillingTimer = setTimeout(function() {
+      var form = $('#billing-different');
+      var required = ['firstname', 'lastname', 'address_1', 'city', 'country_id', 'zone_id'];
+      var valid = true;
+      for (var i = 0; i < required.length; i++) {
+        var el = form.find('[name=\'' + required[i] + '\']');
+        if (!el.val()) {
+          valid = false;
+          break;
+        }
+      }
+
+      if (valid) {
+        autoSavePaymentAddress();
+      }
+    }, 600);
+  });
+
+  function autoSavePaymentAddress() {
+    $.ajax({
+      url: 'index.php?route=checkout/checkout/save_payment_address',
+      type: 'post',
+      data: $('#billing-different input[type=\'text\'], #billing-different input[type=\'date\'], #billing-different input[type=\'datetime-local\'], #billing-different input[type=\'time\'], #billing-different input[type=\'checkbox\']:checked, #billing-different input[type=\'radio\']:checked, #billing-different input[type=\'hidden\'], #billing-different textarea, #billing-different select'),
+      dataType: 'json',
+      success: function(json) {
+        if (!json['redirect'] && !json['error']) {
+          reloadPaymentMethods();
+          updateCheckoutOrder();
+        }
+      }
+    });
+  }
 
   // Auto-save shipping address when required fields change
   var autoSaveTimer = null;
@@ -355,6 +500,20 @@ $(document).ready(function() {
       }
     });
   }
+
+  // Auto-clear validation errors on input
+  $(document).on('input change', '#checkout-checkout input, #checkout-checkout select, #checkout-checkout textarea', function() {
+    var formGroup = $(this).closest('.form-group');
+    if (formGroup.hasClass('has-error')) {
+      formGroup.removeClass('has-error');
+      formGroup.find('.text-danger').remove();
+    }
+    // Clear section-level errors
+    var section = $(this).closest('.checkout-section');
+    if (section.hasClass('has-error') && section.find('.form-group.has-error').length === 0) {
+      section.removeClass('has-error');
+    }
+  });
 });
 
 function loadPaymentButton() {
@@ -367,8 +526,8 @@ function loadPaymentButton() {
         $('#payment-button-container').html(json['payment']);
       } else {
         $('#payment-button-container').html('');
-      }
-    },
+    }
+  },
     error: function() {
       $('#payment-button-container').html('');
     }
@@ -376,11 +535,84 @@ function loadPaymentButton() {
 }
 
 function updateCheckoutOrder() {
+  validateCheckoutFields();
   $.ajax({
     url: 'index.php?route=checkout/checkout/update_order',
     type: 'post',
     dataType: 'json'
   });
+}
+
+function validateCheckoutFields() {
+  $('#checkout-checkout .text-danger').remove();
+  $('#checkout-checkout .form-group').removeClass('has-error');
+  $('#delivery-shipping-method-section, #section-payment-method').removeClass('has-error');
+
+  var errors = [];
+
+  // Contact - Email
+  var emailEl = $('#section-contact input[name="email"]');
+  if (emailEl.length && !emailEl.val()) {
+    markError(emailEl);
+    errors.push('email');
+  }
+
+  // Shipping Address
+  var shippingMode = $('#delivery-shipping-address input[name="shipping_address"]:checked').val();
+  if (shippingMode === 'new') {
+    var requiredShipping = ['firstname', 'lastname', 'address_1', 'city', 'country_id', 'zone_id'];
+    for (var i = 0; i < requiredShipping.length; i++) {
+      var el = $('#delivery-shipping-address [name="' + requiredShipping[i] + '"]');
+      if (el.length && !el.val()) {
+        markError(el);
+        errors.push(requiredShipping[i]);
+      }
+    }
+  } else if (shippingMode === 'existing') {
+    var addrId = $('#delivery-shipping-address select[name="address_id"]').val();
+    if (!addrId) {
+      errors.push('address_id');
+    }
+  }
+
+  // Shipping Method
+  var shippingMethod = $('#delivery-shipping-method-section input[name="shipping_method"]:checked').val();
+  if (!shippingMethod) {
+    errors.push('shipping_method');
+    $('#delivery-shipping-method-section').addClass('has-error');
+  }
+
+  // Payment Method
+  var paymentMethod = $('#section-payment-method input[name="payment_method"]:checked').val();
+  if (!paymentMethod) {
+    errors.push('payment_method');
+    $('#section-payment-method').addClass('has-error');
+  }
+
+  // Billing Address (if "different")
+  var billingMode = $('input[name="billing_address"]:checked').val();
+  if (billingMode === 'different') {
+    var requiredBilling = ['firstname', 'lastname', 'address_1', 'city', 'country_id', 'zone_id'];
+    for (var i = 0; i < requiredBilling.length; i++) {
+      var el = $('#billing-different [name="' + requiredBilling[i] + '"]');
+      if (el.length && !el.val()) {
+        markError(el);
+        errors.push('billing_' + requiredBilling[i]);
+      }
+    }
+  }
+
+  return errors;
+}
+
+function markError(el) {
+  var formGroup = el.closest('.form-group');
+  if (formGroup.length) {
+    formGroup.addClass('has-error');
+    if (!formGroup.find('.text-danger').length) {
+      el.after('<div class="text-danger">This field is required</div>');
+    }
+  }
 }
 
 // Guest
