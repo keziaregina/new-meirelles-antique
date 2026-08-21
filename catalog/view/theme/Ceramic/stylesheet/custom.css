@@ -3034,3 +3034,209 @@ p.powered {
     border-color: var(--hover-color);
     color: #fff;
 }
+
+
+.left .address-detail {
+    border-bottom: 0;
+}
+
+.left .address-detail .img-thumbnail {
+    width: 70px;
+}
+
+.contact-form-design .left {
+    background: #efedec;
+}
+
+.left .address-detail1 {
+    border-bottom: 1px solid #c7c7c7;
+    margin-bottom: 10px;
+}
+
+.left strong {
+    color: var(--primary-color);
+}
+
+.left > strong {
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+.contact-form legend {
+    font-size: 25px;
+    color: var(--primary-color);
+    border-bottom: 0;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.contact-form hr {
+    width: 50px;
+    border: 1px solid var(--primary-color);
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.contact-form .row > .col-sm-6:first-child {
+    padding-right: 20px;
+}
+
+.contact-form .row > .col-sm-6:last-child {
+    padding-left: 20px;
+}
+
+#information-contact .contact-form fieldset fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+#information-contact .contact-form fieldset fieldset legend {
+    float: left;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111111;
+    padding: 0 0 5px;
+    margin: 0;
+    border-bottom: 0;
+}
+
+#information-contact .contact-form fieldset fieldset .control-label {
+    float: none;
+    width: 100%;
+    text-align: left;
+    padding: 0 0 5px;
+}
+
+#information-contact .contact-form fieldset fieldset .col-sm-8 {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#information-contact .contact-form fieldset fieldset .col-sm-8 input {
+    flex: 1;
+    min-width: 150px;
+}
+
+#information-contact .contact-form fieldset fieldset .col-sm-8 img {
+    height: 34px;
+    cursor: pointer;
+}
+
+.contact-form .captcha-btn {
+    min-width: 250px;
+    padding: 15px 30px;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.contact-form .captcha-btn:hover,
+.contact-form .captcha-btn:focus {
+    background: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.contact-form .recaptcha-note {
+    clear: both;
+    font-size: 11px;
+    color: #999999;
+    margin-top: 10px;
+}
+
+.contact-form .recaptcha-note a {
+    color: #999999;
+    text-decoration: underline;
+}
+
+.contact-form .recaptcha-note a:hover {
+    color: var(--primary-color);
+}
+
+.contact-hero {
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.contact-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-hero h2 {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.contact-hero .hero-line {
+    width: 100px;
+    height: 1px;
+    background: #fff;
+    margin: 20px auto;
+}
+
+.contact-hero p {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.left .btn.btn-info {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.left .btn.btn-info:hover,
+.left .btn.btn-info:focus,
+.left .address-detail1 a.btn.btn-info:hover {
+    background: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.left .address-detail1,
+.left .telephone,
+.left .email,
+.left .time,
+.left .comment {
+    display: flex;
+    gap: 10px;
+}
+
+.left .address-detail1 .image,
+.left .telephone .image,
+.left .email .image,
+.left .time .image {
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+.contact-form fieldset {
+    border: none;
+}
+

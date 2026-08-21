@@ -21,7 +21,14 @@ class ControllerInformationContact extends Controller {
 			$mail->setReplyTo($this->request->post['email']);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-			$mail->setText($this->request->post['enquiry']);
+
+			$text = $this->request->post['enquiry'];
+
+			if (!empty($this->request->post['phone'])) {
+				$text = "Phone: " . $this->request->post['phone'] . "\n\n" . $text;
+			}
+
+			$mail->setText($text);
 			$mail->send();
 
 			$this->response->redirect($this->url->link('information/contact/success'));
@@ -64,7 +71,8 @@ class ControllerInformationContact extends Controller {
 		$this->load->model('tool/image');
 
 		if ($this->config->get('config_image')) {
-			$data['image'] = $this->model_tool_image->resize($this->config->get('config_image'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_location_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_location_height'));
+			// $data['image'] = $this->model_tool_image->resize($this->config->get('config_image'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_location_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_location_height'));
+			$data['image'] = 'image/' . $this->config->get('config_image');
 		} else {
 			$data['image'] = false;
 		}
@@ -74,7 +82,7 @@ class ControllerInformationContact extends Controller {
 		$data['geocode'] = $this->config->get('config_geocode');
 		$data['geocode_hl'] = $this->config->get('config_language');
 		$data['telephone'] = $this->config->get('config_telephone');
-		$data['fax'] = $this->config->get('config_fax');
+		$data['store_email'] = $this->config->get('config_email');
 		$data['open'] = nl2br($this->config->get('config_open'));
 		$data['comment'] = $this->config->get('config_comment');
 
@@ -122,6 +130,12 @@ class ControllerInformationContact extends Controller {
 			$data['enquiry'] = $this->request->post['enquiry'];
 		} else {
 			$data['enquiry'] = '';
+		}
+
+		if (isset($this->request->post['phone'])) {
+			$data['phone'] = $this->request->post['phone'];
+		} else {
+			$data['phone'] = '';
 		}
 
 		// Captcha
