@@ -3240,3 +3240,11 @@ p.powered {
     border: none;
 }
 
+.contact-form-design.container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.information-contact .content-top-breadcum {
+    display: none;
+}
