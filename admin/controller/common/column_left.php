@@ -110,6 +110,14 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+			if ($this->user->hasPermission('access', 'catalog/collection_location')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_collection_location'),
+					'href'     => $this->url->link('catalog/collection_location', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()
+				);
+			}
+
 			if ($this->user->hasPermission('access', 'catalog/information')) {
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_information'),

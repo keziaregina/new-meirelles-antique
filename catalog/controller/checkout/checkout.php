@@ -720,8 +720,28 @@ class ControllerCheckoutCheckout extends Controller {
 		$this->load->model('localisation/zone');
 		$this->load->model('localisation/country');
 
+		// Only locations linked to local collection products currently in the cart
+		$cart_query = $this->db->query(
+			"SELECT DISTINCT p.collection_location_id FROM " . DB_PREFIX . "cart c
+			JOIN " . DB_PREFIX . "product p ON (c.product_id = p.product_id)
+			WHERE c.api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "'
+			AND c.customer_id = '" . (int)$this->customer->getId() . "'
+			AND c.session_id = '" . $this->db->escape($this->session->getId()) . "'
+			AND p.status = '1' AND p.shipping_local_collection = '1' AND p.collection_location_id > 0"
+		);
+
+		$location_ids = array();
+
+		foreach ($cart_query->rows as $row) {
+			$location_ids[] = (int)$row['collection_location_id'];
+		}
+
+		if (!$location_ids) {
+			return array();
+		}
+
 		$query = $this->db->query(
-			"SELECT * FROM " . DB_PREFIX . "collection_location WHERE status = 1 ORDER BY sort_order ASC"
+			"SELECT * FROM " . DB_PREFIX . "collection_location WHERE status = 1 AND collection_location_id IN (" . implode(',', $location_ids) . ") ORDER BY sort_order ASC"
 		);
 
 		$locations = array();

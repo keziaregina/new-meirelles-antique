@@ -59,6 +59,8 @@
                   </div>
                 </label>
               </div>
+              {% else %}
+              <div class="pickup-empty">No pickup locations available for your cart.</div>
               {% endfor %}
               <div class="pickup-schedule">
                 <label class="control-label" for="select-pickup-datetime">Select Date Time</label>
