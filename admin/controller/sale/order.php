@@ -858,6 +858,21 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['payment_method'] = $order_info['payment_method'];
 
+			// Local Collection pickup details
+			$data['collection_location'] = '';
+			$data['pickup_datetime'] = '';
+
+			if (!empty($order_info['collection_location_id'])) {
+				$this->load->model('catalog/collection_location');
+
+				$collection_location_info = $this->model_catalog_collection_location->getCollectionLocation($order_info['collection_location_id']);
+
+				if ($collection_location_info) {
+					$data['collection_location'] = $collection_location_info['name'];
+				}
+				$data['pickup_datetime'] = $order_info['pickup_datetime'];
+			}
+
 			// Payment Address
 			if ($order_info['payment_address_format']) {
 				$format = $order_info['payment_address_format'];

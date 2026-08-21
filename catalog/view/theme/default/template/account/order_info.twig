@@ -38,7 +38,11 @@
               <b>{{ text_date_added }}</b> {{ date_added }}</td>
             <td class="text-left" style="width: 50%;">{% if payment_method %} <b>{{ text_payment_method }}</b> {{ payment_method }}<br/>
               {% endif %}
-              {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }} {% endif %}</td>
+              {% if shipping_method %} <b>{{ text_shipping_method }}</b> {{ shipping_method }}<br/>
+              {% endif %}
+              {% if collection_location %} <b>{{ text_collection_location }}</b> {{ collection_location }}<br/>
+              {% endif %}
+              {% if pickup_datetime %} <b>{{ text_pickup_datetime }}</b> {{ pickup_datetime }} {% endif %}</td>
           </tr>
         </tbody>
       </table>

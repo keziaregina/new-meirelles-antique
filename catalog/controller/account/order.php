@@ -235,6 +235,20 @@ class ControllerAccountOrder extends Controller {
 			$this->load->model('catalog/product');
 			$this->load->model('tool/upload');
 
+			// Local Collection pickup details
+			$data['collection_location'] = '';
+			$data['pickup_datetime'] = '';
+
+			if (!empty($order_info['collection_location_id'])) {
+				$collection_location_info = $this->model_catalog_product->getCollectionLocation($order_info['collection_location_id']);
+
+				if ($collection_location_info) {
+					$data['collection_location'] = $collection_location_info['name'];
+				}
+
+				$data['pickup_datetime'] = $order_info['pickup_datetime'];
+			}
+
 			// Products
 			$data['products'] = array();
 

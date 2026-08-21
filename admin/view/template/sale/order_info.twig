@@ -38,6 +38,18 @@
                   <td>{{ shipping_method }}</td>
                 </tr>
               {% endif %}
+              {% if collection_location %}
+                <tr>
+                  <td><button data-toggle="tooltip" title="{{ text_collection_location }}" class="btn btn-info btn-xs"><i class="fa fa-map-marker fa-fw"></i></button></td>
+                  <td>{{ collection_location }}</td>
+                </tr>
+              {% endif %}
+              {% if pickup_datetime %}
+                <tr>
+                  <td><button data-toggle="tooltip" title="{{ text_pickup_datetime }}" class="btn btn-info btn-xs"><i class="fa fa-clock-o fa-fw"></i></button></td>
+                  <td>{{ pickup_datetime }}</td>
+                </tr>
+              {% endif %}
             </tbody>
 
           </table>

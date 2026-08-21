@@ -119,6 +119,8 @@ class ModelSaleOrder extends Model {
 				'shipping_iso_code_3'     => $shipping_iso_code_3,
 				'shipping_address_format' => $order_query->row['shipping_address_format'],
 				'shipping_custom_field'   => json_decode($order_query->row['shipping_custom_field'], true),
+				'collection_location_id'  => $order_query->row['collection_location_id'],
+				'pickup_datetime'         => $order_query->row['pickup_datetime'],
 				'shipping_method'         => $order_query->row['shipping_method'],
 				'shipping_code'           => $order_query->row['shipping_code'],
 				'comment'                 => $order_query->row['comment'],
