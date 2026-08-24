@@ -3064,12 +3064,28 @@ p.powered {
     line-height: 30px;
 }
 
+.contact-form-design .left {
+    font-size: 15px;
+}
+
+.left .detail strong {
+    font-size: 16px;
+}
+
 .contact-form legend {
     font-size: 25px;
     color: var(--primary-color);
     border-bottom: 0;
     font-weight: normal;
     margin-bottom: 0;
+}
+
+.contact-form .form-control {
+    font-size: 15px;
+}
+
+.contact-form .form-intro {
+    font-size: 15px;
 }
 
 .contact-form hr {
@@ -3145,7 +3161,7 @@ p.powered {
 
 .contact-form .recaptcha-note {
     clear: both;
-    font-size: 11px;
+    font-size: 12px;
     color: #999999;
     margin-top: 10px;
 }
@@ -3240,10 +3256,10 @@ p.powered {
     border: none;
 }
 
-.contact-form-design.container {
+/* .contact-form-design.container {
     margin-top: 0;
     padding-top: 0;
-}
+} */
 
 .information-contact .content-top-breadcum {
     display: none;
