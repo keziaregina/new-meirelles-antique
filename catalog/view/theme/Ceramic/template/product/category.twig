@@ -23,7 +23,7 @@
           <div class="col-sm-3 category_img"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
           {% endif %}
 
-          <div class="col-sm-9">
+          <div class="{{ thumb ? 'col-sm-9' : 'col-sm-12' }}">
             <h2 class="page-title">{{ heading_title }}</h2>
             {% if description %}
             <div class="category_description">{{ description }}</div>

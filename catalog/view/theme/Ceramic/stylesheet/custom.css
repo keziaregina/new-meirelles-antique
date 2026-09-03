@@ -1328,6 +1328,7 @@ footer h5,
 }
 #cart .item-count {
     font-size: 15px;
+    vertical-align: unset;
 }
 
 /* Account & Search labels */
@@ -1377,6 +1378,7 @@ span.search-title {
 .category_description {
     font-family: 'Times New Roman', serif;
     font-size: 17px;
+    display: none;
 }
 
 .refine-search {
@@ -2535,6 +2537,7 @@ p.powered {
     display: block;
     width: auto;
     color: #800020;
+    font-size: 17px;
 }
 #product-special .category_list .category-item a:hover {
     color: #800020;
@@ -3263,4 +3266,25 @@ p.powered {
 
 .information-contact .content-top-breadcum {
     display: none;
+}
+
+.main-category-list .wd-menu .ul-top-items > li {
+    padding: 38px 12px !important;
+}
+
+a:focus {
+    outline: unset !important;
+}
+
+.product-block:hover .product-details .price {
+    opacity: 1;
+}
+
+.productpage .special-price {
+    color: inherit;
+}
+
+.category_thumb .page-title {
+    font-size: 30px;
+    font-weight: 600;
 }
