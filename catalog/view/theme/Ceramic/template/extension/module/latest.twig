@@ -3,20 +3,11 @@
 		<div class="row">
   <div class="box-heading">{{ heading_title }}</div>
   <div class="box-content">
-		{% set sliderFor = 5 %}
-		{% set productCount = products|length %}
-	{% if productCount >= sliderFor %}
-		<div class="customNavigation">
-			<a class="fa prev fa-arrow-left">&nbsp;</a>
-			<a class="fa next fa-arrow-right">&nbsp;</a>
-		</div>	
-	{% endif %}
-	
-	<div class="box-product {% if productCount >= sliderFor %}product-carousel{% else %} productbox-grid{% endif %}" id="{% if productCount >= sliderFor %}latest-carousel{% else %} latest-grid{% endif %}">
+	<div class="box-product productbox-grid" id="latest-grid">
   {% for product in products %}
-  <div class="{% if productCount >= sliderFor %}slider-item{% else %}product-items{% endif %}">
+  <div class="product-items">
     <div class="product-block product-thumb transition">
-	  <div class="product-block-inner">	  	
+	  <div class="product-block-inner">
 			<div class="image">
 			{% if product.thumb_swap %}
 					<a href="{{ product.href }}">
@@ -27,38 +18,18 @@
 					<a href="{{ product.href }}">
 					<img src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive"/></a>
 			{% endif %}
-				
+
 			<div class="product_hover_block">
-			<div class="action">
-			   {% if not product.on_hold %}
-			   <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }} ');" title="{{ button_cart }}" ><i class="fa fa-shopping-cart" area-hidden="true"></i> </button>
-			   {% else %}
-			   <button type="button" class="cart_button on_hold" title="{{ text_on_hold }}" >{{ text_on_hold }}</button>
-			   {% endif %}
+				 <button class="compare_button" type="button"  title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');"></button>
 				 <div class="quickview-button">
-							<a class="quickbox"  title="{{ button_quickview }}" href="{{ product.quick }}"><i class="fa fa-eye"></i></a>
+							<a class="quickbox"  title="{{ button_quickview }}" href="{{ product.quick }}"></a>
 				 </div>
-				 <button class="wishlist" type="button"  title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"><i class="fa fa-heart"></i></button>
-				 <button class="compare_button" type="button"  title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');"><i class="fa fa-exchange"></i></button>
-			  </div>
-		</div>
+				 <button class="wishlist" type="button"  title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"></button>
+			</div>
 			</div>
       	<div class="product-details">
 			<div class="caption">
-				
-				<h4><a href="{{ product.href }} ">{{ product.name }} </a></h4>
-				{# <p class="desc">{{ product.description }}</p>  #}
-				{# {% if product.rating %}
-       				 <div class="rating">
-         			 {% for i in 1..5 %}
-         			 {% if product.rating < i %}
-         			 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-          		     {% else %}
-          			 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-          			 {% endif %}
-          			 {% endfor %}
-       				 </div>
-        		{% endif %} #}
+				<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
 				{% if product.price %}
         			<p class="price">
        			    {% if not product.special %}
@@ -71,18 +42,27 @@
           			{% endif %}
 			        </p>
 	            {% endif %}
-			</div>		
- 	    
-			
+	            <div class="action">
+	               {% if not product.on_hold %}
+	               <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }}');" title="{{ button_cart }}">{{ button_cart }}</button>
+	               {% else %}
+	               <button type="button" class="cart_button on_hold" title="{{ text_on_hold }}">{{ text_on_hold }}</button>
+	               {% endif %}
+	            </div>
+			</div>
 	  	</div>
   	</div>
 	</div>
 </div>
-  
  {% endfor %}
 </div>
   </div>
 </div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<p style="margin-top: 15px; font-size: 18px; font-weight: 500; letter-spacing: 0.5px; color: #333;">Miguel Meirelles Antiques website has daily updates on new arrivals, newly restored items for sale and also any items that are placed on hold or sold are updated immediately, so that all that is on display is available.</p>
+	</div>
 </div>
 </div>
 <span class="latest_default_width" style="display:none; visibility:hidden"></span>

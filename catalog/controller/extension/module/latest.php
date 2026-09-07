@@ -11,11 +11,32 @@ class ControllerExtensionModuleLatest extends Controller {
 
 		$data['products'] = array();
 
+		// $filter_data = array(
+		// 	'sort'  => 'p.date_added',
+		// 	'order' => 'DESC',
+		// 	'start' => 0,
+		// 	'limit' => $setting['limit']
+		// );
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+		if (isset($this->request->get['limit'])) {
+			$limit = (int)$this->request->get['limit'];
+		} else {
+			$limit = 50;
+		}
+
+		$data['products'] = array();
+
 		$filter_data = array(
+			// 'sort'  => 'p.date_modified',
 			'sort'  => 'p.date_added',
 			'order' => 'DESC',
-			'start' => 0,
-			'limit' => $setting['limit']
+			'start'              => ($page - 1) * $limit,
+			'limit'              => $limit
 		);
 
 		$results = $this->model_catalog_product->getProducts($filter_data);

@@ -2,6 +2,9 @@
   <div class="box-heading">{{ heading_title }}</div>
   <div class="box-content">
     <ul class="box-category treeview-list treeview">
+      <li>
+        <a href="{{ latest_stock }}">Latest Stock</a>
+      </li>
       {% for category in categories %}
       <li>
         {% if category.category_id == category_id %}

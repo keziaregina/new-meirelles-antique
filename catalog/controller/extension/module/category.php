@@ -4,6 +4,7 @@ class ControllerExtensionModuleCategory extends Controller {
 		$this->load->language('extension/module/category');
 
 		$data['heading_title'] = $this->language->get('heading_title');
+		$data['latest_stock'] = $this->url->link('product/latest_stock');
 
 		if (isset($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);

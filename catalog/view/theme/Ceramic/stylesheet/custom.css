@@ -1163,7 +1163,8 @@ footer h5,
 #product-special.container,
 #product-product.container,
 #checkout-cart.container,
-#checkout-checkout.container {
+#checkout-checkout.container,
+#latest-stock.container {
     max-width: 95%;
     width: 100%;
 }
@@ -1185,6 +1186,35 @@ footer h5,
 
 .row.cat_prod:before {
     display: none;
+}
+
+/* =================================================
+    LATEST MODULE GRID (latest.twig)
+    Force a CSS-only responsive grid identical to the
+    category page so every row has the same number of
+    items (neutralizes smartColumnsRows inline widths).
+================================================= */
+#latest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(280px, calc(100% / 4 - 16px)), 1fr));
+    width: auto !important;
+}
+
+#latest-grid .product-items {
+    width: auto !important;
+    float: none;
+}
+
+/* Hide the module's own heading on the dedicated Latest Stock page
+   (the page already renders its own h2.title from product/latest_stock). */
+#latest-stock .box-heading {
+    display: none;
+}
+
+#latest-stock .page-title {
+    font-size: 44px;
+    text-align: center;
+    color: #800020;
 }
 
 /* =================================================
