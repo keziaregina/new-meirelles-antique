@@ -10,6 +10,7 @@ class ControllerExtensionModuleLatest extends Controller {
 		$this->load->model('tool/image');
 
 		$data['products'] = array();
+		$data['route'] = isset($this->request->get['route']) ? $this->request->get['route'] : '';
 
 		// $filter_data = array(
 		// 	'sort'  => 'p.date_added',
@@ -26,7 +27,7 @@ class ControllerExtensionModuleLatest extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = 50;
+			$limit = (isset($this->request->get['route']) && $this->request->get['route'] === 'product/latest_stock') ? 50 : 5;
 		}
 
 		$data['products'] = array();
@@ -85,8 +86,17 @@ class ControllerExtensionModuleLatest extends Controller {
 					$rating = false;
 				}
 
+				$cart_has_product = false;
+				foreach ($this->cart->getProducts() as $cart_product) {
+					if ($cart_product['product_id'] == $result['product_id']) {
+						$cart_has_product = true;
+						break;
+					}
+				}
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'cart_has_product' => $cart_has_product,
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
