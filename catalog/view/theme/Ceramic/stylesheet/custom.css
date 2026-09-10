@@ -3470,3 +3470,14 @@ a:focus {
 #product-special .row.cat_prod .product-layout.product-list .product-details .caption .action {
     display: none;
 }
+
+/* =================================================
+    29. MEGA MENU — MOBILE TOGGLE ENHANCEMENTS
+================================================= */
+@media (max-width: 991px) {
+    .main-category-list ul.ul-top-items > li.li-top-item > i.material-icons {
+        float: right;
+        line-height: 48px;
+        cursor: pointer;
+    }
+}

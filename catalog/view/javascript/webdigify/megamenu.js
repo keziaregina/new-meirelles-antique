@@ -183,6 +183,11 @@ function menuToggle() {
         $(".main-category-list ul.ul-top-items > li.li-top-item > i").click(function() {
             $(this).parent().toggleClass("active").find(".sub-menu-container").first().slideToggle()
         })
+        $(".main-category-list ul.ul-top-items > li.li-top-item > a.a-item").unbind("click");
+        $(".main-category-list ul.ul-top-items > li.li-top-item > a.a-item").click(function(e) {
+            e.preventDefault();
+            $(this).parent().toggleClass("active").find(".sub-menu-container").first().slideToggle();
+        })
 		// $('.header_top .theme-full-container #header-left').appendTo('.header_bottom .theme-full-container #header-left');
 		// $('.header_bottom_cover .header_bottom .header-left .main-category-list').appendTo('.header .header_top .theme-full-container #header-left');
     } else {
