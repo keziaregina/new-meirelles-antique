@@ -6,9 +6,9 @@
       {% for banner in banners %}
         <div class="swiper-slide text-center">
           {% if banner.link %}
-          <a href="{{ banner.link }}">
+          {# <a href="{{ banner.link }}"> #}
             <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
-          </a>
+          {# </a> #}
           {% else %}
           <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
           {% endif %}

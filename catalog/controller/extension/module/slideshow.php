@@ -16,12 +16,18 @@ class ControllerExtensionModuleSlideshow extends Controller {
 
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
+				if ($this->request->server['HTTPS']) {
+					$image = $this->config->get('config_ssl') . 'image/' . $result['image'];
+				} else {
+					$image = $this->config->get('config_url') . 'image/' . $result['image'];
+				}
 				$data['banners'][] = array(
 					'title' =>  html_entity_decode($result['title'],  ENT_QUOTES, 'UTF-8'),
 					'link'  => $result['link'],
 					'button' => $result['button'] ?? '',
 					'description' => $result['description'] ?? '',
-					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+					'image' => $image
+					// 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
 		}

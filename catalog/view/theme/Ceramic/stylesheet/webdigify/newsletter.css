@@ -222,19 +222,24 @@
 .popup-button .button.btn.btn-primary {
     cursor: pointer;
     display: inline-block;
-    font-size: 13px;
+    font-size: 18px;
     margin: 0;
-    font-weight: 500;
-    padding:5px 25px;
-    background: #222222;
+    font-weight: 700;
+    padding: 14px 32px;
+    background: var(--primary-color);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 0;
     vertical-align: top;
-    line-height: 26px;
+    line-height: 24px;
 }
 
 .popup-button .button.btn.btn-primary:hover, 
 .popup-button .button.btn.btn-primary:active, 
 .popup-button .button.btn.btn-primary:focus {
-	background: #666666;
+	background: var(--hover-color);
 	color: #ffffff;
 }
 /* newsllter */
@@ -353,19 +358,23 @@
   color: #7f7f7f;
 }
 #subscribe .btn {
-	background: #bf9875;
+	background: var(--primary-color);
 	color: #fff;
 	height: auto;
 	overflow: hidden;
-	padding: 15px 20px;
+	padding: 14px 32px;
 	position: absolute;
 	right: 0;
 	top: 0;
 	border: none;
-	border-radius: 25px;
-	-moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	-khtml-border-radius: 25px;
+	font-size: 18px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
 	transition: all 400ms ease-in-out 0s;
 	-webkit-transition: all 400ms ease-in-out 0s;
 	-moz-transition: all 400ms ease-in-out 0s;
@@ -374,7 +383,7 @@
 }
 #subscribe .btn:hover, #subscribe .btn:active, #subscribe .btn:focus{
 	color: #fff;
-	background: #272727; 
+	background: var(--hover-color);
 }
 #subscribe .btn::after{
 	display: none;
@@ -408,7 +417,7 @@
     display: none;
 }
 #subscribe .btn {
-    font: 600 13px/16px 'Roboto', sans-serif;
+    font: 700 18px/24px 'Times New Roman', serif;
 }
 
 #notification-normal div.warning{
@@ -554,7 +563,8 @@
 	}
 	.popup-button .button.btn.btn-primary {
 		margin-bottom: 0;
-		font-size: 12px;
+		font-size: 15px;
+		padding: 10px 24px;
 	}
 	.b-close::before {
 		left: auto;
@@ -589,8 +599,8 @@
 		line-height: 26px;
 	}
 	#subscribe .btn {
-	 	padding: 14px;
-	}
+	 	padding: 10px 24px;
+	 }
 	.newletter-subscribe .button > i {
 		display: block;
 		font-size: 20px;

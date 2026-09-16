@@ -718,17 +718,12 @@ $(window).resize(function(){searchtoggle();});
 
 // Top Fixed Menu 
 function headerfix() {
-	
-	if ($(this).scrollTop() > 270) {
-		$(".header_top").addClass('fixed');
-	}else{
-		$(".header_top").removeClass('fixed');		
-	}
+	$(".header_top").addClass('fixed');
+	$('body').css('padding-top', $('.header_top').outerHeight() + 'px');
 }
 
 jQuery(window).resize(function() {headerfix();});
 jQuery(document).ready(function() {headerfix();});
-jQuery(document).scroll(function() {headerfix();});
 
 
 // Countdown

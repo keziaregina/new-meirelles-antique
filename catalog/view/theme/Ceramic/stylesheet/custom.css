@@ -166,7 +166,7 @@ body {
 }
 
 #wdcmsservice .wdservice .service-desc {
-    color: var(--secondary-color);
+    color: #000;
 }
 
 #wdcmsservice .wd-enquire.wdservice .service-icon {
@@ -210,8 +210,12 @@ body {
 .topbanner-btn.btn {
     background: var(--primary-color);
     margin-bottom: 40px;
-    font-size: 30px;
-    padding: 20px 28px;
+    font-size: 18px;
+    padding: 14px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    color: #fff;
 }
 
 .topbanner-btn.btn:hover {
@@ -276,6 +280,15 @@ body {
 .form-group.qty #button-cart,
 .form-group.qty #button-enquiry {
     background: var(--primary-color);
+    color: #fff;
+}
+
+.bottombanner-btn.btn {
+    font-size: 18px;
+    padding: 14px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
 }
 
 .bottombanner-btn.btn:hover,
@@ -292,6 +305,15 @@ body {
 #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a,
 .product-block button.cart_button {
     background: var(--primary-color);
+}
+
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
+    font-size: 18px;
+    padding: 14px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    color: #fff;
 }
 
 #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a:hover {
@@ -314,7 +336,7 @@ body {
 
 /* General text */
 #wdcmsbottombanner .bottom-desc {
-    color: #666;
+    color: #000;
     font-size: 16px;
     line-height: 1.8;
 }
@@ -348,7 +370,7 @@ body {
 #wdcmsbottombanner .opening-hours h4,
 #wdcmsbottombanner .warehouse-box h4 {
     margin-bottom: 15px;
-    color: #222;
+    color: var(--primary-color);
     font-size: 22px;
 }
 
@@ -362,7 +384,7 @@ body {
 #wdcmsbottombanner .hours-note {
     margin: 10px 0;
     font-size: 14px;
-    color: #888;
+    color: #000;
     font-style: italic;
 }
 
@@ -416,17 +438,17 @@ footer h5,
 #content ul.list-unstyled li a,
 .footer-blocks .footerleft .contact-block span,
 #footer .column li a {
-    color: var(--secondary-color);
+    color: #000;
 }
 
 #content ul.list-unstyled li a:hover,
 .footer-blocks .footerleft .contact-block span:hover,
 #footer .column li a:hover {
-    color: #9c7974;
+    color: #000;
 }
 
 .pull-left #form-currency .btn-group span {
-    color: #999;
+    color: #000;
 }
 
 /* Opsi 1: background-image with blur (ACTIVE) */
@@ -498,19 +520,24 @@ footer h5,
 
 .subscribe-wrap .btn {
     min-width: 180px;
-    padding: 12px 30px;
+    padding: 14px 32px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
 }
 
 .newsletter .btn.btn-lg {
     position: unset;
-    background: var(--primary-bg);
-    color: var(--primary-color) !important;
+    background: var(--primary-color);
+    color: #fff !important;
     font-weight: 800;
+    border-radius: 0;
 }
 
 .newsletter .btn.btn-lg:hover {
-    background: var(--primary-color);
-    color: var(--primary-bg) !important;
+    background: var(--hover-color);
+    color: #fff !important;
 }
 
 /* =================================================
@@ -596,7 +623,7 @@ footer h5,
 }
 
 .required {
-    color: #999;
+    color: #000;
     font-size: 12px;
     margin-left: 3px;
 }
@@ -627,8 +654,11 @@ footer h5,
     background: var(--primary-color);
     border: none;
     color: #fff;
-    padding: 12px 28px;
-    border-radius: 8px;
+    padding: 14px 32px;
+    border-radius: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-submit:hover,
@@ -642,7 +672,7 @@ footer h5,
 }
 
 .form-group.qty #button-enquiry {
-    padding: 10px 16px;
+    padding: 14px 32px;
     margin: 0 10px;
 }
 
@@ -1047,12 +1077,12 @@ footer h5,
 }
 
 .delivery-label {
-    color: var(--secondary-color);
+    color: #000;
     flex-shrink: 0;
 }
 
 .delivery-value {
-    color: #444;
+    color: #000;
 }
 
 @media (max-width: 767px) {
@@ -1067,7 +1097,7 @@ footer h5,
     font-family: 'Times New Roman', serif;
     margin: 14px 0 0;
     font-size: 15px;
-    color: var(--secondary-color);
+    color: #000;
     line-height: 1.5;
     font-style: italic;
 }
@@ -1181,14 +1211,40 @@ footer h5,
   filter: brightness(80%);
 }
 
+/* Gradient overlay on slide images so the front text stays readable */
+.main-slider .swiper-slide {
+  position: relative;
+}
+
+.main-slider .swiper-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.main-slider .slider-content {
+  z-index: 2;
+}
+
+/* Remove the slide-from-left text animation on the banner */
+.main-slider .swiper-slide-active .slider-content {
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
 .slider-button a {
     background: var(--primary-color);
     color: var(--primary-bg);
+    text-transform: uppercase;
+    border-radius: 0;
 }
 
 .slider-button a:hover {
-    background: var(--primary-bg);
-    color: var(--primary-color);
+    background: var(--hover-color);
+    color: var(--primary-bg);
 }
 
 /* =================================================
@@ -1269,11 +1325,14 @@ footer h5,
     background: var(--primary-color);
     color: #fff;
     border: none;
-    padding: 12px 28px;
+    padding: 14px 32px;
     font-family: 'Times New Roman', serif;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
 }
 
 #product-special .product-layout.product-list .product-price-actions .action .cart_button:hover {
@@ -1325,7 +1384,7 @@ footer h5,
     }
     .slider-button a {
         font-size: 16px;
-        padding: 12px 26px;
+        padding: 12px 28px;
     }
 }
 
@@ -1342,8 +1401,8 @@ footer h5,
         line-height: 1.3;
     }
     .slider-button a {
-        font-size: 14px;
-        padding: 10px 20px;
+        font-size: 15px;
+        padding: 10px 24px;
     }
 }
 
@@ -1402,6 +1461,7 @@ footer h5,
 /* Sub-menu / dropdown links */
 .horizontal-menu .sub-menu-container ul li a > span,
 .horizontal-menu .sub_menu3-item ul li a {
+    font-family: 'Times New Roman', serif !important;
     font-size: 16px !important;
     line-height: 28px !important;
 }
@@ -1434,7 +1494,7 @@ span.search-title {
 }
 
 .wd-sub-menu-container .a-second-title {
-    font-family: 'Times New Roman', serif;
+    font-family: 'Times New Roman', serif !important;
     font-size: 17px;
 }
 
@@ -1546,6 +1606,20 @@ span.search-title {
     margin: 100px 0 140px;
 }
 
+#wdcmsservice .wd-sevices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#wdcmsservice .wd-sevices li {
+    width: 33.3333%;
+    margin-bottom: 40px;
+}
+
 @media (max-width: 1199px) {
     #wdcmsservice .wdservice .service-title {
         font-size: 28px;
@@ -1572,6 +1646,9 @@ span.search-title {
         width: 72px;
         background-size: 55px;
     }
+    #wdcmsservice .wd-sevices li {
+        width: 50%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1594,9 +1671,19 @@ span.search-title {
     }
 }
 
+@media (max-width: 543px) {
+    #wdcmsservice .wd-sevices li {
+        width: 100%;
+    }
+}
+
 /* =================================================
     20. TOP BANNER ENHANCEMENTS
 ================================================= */
+
+#wdcmstopbanner {
+    margin: 180px 0;
+}
 
 #wdcmstopbanner .top-desc {
     font-size: 18px;
@@ -1610,8 +1697,8 @@ span.search-title {
 }
 
 .topbanner-btn.btn {
-    font-size: 32px;
-    padding: 22px 34px;
+    font-size: 18px;
+    padding: 14px 32px;
     margin-bottom: 45px;
 }
 
@@ -1621,8 +1708,8 @@ span.search-title {
         line-height: 28px;
     }
     .topbanner-btn.btn {
-        font-size: 26px;
-        padding: 18px 28px;
+        font-size: 16px;
+        padding: 12px 28px;
     }
 }
 
@@ -1632,8 +1719,8 @@ span.search-title {
         line-height: 26px;
     }
     .topbanner-btn.btn {
-        font-size: 22px;
-        padding: 16px 24px;
+        font-size: 16px;
+        padding: 12px 28px;
     }
 }
 
@@ -1643,8 +1730,8 @@ span.search-title {
         line-height: 24px;
     }
     .topbanner-btn.btn {
-        font-size: 20px;
-        padding: 14px 22px;
+        font-size: 15px;
+        padding: 10px 24px;
     }
 }
 
@@ -1697,8 +1784,11 @@ span.search-title {
 /* Add to Cart button */
 .product-block button.cart_button {
     font-size: 18px;
-    padding: 14px 28px;
+    padding: 14px 32px;
     line-height: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
 }
 
 @media (max-width: 1199px) {
@@ -1717,8 +1807,8 @@ span.search-title {
         font-size: 18px;
     }
     .product-block button.cart_button {
-        font-size: 14px;
-        padding: 11px 20px;
+        font-size: 16px;
+        padding: 12px 28px;
     }
 }
 
@@ -1749,8 +1839,8 @@ span.search-title {
         text-align: center;
     }
     .product-block button.cart_button {
-        font-size: 13px;
-        padding: 10px 18px;
+        font-size: 15px;
+        padding: 10px 24px;
     }
 }
 
@@ -1930,6 +2020,23 @@ span.search-title {
     padding: 16px 34px;
 }
 
+/* Disable hover animations — show final state by default */
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text {
+    opacity: 1 !important;
+    transition: none !important;
+}
+
+#wdsubbannercmsblock .subbanners .subbanner a.banner-anchor:before,
+#wdsubbannercmsblock .subbanners .subbanner a.banner-anchor:after {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    transition: none !important;
+}
+
+#wdsubbannercmsblock .subbanners .subbanner img {
+    transition: none !important;
+}
+
 @media (max-width: 1199px) {
     #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
         font-size: 52px;
@@ -2041,8 +2148,10 @@ span.search-title {
 
 .newsletter .btn.btn-lg {
     font-size: 18px;
-    padding: 14px 36px;
+    padding: 14px 32px;
     min-width: 200px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 1199px) {
@@ -2054,7 +2163,7 @@ span.search-title {
     }
     .newsletter .btn.btn-lg {
         font-size: 16px;
-        padding: 12px 30px;
+        padding: 12px 28px;
     }
 }
 
@@ -2208,7 +2317,7 @@ p.powered {
 /* Before/After image titles */
 #information-information #content .image-title {
     font-size: 30px;
-    color: var(--secondary-color);
+    color: #000;
     margin-bottom: 10px;
 }
 
@@ -2239,7 +2348,7 @@ p.powered {
 #information-information #content .image-description {
     font-size: 18px;
     line-height: 1.8;
-    color: #555;
+    color: #000;
     margin: 25px auto 0;
 }
 
@@ -2261,7 +2370,7 @@ p.powered {
 .restoration-thumb > p {
     font-size: 17px;
     line-height: 1.7;
-    color: #555;
+    color: #000;
     margin-bottom: 18px;
 }
 
@@ -2352,7 +2461,7 @@ p.powered {
     font-family: 'Times New Roman', serif;
     font-size: 18px;
     line-height: 1.8;
-    color: #444;
+    color: #000;
     margin-bottom: 18px;
 }
 
@@ -2408,7 +2517,7 @@ p.powered {
     font-family: 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.4;
-    color: var(--secondary-color);
+    color: #000;
     text-align: center;
     padding: 12px 0 0;
     font-style: italic;
@@ -2493,7 +2602,7 @@ p.powered {
     font-family: 'Times New Roman', serif;
     font-size: 18px;
     line-height: 1.8;
-    color: #444;
+    color: #000;
     margin-bottom: 18px;
 }
 
@@ -2524,7 +2633,7 @@ p.powered {
     font-family: 'Times New Roman', serif;
     font-size: 16px;
     line-height: 1.4;
-    color: var(--secondary-color);
+    color: #000;
     text-align: center;
     padding: 12px 0 0;
     font-style: italic;
@@ -2669,7 +2778,7 @@ p.powered {
     margin-bottom: 15px;
     font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: var(--primary-color);
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
@@ -2689,7 +2798,7 @@ p.powered {
 
 .contact-section .checkbox label {
     font-weight: normal;
-    color: #555;
+    color: #000;
 }
 
 .contact-signin {
@@ -2722,7 +2831,7 @@ p.powered {
     padding: 12px 20px;
     border: none;
     background: #f5f5f5;
-    color: #555;
+    color: #000;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -2736,7 +2845,7 @@ p.powered {
 
 .toggle-btn:hover {
     background: #e8e8e8;
-    color: #333;
+    color: #000;
 }
 
 .toggle-btn.active {
@@ -2795,12 +2904,12 @@ p.powered {
 
 .billing-card-info strong {
     font-size: 15px;
-    color: #333;
+    color: #000;
 }
 
 .billing-card-info span {
     font-size: 13px;
-    color: #666;
+    color: #000;
 }
 
 .billing-card:has(input[type="radio"]:checked) {
@@ -2824,7 +2933,7 @@ p.powered {
 .panel-loading {
     padding: 30px 0;
     text-align: center;
-    color: #999;
+    color: #000;
     font-size: 14px;
 }
 
@@ -2861,12 +2970,12 @@ p.powered {
 
 .pickup-info strong {
     font-size: 15px;
-    color: #333;
+    color: #000;
 }
 
 .pickup-info span {
     font-size: 13px;
-    color: #666;
+    color: #000;
 }
 
 .pickup-schedule {
@@ -2875,7 +2984,7 @@ p.powered {
 
 .pickup-schedule .control-label {
     font-weight: 600;
-    color: #333;
+    color: #000;
     margin-bottom: 8px;
     display: block;
 }
@@ -2920,7 +3029,7 @@ p.powered {
     margin-bottom: 15px;
     font-size: 16px;
     font-weight: 600;
-    color: #333;
+    color: var(--primary-color);
 }
 
 /* Shipping Method Cards */
@@ -2956,12 +3065,12 @@ p.powered {
 
 .shipping-method-info strong {
     font-size: 15px;
-    color: #333;
+    color: #000;
 }
 
 .shipping-method-info span {
     font-size: 13px;
-    color: #666;
+    color: #000;
 }
 
 /* Payment Method Cards */
@@ -2997,12 +3106,12 @@ p.powered {
 
 .payment-method-info strong {
     font-size: 15px;
-    color: #333;
+    color: #000;
 }
 
 .payment-method-info span {
     font-size: 13px;
-    color: #666;
+    color: #000;
 }
 
 /* Confirm Agreement */
@@ -3015,7 +3124,7 @@ p.powered {
 .agree-checkbox {
     margin-bottom: 15px;
     font-size: 14px;
-    color: #555;
+    color: #000;
 }
 
 .agree-checkbox input[type="checkbox"] {
@@ -3059,9 +3168,10 @@ p.powered {
     color: #fff;
     font-size: 18px;
     font-weight: 700;
-    padding: 14px 40px;
+    padding: 14px 32px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    border-radius: 0;
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
@@ -3107,11 +3217,12 @@ p.powered {
     background: var(--primary-color);
     border-color: var(--primary-color);
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    padding: 12px 40px;
+    padding: 14px 32px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    border-radius: 0;
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
@@ -3201,7 +3312,7 @@ p.powered {
     width: 100%;
     font-size: 13px;
     font-weight: 600;
-    color: #111111;
+    color: #000;
     padding: 0 0 5px;
     margin: 0;
     border-bottom: 0;
@@ -3249,12 +3360,12 @@ p.powered {
 .contact-form .recaptcha-note {
     clear: both;
     font-size: 12px;
-    color: #999999;
+    color: #000;
     margin-top: 10px;
 }
 
 .contact-form .recaptcha-note a {
-    color: #999999;
+    color: #000;
     text-decoration: underline;
 }
 
@@ -3479,5 +3590,108 @@ a:focus {
         float: right;
         line-height: 48px;
         cursor: pointer;
+    }
+}
+
+/* =================================================
+    30. PRODUCT DETAIL — UNIFY TEXT COLORS
+================================================= */
+/* Body/content text on the product page must be black (overrides the
+   theme's body default #666666 inherited from stylesheet.css). */
+#content.productpage .product-detail-left .list-unstyled li,
+#content.productpage .product-detail-left .list-unstyled li .special-price,
+#content.productpage .product-detail-left .list-unstyled li span.old-prices,
+#content.productpage .product-detail-left span.old-prices,
+#content.productpage .product-description td.description-right,
+#content.productpage #tab-description,
+#content.productpage #tab-description p,
+#content.productpage #tab-description div,
+#content.productpage #tab-description strong,
+#content.productpage #tab-specification,
+#content.productpage #tab-specification td,
+#content.productpage .write-review,
+#content.productpage .review-count,
+#product-product .breadcrumb li,
+#product-product .breadcrumb li a {
+    color: #000;
+}
+
+/* Headers on the product page must be burgundy. */
+#content.productpage h3.product-option {
+    color: var(--primary-color);
+}
+
+/* Related-product card titles on the product page: burgundy, no gray hover. */
+.related_prd .product-thumb h4,
+.related_prd .product-thumb h4 a {
+    color: var(--primary-color);
+}
+.related_prd .product-thumb h4:hover,
+.related_prd .product-thumb h4 a:hover {
+    color: var(--hover-color);
+}
+
+/* =================================================
+    31. CTA STANDARDIZATION — UNIFIED PRIMARY BUTTONS
+    Applied to every main CTA across the store.
+    Size: 18px / padding 14px 32px / radius 0
+    Color: primary (#69251c), hover (#500c03)
+    Text: uppercase, 1px letter-spacing
+================================================= */
+body .btn-primary,
+body .btn-primary:link,
+body .btn-primary:visited {
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 14px 32px;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body .btn-primary:hover,
+body .btn-primary:focus,
+body .btn-primary:active,
+body .btn-primary.active {
+    background: var(--hover-color);
+    border: none;
+    color: #fff;
+}
+
+body .btn-primary:disabled,
+body .btn-primary.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Utility exception — icon buttons inside input groups (e.g. the qty
+   update button in the cart table) stay compact, color stays brand. */
+body .input-group .btn-primary,
+body .input-group-btn .btn-primary {
+    font-size: 14px;
+    line-height: 1.33333;
+    padding: 6px 12px;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Responsive — scale the standard CTA size down on smaller screens. */
+@media (max-width: 1199px) {
+    body .btn-primary {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    body .btn-primary {
+        font-size: 15px;
+        padding: 10px 24px;
     }
 }
