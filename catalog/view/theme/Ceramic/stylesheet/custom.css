@@ -23,8 +23,16 @@ body {
 }
 
 .wd-menu ul li > .a-top-link {
-    font: 500 14px / 24px 'Times New Roman', serif !important;
+    font: 500 var(--fs-h4) / 30px 'Times New Roman', serif !important;
     font-weight: 700 !important;
+    text-transform: none !important;
+}
+
+.main-category-list .wd-menu .ul-top-items > li > .more-menu {
+    font: 500 var(--fs-h4) / 30px 'Times New Roman', serif !important;
+    font-weight: 700 !important;
+    color: var(--primary-color);
+    text-transform: none !important;
 }
 
 .cart_detail .cart_heading {
@@ -1513,7 +1521,7 @@ footer h5,
 
 /* Top-level nav links */
 .wd-menu ul li > .a-top-link {
-    font-size: 18px !important;
+    font-size: var(--fs-h4) !important;
     line-height: 30px !important;
 }
 
@@ -1521,7 +1529,7 @@ footer h5,
 .horizontal-menu .sub-menu-container ul li a > span,
 .horizontal-menu .sub_menu3-item ul li a {
     font-family: 'Times New Roman', serif !important;
-    font-size: 16px !important;
+    font-size: var(--fs-body) !important;
     line-height: 28px !important;
 }
 
@@ -1620,7 +1628,7 @@ span.search-title {
 
 @media (max-width: 1199px) {
     .wd-menu ul li > .a-top-link {
-        font-size: 16px !important;
+        font-size: var(--fs-btn) !important;
         line-height: 28px !important;
     }
 }
