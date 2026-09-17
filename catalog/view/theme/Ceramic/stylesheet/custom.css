@@ -1247,6 +1247,65 @@ footer h5,
     color: var(--primary-bg);
 }
 
+/* --- HERO MOBILE: fixed viewport height, centered content --- */
+@media (max-width: 767px) {
+    .main-slider .swiper-slide {
+        height: 62vh;
+        min-height: 420px;
+        overflow: hidden;
+    }
+
+    .main-slider .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .main-slider .slider-content {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        width: 100%;
+        bottom: auto;
+        padding: 0 24px;
+    }
+
+    .slider-button {
+        margin-top: 20px;
+    }
+
+    .slider-title {
+        font-size: var(--fs-hero);
+        line-height: 1.2;
+    }
+
+    .slider-button a {
+        font-size: var(--fs-btn);
+        padding: 12px 26px;
+    }
+}
+
+@media (max-width: 479px) {
+    .main-slider .swiper-slide {
+        height: 58vh;
+        min-height: 380px;
+    }
+
+    .main-slider .slider-content {
+        padding: 0 20px;
+    }
+
+    .slider-title {
+        line-height: 1.3;
+    }
+
+    .slider-button {
+        margin-top: 16px;
+    }
+}
+
 /* =================================================
     15. PRODUCT CATEGORY GRID — ADAPTIVE
 ================================================= */
@@ -1496,6 +1555,7 @@ span.search-title {
 .wd-sub-menu-container .a-second-title {
     font-family: 'Times New Roman', serif !important;
     font-size: 17px;
+    color: #000;
 }
 
 .breadcrumb li a,
@@ -1725,6 +1785,9 @@ span.search-title {
 }
 
 @media (max-width: 767px) {
+    #wdcmstopbanner {
+        margin: 60px 0;
+    }
     #wdcmstopbanner .top-desc {
         font-size: 14px;
         line-height: 24px;
@@ -2059,12 +2122,30 @@ span.search-title {
 }
 
 @media (max-width: 767px) {
+    #wdsubbannercmsblock .subbanners .one-half {
+        width: 100%;
+        float: none;
+        display: block;
+        padding: 0;
+    }
+
+    #wdsubbannercmsblock .subbanners .one-half + .one-half {
+        margin-top: 25px;
+    }
+
     #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title {
         font-size: 32px;
     }
     #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a {
         font-size: 14px;
         padding: 10px 20px;
+    }
+}
+
+@media (max-width: 379px) {
+    #wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text {
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -3695,3 +3776,236 @@ body .input-group-btn .btn-primary {
         padding: 10px 24px;
     }
 }
+
+/* =================================================
+    32. GLOBAL FONT STANDARDIZATION
+    Type scale: hero > display-section > H1 > H2 > H3 > H4 > body > small > micro
+    Tokens (helix) per breakpoint sesuai konvensi tema (1199/991/767/479px).
+    Menu navigasi 18px dipertahankan (keputusan client).
+================================================= */
+:root {
+    --fs-hero: 72px;
+    --fs-section: 64px;
+    --fs-h1: 44px;
+    --fs-h2: 32px;
+    --fs-h3: 24px;
+    --fs-h4: 22px;
+    --fs-body: 16px;
+    --fs-small: 14px;
+    --fs-micro: 12px;
+    --fs-btn: 18px;
+}
+
+@media (max-width: 1199px) {
+    :root { --fs-hero: 64px; --fs-section: 52px; --fs-h1: 40px; --fs-h2: 30px; --fs-h3: 23px; --fs-h4: 20px; --fs-body: 15px; --fs-small: 14px; --fs-micro: 12px; --fs-btn: 16px; }
+}
+@media (max-width: 991px) {
+    :root { --fs-hero: 52px; --fs-section: 42px; --fs-h1: 36px; --fs-h2: 28px; --fs-h3: 22px; --fs-h4: 19px; --fs-body: 15px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 16px; }
+}
+@media (max-width: 767px) {
+    :root { --fs-hero: 42px; --fs-section: 34px; --fs-h1: 32px; --fs-h2: 24px; --fs-h3: 20px; --fs-h4: 19px; --fs-body: 15px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 15px; }
+}
+@media (max-width: 479px) {
+    :root { --fs-hero: 30px; --fs-section: 28px; --fs-h1: 28px; --fs-h2: 22px; --fs-h3: 18px; --fs-h4: 18px; --fs-body: 14px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 15px; }
+}
+
+/* --- GLOBAL BASE --- */
+body { font-size: var(--fs-body); }
+.page-title { font-size: var(--fs-h1); }
+#product-special .page-title { font-size: var(--fs-h1); }
+.breadcrumb li,
+.breadcrumb li a { font-size: var(--fs-small); }
+.box-category a { font-size: var(--fs-small); }
+
+/* --- HERO SLIDER --- */
+.slider-title { font-size: var(--fs-hero); }
+.main-slider .slide-content { font-size: var(--fs-body); }
+.slider-button a { font-size: var(--fs-btn); }
+
+/* --- SERVICE SECTION --- */
+#wdcmsservice .wdservice .service-title { font-size: var(--fs-h2); }
+#wdcmsservice .wdservice .service-desc { font-size: var(--fs-body); }
+
+/* --- TOP BANNER --- */
+#wdcmstopbanner .box-heading { font-size: var(--fs-section); }
+#wdcmstopbanner .top-desc { font-size: var(--fs-body); color: #000; }
+.topbanner-btn.btn { font-size: var(--fs-btn); }
+
+/* --- TESTIMONIAL --- */
+#wdcmstestimonial .box-heading { font-size: var(--fs-section); }
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-content .testimonial-desc p { font-size: var(--fs-body); }
+#wdcmstestimonial .wdtestimonial-content .wdtestimonial-inner ul li .testimonial-user-title h4 { font-size: var(--fs-h3); }
+
+/* --- BOTTOM BANNER --- */
+#wdcmsbottombanner .box-heading { font-size: var(--fs-section); }
+#wdcmsbottombanner .bottom-desc,
+#wdcmsbottombanner .bottom-desc p { font-size: var(--fs-body); }
+#wdcmsbottombanner .appointment-box h4 { font-size: var(--fs-h3); }
+#wdcmsbottombanner .appointment-box p,
+#wdcmsbottombanner .warehouse-box p { font-size: var(--fs-body); }
+#wdcmsbottombanner .opening-hours h4,
+#wdcmsbottombanner .warehouse-box h4 { font-size: var(--fs-h2); }
+#wdcmsbottombanner .hours-row { font-size: var(--fs-body); }
+#wdcmsbottombanner .hours-note { font-size: var(--fs-small); }
+#wdcmsbottombanner .bottom-desc p,
+#wdcmsbottombanner .appointment-box p,
+#wdcmsbottombanner .warehouse-box p,
+#wdcmsbottombanner .hours-row,
+#wdcmsbottombanner .hours-note { color: #000; }
+.bottombanner-btn.btn { font-size: var(--fs-btn); }
+
+/* --- SUB-BANNER --- */
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .main-title { font-size: var(--fs-section); }
+#wdsubbannercmsblock .subbanners .one-half .subbanner .subbanner-text .shopnow a { font-size: var(--fs-btn); }
+
+/* --- NEWSLETTER --- */
+.news-left .news-title { font-size: var(--fs-section); }
+.news-left .contact-info { font-size: var(--fs-body); }
+.newsletter .btn.btn-lg { font-size: var(--fs-btn); }
+
+/* --- BLOG --- */
+.box.webdigifyblog .box-heading { font-size: var(--fs-section); }
+.blog-right h4 a { font-size: var(--fs-h4); }
+.blog-desc { font-size: var(--fs-body); }
+.read-more a { font-size: var(--fs-small); }
+
+/* --- FOOTER --- */
+footer h5 { font-size: var(--fs-h2); }
+.footer-blocks .footerleft .contact-block span,
+#footer .column li a { font-size: var(--fs-small); }
+p.powered { font-size: var(--fs-small); }
+.bottomfooter .btn-link { font-size: var(--fs-small); }
+
+/* --- HOME TAB --- */
+.hometab-heading.box-heading { font-size: var(--fs-section); }
+.htabs a { font-size: var(--fs-body); }
+.tab-head .box-heading { font-size: var(--fs-section) !important; }
+
+/* --- PRODUCT CARDS (listing, home, related) --- */
+.product-thumb h4 { font-size: var(--fs-h4); }
+.product-thumb .price { font-size: var(--fs-h4); }
+.product-thumb .price-old { font-size: var(--fs-small); }
+.product-thumb .price-tax { font-size: var(--fs-micro); }
+.product-grid .description,
+.product-list .description { font-size: var(--fs-body); color: #000; }
+.restoration-thumb .product-thumb .caption h4 { font-size: var(--fs-h4); }
+
+/* --- PRODUCT LISTING (catalog/specials) --- */
+#product-special .category_description { font-size: var(--fs-body); }
+#product-special .refine-search { font-size: var(--fs-h3); }
+#product-special .category_list .category-item a { font-size: var(--fs-small); }
+#product-special .category_filter label.control-label,
+#product-special .category_filter .btn-group button,
+#product-special .compare-total a { font-size: var(--fs-small); }
+#product-special .product-block button.cart_button,
+#product-special .product-layout.product-list .product-price-actions .action .cart_button { font-size: var(--fs-btn); }
+.special-tag,
+.stock_status { font-size: var(--fs-micro); }
+
+/* --- PRODUCT PAGE --- */
+#content.productpage .product-title { font-size: var(--fs-h1) !important; }
+.productpage .special-price { font-size: var(--fs-h4) !important; }
+.productpage .description table td span,
+.productpage .description table td.description-right { font-size: var(--fs-body); }
+.form-group.qty #button-cart,
+.form-group.qty #button-enquiry { font-size: var(--fs-btn); }
+#tabs_info.product-tab li a { font-size: var(--fs-body); }
+#tab-description,
+#tab-specification { font-size: var(--fs-body); }
+
+/* --- ENQUIRY MODAL --- */
+.enquiry-header .modal-title,
+.enquiry-modal .modal-title { font-size: var(--fs-h1); }
+.btn-submit { font-size: var(--fs-btn); }
+#itemEnquiryModal #suburbField label,
+#itemEnquiryModal #suburbField #suburb,
+#itemEnquiryModal #postcodeField label,
+#itemEnquiryModal #postcodeField #postcode { font-size: var(--fs-micro); }
+
+/* --- CHECKOUT --- */
+.checkout-section h3 { font-size: var(--fs-h3); }
+.billing-card-info strong,
+.pickup-info strong,
+.shipping-method-info strong,
+.payment-method-info strong { font-size: var(--fs-body); }
+.billing-card-info span,
+.pickup-info span,
+.shipping-method-info span,
+.payment-method-info span { font-size: var(--fs-small); }
+.contact-signin a,
+.toggle-btn { font-size: var(--fs-small); }
+.agree-checkbox { font-size: var(--fs-small); }
+.btn-place-order,
+#payment-button-container #button-confirm,
+#payment-button-container .btn { font-size: var(--fs-btn); }
+
+/* --- CONTACT --- */
+.contact-hero h2 { font-size: var(--fs-h1); }
+.contact-hero p { font-size: var(--fs-body); }
+.contact-form legend,
+.left > strong { font-size: var(--fs-h3); }
+.left .detail strong { font-size: var(--fs-body); }
+.contact-form-design .left,
+.contact-form .form-control,
+.contact-form .form-intro { font-size: var(--fs-small); }
+
+/* --- INFORMATION / RESTORATION --- */
+#information-information #content > .row > .col-sm-12,
+#information-information #content > p { font-size: var(--fs-body); }
+#information-information #content .section-title { font-size: var(--fs-h2); }
+#information-information #content .image-title { font-size: var(--fs-h3); }
+#information-information #content .image-description { font-size: var(--fs-body); }
+#information-information #content p,
+#information-information #content span,
+#information-information #content div,
+#information-information #content li {
+    font-family: 'Times New Roman', serif !important;
+    color: #000000 !important;
+    font-size: var(--fs-body) !important;
+    line-height: 22px !important;
+    letter-spacing: 0.4px !important;
+}
+#information-information #content p strong,
+#information-information #content span strong { font-weight: 700 !important; }
+#information-information #content .custom-header {
+    font-family: 'Times New Roman', serif !important;
+    color: var(--primary-color) !important;
+    font-size: var(--fs-h2) !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.4px !important;
+    margin: 24px 0 12px !important;
+}
+.cms-title { font-size: var(--fs-h2) !important; }
+.restoration-thumb > p { font-size: var(--fs-body); }
+
+/* --- INTERIORS / SHOWROOM --- */
+#content section.interiors-page .hero-title,
+#content section.showroom-page .hero-title { font-size: var(--fs-h1); }
+#content section.showroom-page h2 { font-size: var(--fs-h2); }
+#content section.interiors-page p,
+#content section.showroom-page p { font-size: var(--fs-body); }
+#content section.interiors-page figcaption,
+#content section.showroom-page figcaption { font-size: var(--fs-small); }
+
+/* --- CART / ACCOUNT / MISC --- */
+.shopping-cart td,
+.shopping-cart td a,
+.shopping-cart td strong { font-size: var(--fs-body); }
+.shopping-cart .total { font-size: var(--fs-h4); }
+#content h1 { font-size: var(--fs-h1); }
+#content h3 { font-size: var(--fs-h3); }
+#content > p,
+#button-quote,
+.buttons .btn,
+.form-horizontal .control-label,
+.col-sm-offset-8 .table-bordered td { font-size: var(--fs-body); }
+.panel-title,
+.panel-title a { font-size: var(--fs-body) !important; }
+#accordion h2 { font-size: var(--fs-h3); }
+#accordion p,
+#accordion .radio label,
+#accordion .control-label,
+#button-account,
+#button-login { font-size: var(--fs-body); }
+#accordion a[href*="forgotten"] { font-size: var(--fs-small); }

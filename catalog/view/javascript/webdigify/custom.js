@@ -719,7 +719,11 @@ $(window).resize(function(){searchtoggle();});
 // Top Fixed Menu 
 function headerfix() {
 	$(".header_top").addClass('fixed');
-	$('body').css('padding-top', $('.header_top').outerHeight() + 'px');
+	if ($(window).width() > 767) {
+		$('body').css('padding-top', $('.header_top').outerHeight() + 'px');
+	} else {
+		$('body').css('padding-top', '0px');
+	}
 }
 
 jQuery(window).resize(function() {headerfix();});
