@@ -1409,6 +1409,54 @@ footer h5,
 /* Mobile (< 651px): list view falls back to stacked layout
    defined in stylesheet.css, so nothing extra needed here. */
 
+/* "More Info" button — styled identically to Add to Cart */
+#product-special .product-layout.product-grid .product-details .caption .action {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#product-special .product-block .action a.btn-more-info {
+    display: inline-block;
+    vertical-align: middle;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 14px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 400ms ease-in-out 0s;
+    -webkit-transition: all 400ms ease-in-out 0s;
+}
+
+#product-special .product-block .action a.btn-more-info:hover {
+    background: var(--hover-color);
+    color: #fff;
+}
+
+@media (max-width: 1199px) {
+    #product-special .product-block .action a.btn-more-info {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    #product-special .product-block .action a.btn-more-info {
+        font-size: 15px;
+        padding: 10px 24px;
+    }
+}
+
 /* =================================================
     16. SIDEBAR CATEGORY
 ================================================= */
@@ -1597,22 +1645,13 @@ span.search-title {
 .page-title {
     font-family: 'Times New Roman', serif;
     font-size: 32px;
+    color: var(--primary-color);
 }
 
 .category_description {
     font-family: 'Times New Roman', serif;
     font-size: 17px;
     display: none;
-}
-
-.refine-search {
-    font-family: 'Times New Roman', serif;
-    font-size: 22px;
-}
-
-.category-item a {
-    font-family: 'Times New Roman', serif;
-    font-size: 17px;
 }
 
 .category_filter label.control-label,
@@ -2661,7 +2700,7 @@ p.powered {
 ================================================= */
 
 #content section.showroom-page {
-    margin-bottom: 60px;
+    margin-bottom: 24px;
 }
 
 #content section.showroom-page:last-child {
@@ -2670,34 +2709,35 @@ p.powered {
 
 #content section.showroom-page .hero-title {
     font-family: 'Times New Roman', serif;
-    font-size: 54px;
+    font-size: var(--fs-h1) !important;
     line-height: 1.2;
-    color: var(--primary-color);
-    margin: 0 0 30px;
+    color: var(--primary-color) !important;
+    margin: 0 0 16px;
     font-weight: 400;
     letter-spacing: 1px;
 }
 
 #content section.showroom-page h2 {
-    font-family: 'Times New Roman', serif;
-    font-size: 36px;
+    font-family: 'Times New Roman', serif !important;
+    font-size: var(--fs-h2) !important;
     line-height: 1.3;
-    color: var(--primary-color);
-    margin: 0 0 20px;
-    font-weight: 400;
+    color: var(--primary-color) !important;
+    margin: 0 0 12px;
+    font-weight: 400 !important;
+    text-align: center;
 }
 
 #content section.showroom-page p {
-    font-family: 'Times New Roman', serif;
-    font-size: 18px;
+    font-family: 'Times New Roman', serif !important;
+    font-size: var(--fs-body) !important;
     line-height: 1.8;
-    color: #000;
-    margin-bottom: 18px;
+    color: #000 !important;
+    margin-bottom: 10px;
 }
 
 #content section.showroom-page figure {
     display: block;
-    margin: 0 0 20px;
+    margin: 0 0 8px;
     overflow: hidden;
 }
 
@@ -2709,7 +2749,8 @@ p.powered {
 
 #content section.showroom-page figure img {
     width: 100%;
-    height: auto;
+    max-height: 380px;
+    object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
 }
@@ -2719,17 +2760,17 @@ p.powered {
 }
 
 #content section.showroom-page figcaption {
-    font-family: 'Times New Roman', serif;
-    font-size: 16px;
+    font-family: 'Times New Roman', serif !important;
+    font-size: var(--fs-small) !important;
     line-height: 1.4;
-    color: #000;
+    color: #000 !important;
     text-align: center;
-    padding: 12px 0 0;
+    padding: 6px 0 0;
     font-style: italic;
 }
 
 #content section.showroom-page .row {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 #content section.showroom-page .row:last-child {
@@ -2738,111 +2779,190 @@ p.powered {
 
 #content section.showroom-page [class*="col-"] {
     text-align: left;
+    padding: 0 8px;
+}
+
+#content section.showroom-page [class*="col-"] p {
+    text-align: center;
+}
+
+/* Wrapped heading + intro text blocks (e.g. "Our Courtyard", "Office/Kitchen") */
+#content section.showroom-page .showroom-desc {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* First hero heading uses .custom-header → center only within showroom */
+#content section.showroom-page .custom-header {
+    text-align: center;
+    margin: 0 0 14px !important;
+}
+
+/* Main (hero) heading of the Showroom tour */
+#content section.showroom-page .showroom-hero,
+#information-information #content section.showroom-page .showroom-hero {
+    display: block;
+    font-family: 'Times New Roman', serif !important;
+    font-size: var(--fs-h2) !important;
+    line-height: 1.3;
+    color: var(--primary-color) !important;
+    margin: 0 0 12px;
+    font-weight: 400 !important;
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+
+/* Sub-heading standard for the Showroom tour (replaces tag h2).
+   Size diatur lewat variabel, default --fs-h3; ubah sesuai kebutuhan. */
+#content section.showroom-page .showroom-title,
+#information-information #content section.showroom-page .showroom-title {
+    display: block;
+    font-family: 'Times New Roman', serif !important;
+    font-size: var(--fs-h3) !important;
+    line-height: 1.3;
+    color: var(--primary-color) !important;
+    margin: 0 0 12px;
+    font-weight: 400 !important;
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+
+/* Center single-image columns */
+#content section.showroom-page .row:has(.showroom-single) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#content section.showroom-page .showroom-single {
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+/* Workshop 2-col layout: stack the images vertically in the 8-col */
+#content section.showroom-page .col-lg-8 figure {
+    margin-bottom: 10px;
+}
+
+#content section.showroom-page .col-lg-8 figure:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 991px) {
     #content section.showroom-page {
-        margin-bottom: 45px;
+        margin-bottom: 18px;
     }
 
     #content section.showroom-page .hero-title {
-        font-size: 40px;
+        font-size: var(--fs-h2) !important;
+    }
+
+    #content section.showroom-page .showroom-hero,
+    #information-information #content section.showroom-page .showroom-hero {
+        font-size: var(--fs-h3) !important;
     }
 
     #content section.showroom-page h2 {
-        font-size: 30px;
+        font-size: var(--fs-h3) !important;
     }
 
     #content section.showroom-page p {
-        font-size: 17px;
+        font-size: var(--fs-body) !important;
+    }
+
+    #content section.showroom-page figure img {
+        max-height: 320px;
     }
 }
 
 @media (max-width: 767px) {
     #content section.showroom-page {
-        margin-bottom: 35px;
+        margin-bottom: 14px;
     }
 
     #content section.showroom-page .hero-title {
-        font-size: 32px;
+        font-size: var(--fs-h3) !important;
+    }
+
+    #content section.showroom-page .showroom-hero,
+    #information-information #content section.showroom-page .showroom-hero {
+        font-size: var(--fs-h3) !important;
     }
 
     #content section.showroom-page h2 {
-        font-size: 26px;
+        font-size: var(--fs-h4) !important;
+        margin: 0 0 8px;
+    }
+
+    #content section.showroom-page .showroom-title,
+    #information-information #content section.showroom-page .showroom-title {
+        font-size: var(--fs-h4) !important;
+        margin: 0 0 8px;
     }
 
     #content section.showroom-page p {
-        font-size: 16px;
+        font-size: var(--fs-body) !important;
+    }
+
+    #content section.showroom-page figure img {
+        max-height: 280px;
     }
 
     #content section.showroom-page figcaption {
-        font-size: 14px;
-        padding: 8px 0 0;
+        font-size: var(--fs-micro) !important;
+        padding: 4px 0 0;
     }
 
     #content section.showroom-page .row {
-        margin-bottom: 10px;
+        margin-bottom: 4px;
     }
 
     #content section.showroom-page [class*="col-"] {
-        padding: 0 15px 20px !important;
+        padding: 0 4px 8px;
+        width: 100% !important;
+        float: none !important;
+    }
+
+    #content section.showroom-page .showroom-single {
+        max-width: 100%;
     }
 }
 
-/* Native horizontal scroll for category_list */
-#product-special .category_list {
-    overflow: hidden;
-    background-color: #f5f5f5;
-    padding: 10px;
+/* Category dropdown filter — same pattern as sort-by, one row with sort */
+.category_filter .btn-list-grid {
+    display: none;
 }
-#product-special .category_list ul {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px;
-    padding: 7px 0 10px;
-    margin: 7px 0 0;
-    list-style: none;
-    width: auto !important;
-}
-
-#product-special .category_list .category-item {
-    flex: 0 0 calc(25% - 8px) !important;
-    min-width: 150px;
-    float: none !important;
-    width: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-#product-special .category_list .category-item a {
-    white-space: nowrap;
-    padding: 8px 20px;
-    display: block;
+.category_filter .pagination-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 15px;
+    float: right;
+    margin: 0;
     width: auto;
-    color: #800020;
-    font-size: 17px;
 }
-#product-special .category_list .category-item a:hover {
-    color: #800020;
-    border-color: #800020;
+.category-wrapper {
+    float: left;
+    margin-right: 0;
 }
-@media (max-width: 1199px) {
-    #product-special .category_list .category-item {
-        flex: 0 0 calc(33.33% - 7px) !important;
-    }
+.category_filter .sort-by-wrapper {
+    float: left;
+    margin-right: 0;
+}
+.category_filter .category-by {
+    float: left;
+    margin: 7px 10px 0 0;
+    width: auto;
+    padding: 0;
+}
+.category_filter .category-select {
+    float: left;
+    width: 150px;
+    padding: 0;
 }
 @media (max-width: 767px) {
-    #product-special .category_list .category-item {
-        flex: 0 0 calc(33.33% - 7px) !important;
-    }
-}
-@media (max-width: 543px) {
-    #product-special .category_list .category-item {
-        flex: 0 0 calc(50% - 5px) !important;
-    }
-}
-@media (max-width: 379px) {
-    #product-special .category_list .category-item {
-        flex: 0 0 100% !important;
+    .category-wrapper {
+        width: 100%;
+        margin: 0 0 15px;
     }
 }
 
@@ -3552,6 +3672,12 @@ p.powered {
     display: none;
 }
 
+@media (max-width: 767px) {
+    .content-top-breadcum {
+        margin-bottom: 20px;
+    }
+}
+
 .main-category-list .wd-menu .ul-top-items > li {
     padding: 38px 12px !important;
 }
@@ -3577,6 +3703,7 @@ a:focus {
 .category_thumb .page-title {
     font-size: 30px;
     font-weight: 600;
+    color: var(--primary-color);
 }
 
 /* =================================================
@@ -3814,7 +3941,7 @@ body .input-group-btn .btn-primary {
     :root { --fs-hero: 42px; --fs-section: 34px; --fs-h1: 32px; --fs-h2: 24px; --fs-h3: 20px; --fs-h4: 19px; --fs-body: 15px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 15px; }
 }
 @media (max-width: 479px) {
-    :root { --fs-hero: 30px; --fs-section: 28px; --fs-h1: 28px; --fs-h2: 22px; --fs-h3: 18px; --fs-h4: 18px; --fs-body: 14px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 15px; }
+    :root { --fs-hero: 30px; --fs-section: 28px; --fs-h1: 32px; --fs-h2: 22px; --fs-h3: 18px; --fs-h4: 18px; --fs-body: 14px; --fs-small: 13px; --fs-micro: 12px; --fs-btn: 15px; }
 }
 
 /* --- GLOBAL BASE --- */
@@ -3900,8 +4027,6 @@ p.powered { font-size: var(--fs-small); }
 
 /* --- PRODUCT LISTING (catalog/specials) --- */
 #product-special .category_description { font-size: var(--fs-body); }
-#product-special .refine-search { font-size: var(--fs-h3); }
-#product-special .category_list .category-item a { font-size: var(--fs-small); }
 #product-special .category_filter label.control-label,
 #product-special .category_filter .btn-group button,
 #product-special .compare-total a { font-size: var(--fs-small); }
@@ -3989,12 +4114,12 @@ p.powered { font-size: var(--fs-small); }
 
 /* --- INTERIORS / SHOWROOM --- */
 #content section.interiors-page .hero-title,
-#content section.showroom-page .hero-title { font-size: var(--fs-h1); }
-#content section.showroom-page h2 { font-size: var(--fs-h2); }
+#content section.showroom-page .hero-title { font-size: var(--fs-h1) !important; }
+#content section.showroom-page h2 { font-size: var(--fs-h2) !important; }
 #content section.interiors-page p,
-#content section.showroom-page p { font-size: var(--fs-body); }
+#content section.showroom-page p { font-size: var(--fs-body) !important; }
 #content section.interiors-page figcaption,
-#content section.showroom-page figcaption { font-size: var(--fs-small); }
+#content section.showroom-page figcaption { font-size: var(--fs-small) !important; }
 
 /* --- CART / ACCOUNT / MISC --- */
 .shopping-cart td,
@@ -4017,3 +4142,24 @@ p.powered { font-size: var(--fs-small); }
 #button-account,
 #button-login { font-size: var(--fs-body); }
 #accordion a[href*="forgotten"] { font-size: var(--fs-small); }
+
+/* --- PRODUCT GRID MOBILE: center product cards --- */
+@media (max-width: 767px) {
+    #product-special .row.cat_prod {
+        row-gap: 20px;
+    }
+    #product-special .row.cat_prod .product-layout.product-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #product-special .row.cat_prod .product-layout.product-grid .product-block-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #product-special .row.cat_prod .product-layout.product-grid .caption,
+    #product-special .row.cat_prod .product-layout.product-grid .product-details .action {
+        text-align: center;
+    }
+}

@@ -30,6 +30,7 @@ $_['button_address_add']    = 'اضافة عناوين';
 $_['button_back']           = 'رجوع';
 $_['button_continue']       = 'متابعة';
 $_['button_cart']           = 'اضافة للسلة';
+$_['button_more_info']      = 'المزيد';
 $_['button_cancel']         = 'الغاء';
 $_['button_compare']        = 'اضافة للمقارنة';
 $_['button_wishlist']       = 'إضافة لرغباتي';

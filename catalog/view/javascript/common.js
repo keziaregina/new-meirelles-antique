@@ -105,13 +105,8 @@ $(document).ready(function() {
 		localStorage.setItem('display', 'grid');
 	});
 
-	if (localStorage.getItem('display') == 'list') {
-		$('#list-view').trigger('click');
-		$('#list-view').addClass('active');
-	} else {
-		$('#grid-view').trigger('click');
-		$('#grid-view').addClass('active');
-	}
+	$('#grid-view').trigger('click');
+	$('#grid-view').addClass('active');
 
 	// Checkout
 	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function(e) {
