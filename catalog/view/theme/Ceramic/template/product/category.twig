@@ -81,7 +81,7 @@
       </div>
     </div>
     <div class="row cat_prod" data-total="{{ products_total }}" data-page="1" data-perpage="{{ products_per_page }}" data-loadurl="{{ ajax_url }}">
-        {% for product in products %}
+        {% for product in products if product.qty > 0 %}
         <div class="{{ grid_class }}">
           <div class="product-block product-thumb transition">
             <div class="product-block-inner">

@@ -115,7 +115,7 @@
           <ul class="list-unstyled">
             {% if not special %}
             <li>
-              <h4 class="special-price"><span class="old-prices">{{ price }}</span> including GST</h4>
+              <h4 class="special-price"><span class="old-prices">{{ price }}</span> <span class="gst-text">including GST</span></h4>
             </li>
             {% else %}
             <li><h4 class="special-price"><span class="new-prices">{{ special }}</span></h4>
@@ -256,21 +256,6 @@
               <div class="help-block" id="recurring-description"></div>
             </div>
             {% endif %}
-            <div class="form-group qty">
-              {% if on_hold %}
-              <button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block disabled">{{ text_on_hold }}</button>
-              {% elseif stock_qty =='true' %} 
-              <button type="button" id="button-cart" onclick="cart.add('{{ product_id }}');" data-product-id="{{ product_id }}" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block btn-crt {% if cart_has_product %} has-cart {% endif %}">{{ button_cart }}</button>
-              {% else %}
-              <button type="button" id="button" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block disabled">{{ text_outstock }}</button> 
-              {% endif %}
-              <button type="button" id="button-enquiry" onclick="document.getElementById('product_model').value='{{ model }}';" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#itemEnquiryModal">Make an enquiry</button>
-               <div class="btn-group prd_page">
-
-            <button type="button" class="btn btn-default wishlist" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');">{{ button_wishlist }}</button>
-            <button type="button" class="btn btn-default compare" title="{{ button_compare }}" onclick="compare.add('{{ product_id }}');">{{ button_compare }}</button>
-          </div>
-          </div>
             
           {% if minimum > 1 %}
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
@@ -289,32 +274,26 @@
                 <div class="tab-pane active" id="tab-description">
                   {{ description }} </br>
                   <strong>Status: </strong> {% if stock_qty =='true' %} Available {% else %} Sold {% endif %}
+                  <br>
+                  <strong>Location: </strong> {% if shipping_local_collection and collection_location %}{{ collection_location }}{% else %}-{% endif %}
 
-                  {% if shipping_local_collection or shipping_australia_post or shipping_courier %}
-                    <div class="delivery-section">
-                      <p class="delivery-heading">Delivery & Collection</p>
+                  <div class="delivery-section">
+                    <p class="delivery-heading">Delivery & Collection</p>
 
-                      {% if shipping_local_collection and collection_location %}
-                        <div class="delivery-row">
-                          <span class="delivery-label">Collection Location</span>
-                          <span class="delivery-value">{{ collection_location }}</span>
-                        </div>
-                      {% endif %}
-
-                      <div class="delivery-row">
-                        <span class="delivery-label">Available Delivery Methods</span>
-                        <span class="delivery-value">
-                          {%- if shipping_local_collection %}Local Collection{% endif -%}
-                          {%- if shipping_australia_post %}{% if shipping_local_collection or shipping_courier %}, {% endif %}Australia Post{% endif -%}
-                          {%- if shipping_courier %}{% if shipping_local_collection or shipping_australia_post %}, {% endif %}Courier{% endif -%}
-                        </span>
-                      </div>
-
-                      {% if shipping_courier %}
-                        <p class="delivery-note">International delivery can also be arranged. Please contact us for further information.</p>
-                      {% endif %}
+                    <div class="delivery-row">
+                      <span class="delivery-label">Available Delivery Methods</span>
+                      <span class="delivery-value">
+                        {%- if shipping_local_collection %}Local Collection{% endif -%}
+                        {%- if shipping_australia_post %}{% if shipping_local_collection or shipping_courier %}, {% endif %}Australia Post{% endif -%}
+                        {%- if shipping_courier %}{% if shipping_local_collection or shipping_australia_post %}, {% endif %}Courier{% endif -%}
+                        {%- if not shipping_local_collection and not shipping_australia_post and not shipping_courier %}-{% endif -%}
+                      </span>
                     </div>
-                  {% endif %}
+
+                    {% if shipping_courier %}
+                      <p class="delivery-note">International delivery can also be arranged. Please contact us for further information.</p>
+                    {% endif %}
+                  </div>
                 </div>
                 <div class="tab-pane" id="tab-specification">
                   <table class="table table-bordered">
@@ -354,6 +333,23 @@
               </div>
             </div>
 
+            <div class="form-group qty">
+              <div class="btn-enq-row">
+              {% if on_hold %}
+              <button type="button" id="button-cart" class="btn btn-primary btn-lg btn-block disabled">{{ text_on_hold }}</button>
+              {% elseif stock_qty =='true' %} 
+              <button type="button" id="button-cart" onclick="cart.add('{{ product_id }}');" data-product-id="{{ product_id }}" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block btn-crt {% if cart_has_product %} has-cart {% endif %}">{{ button_cart }}</button>
+              {% else %}
+              <button type="button" id="button" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block disabled">{{ text_outstock }}</button> 
+              {% endif %}
+              <button type="button" id="button-enquiry" onclick="document.getElementById('product_model').value='{{ model }}';" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#itemEnquiryModal">Make an enquiry</button>
+              </div>
+               <div class="btn-group prd_page">
+
+            <button type="button" class="btn btn-default wishlist" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');">{{ button_wishlist }}</button>
+          </div>
+          </div>
+
            <hr>
        <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style" data-url="{{ share }}"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
@@ -370,13 +366,6 @@
       </div>
      
           
-      {% if tags %}
-        <p>{{ text_tags }}
-        {% for i in 0..tags|length %}
-        {% if i < (tags|length - 1) %} <a href="{{ tags[i].href }}">{{ tags[i].tag }}</a>,
-        {% else %} <a href="{{ tags[i].href }}">{{ tags[i].tag }}</a> {% endif %}
-        {% endfor %} </p>
-        {% endif %}
       {{ content_bottom }}
     </div>
    

@@ -1,4 +1,4 @@
-{% for product in products %}
+{% for product in products if product.qty > 0 %}
 <div class="product-layout product-list col-xs-12">
   <div class="product-block product-thumb transition">
  <div class="product-block-inner">
