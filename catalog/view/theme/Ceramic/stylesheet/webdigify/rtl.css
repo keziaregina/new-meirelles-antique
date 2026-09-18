@@ -463,6 +463,13 @@ span.customSelect{text-align: right;}
 .productpage .form-group.qty .wishlist, .productpage .form-group.qty .compare, .product-rightinfo .btn-group.prd_page button.btn.btn-default.wishlist, .product-rightinfo .btn-group.prd_page .btn-default.compare {
     padding: 5px 4px 5px 15px;
 }
+.productpage .btn-group.prd_page button.print-product {
+    margin: 0 25px 0 0;
+}
+.productpage .btn-group.prd_page button.print-product i {
+    margin-right: 0;
+    margin-left: 6px;
+}
 p.text-right.button-container a.addtocart.btn.btn-primary {
     margin: 0 0 0 10px;
 }

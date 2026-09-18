@@ -239,6 +239,8 @@ class ControllerProductProduct extends Controller {
 			$data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
+			$data['print_url'] = $this->url->link('product/product/printProduct', 'product_id=' . (int)$this->request->get['product_id']);
+			$data['text_print'] = $this->language->get('text_print');
 			$data['manufacturer'] = $product_info['manufacturer'];
 			$data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
 			$data['model'] = $product_info['model'];
@@ -820,5 +822,127 @@ class ControllerProductProduct extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function printProduct() {
+		$this->load->language('product/product');
+
+		$this->load->model('catalog/product');
+
+		if (isset($this->request->get['product_id'])) {
+			$product_id = (int)$this->request->get['product_id'];
+		} else {
+			$product_id = 0;
+		}
+
+		$product_info = $this->model_catalog_product->getProduct($product_id);
+
+		if ($product_info) {
+			$this->document->setTitle($product_info['name']);
+
+			$data['heading_title'] = $product_info['name'];
+			$data['text_manufacturer'] = $this->language->get('text_manufacturer');
+			$data['text_model'] = $this->language->get('text_model');
+			$data['text_stock'] = $this->language->get('text_stock');
+			$data['text_instock'] = $this->language->get('text_instock');
+			$data['text_on_hold'] = $this->language->get('text_on_hold');
+			$data['tab_description'] = $this->language->get('tab_description');
+			$data['tab_attribute'] = $this->language->get('tab_attribute');
+			$data['text_error'] = $this->language->get('text_error');
+
+			$data['manufacturer'] = $product_info['manufacturer'];
+			$data['model'] = $product_info['model'];
+			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			$data['on_hold'] = $product_info['status'] == '2';
+
+			if ($product_info['quantity'] <= 0) {
+				$data['stock'] = $product_info['stock_status'];
+			} elseif ($this->config->get('config_stock_display')) {
+				$data['stock'] = $product_info['quantity'];
+			} else {
+				$data['stock'] = $this->language->get('text_instock');
+			}
+
+			if ($product_info['quantity'] <= 0) {
+				$data['stock_qty'] = 'false';
+			} else {
+				$data['stock_qty'] = 'true';
+			}
+
+			if ($product_info['image']) {
+				$data['popup'] = $this->config->get('config_url') . 'image/' . $product_info['image'];
+			} else {
+				$data['popup'] = '';
+			}
+
+			if ($product_info['image']) {
+				$data['thumb'] = $this->config->get('config_url') . 'image/' . $product_info['image'];
+			} else {
+				$data['thumb'] = '';
+			}
+
+			$data['images'] = array();
+
+			$results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
+
+			foreach ($results as $result) {
+				$data['images'][] = array(
+					'popup' => $this->config->get('config_url') . 'image/' . $result['image'],
+					'thumb' => $this->config->get('config_url') . 'image/' . $result['image']
+				);
+			}
+
+			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+			} else {
+				$data['price'] = false;
+			}
+
+			if ((float)$product_info['special']) {
+				$data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+			} else {
+				$data['special'] = false;
+			}
+
+			$data['percentsaving'] = round((($product_info['price'] - $product_info['special']) / $product_info['price']) * 100, 0);
+
+			if ($this->config->get('config_tax')) {
+				$data['tax'] = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price'], $this->session->data['currency']);
+			} else {
+				$data['tax'] = false;
+			}
+
+			$data['_dimensions'] = '';
+			if (!empty($product_info['_dimensions'])) {
+				$data['_dimensions'] = $product_info['_dimensions'];
+			}
+
+			$data['_condition_report'] = '';
+			if (!empty($product_info['_condition_report'])) {
+				$data['_condition_report'] = $product_info['_condition_report'];
+			}
+
+			$data['shipping_local_collection'] = !empty($product_info['shipping_local_collection']);
+			$data['shipping_australia_post'] = !empty($product_info['shipping_australia_post']);
+			$data['shipping_courier'] = !empty($product_info['shipping_courier']);
+
+			$data['collection_location'] = '';
+			if (!empty($product_info['collection_location_id'])) {
+				$collection_location_info = $this->model_catalog_product->getCollectionLocation($product_info['collection_location_id']);
+				if ($collection_location_info) {
+					$data['collection_location'] = $collection_location_info['name'];
+				}
+			}
+
+			$this->response->setOutput($this->load->view('product/product_print', $data));
+		} else {
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
+			$data['error'] = true;
+			$data['heading_title'] = $this->language->get('text_error');
+			$data['text_error'] = $this->language->get('text_error');
+
+			$this->response->setOutput($this->load->view('product/product_print', $data));
+		}
 	}
 }

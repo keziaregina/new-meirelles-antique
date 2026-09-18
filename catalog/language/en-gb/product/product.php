@@ -10,6 +10,7 @@ $_['text_stock']               = 'Availability:';
 $_['text_instock']             = 'In Stock';
 $_['text_on_hold']             = 'On Hold';
 $_['text_tax']                 = 'Incl. Tax:';
+$_['text_print']               = 'Print';
 $_['text_discount']            = ' or more ';
 $_['text_option']              = 'Available Options';
 $_['text_minimum']             = 'This product has a minimum quantity of %s';

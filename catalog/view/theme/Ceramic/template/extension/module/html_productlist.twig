@@ -1,0 +1,35 @@
+<div class="topbanner-slider">
+	<div class="customNavigation">
+		<a class="prev fa fa-arrow-left">&nbsp;</a>
+		<a class="next fa fa-arrow-right">&nbsp;</a>
+	</div>
+	<div class="topbanner-slider-items">
+		<div id="cmstopbanner-latest-carousel" class="owl-carousel">
+			{% for product in products %}
+			<div class="slider-item">
+				<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" class="img-responsive" /></a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<script type="text/javascript"><!--
+$('#cmstopbanner-latest-carousel').owlCarousel({
+	singleItem: true,
+	autoPlay: 4000,
+	autoPlaySpeed: 800,
+	stopOnHover: true,
+	navigation: false,
+	pagination: true,
+	rewindNav: true
+});
+$('.topbanner-slider .customNavigation .prev').on('click', function() {
+	$('#cmstopbanner-latest-carousel').trigger('owl.prev');
+});
+$('.topbanner-slider .customNavigation .next').on('click', function() {
+	$('#cmstopbanner-latest-carousel').trigger('owl.next');
+});
+$(window).on('load', function() {
+	$('#cmstopbanner-latest-carousel').data('owlCarousel').reload();
+});
+//--></script>
