@@ -3120,6 +3120,10 @@ p.powered {
 .category_filter .btn-list-grid {
     display: none;
 }
+.category_filter {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .category_filter .pagination-right {
     display: flex;
     flex-wrap: wrap;
@@ -4296,6 +4300,15 @@ p.powered { font-size: var(--fs-small); }
     line-height: 1.2 !important;
     letter-spacing: 0.4px !important;
     margin: 24px 0 12px !important;
+}
+#information-information #content ul {
+    list-style: disc;
+    padding-left: 40px;
+    margin: 0 0 16px;
+}
+#information-information #content ul li {
+    list-style: disc;
+    margin-bottom: 4px;
 }
 .cms-title { font-size: var(--fs-h2) !important; }
 .restoration-thumb > p { font-size: var(--fs-body); }
