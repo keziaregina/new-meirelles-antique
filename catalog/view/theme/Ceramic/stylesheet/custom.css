@@ -4353,6 +4353,43 @@ p.powered { font-size: var(--fs-small); }
 }
 
 /* =================================================
+   PRODUCT PAGE: WISHLIST BUTTON
+================================================= */
+.productpage .btn-group.prd_page button.wishlist {
+    font-family: 'Times New Roman', serif;
+    font-size: var(--fs-body);
+    font-weight: 400;
+    color: #666;
+    display: inline-block;
+    padding: 5px 0;
+    margin: 0;
+    text-align: left;
+    width: auto;
+    transition: none;
+    height: auto;
+    background: none;
+    border: 0;
+    top: 0;
+    line-height: 22px;
+}
+
+.productpage .btn-group.prd_page button.wishlist i {
+    color: var(--primary-color);
+    margin-right: 6px;
+    font-size: 14px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+.productpage .btn-group.prd_page button.wishlist:hover {
+    color: var(--primary-color);
+}
+
+.productpage .btn-group.prd_page button.wishlist::before {
+    content: none;
+}
+
+/* =================================================
    PRODUCT PAGE: PRINT BUTTON
 ================================================= */
 .productpage .btn-group.prd_page button.print-product {
