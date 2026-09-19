@@ -525,6 +525,17 @@ body {
     border-radius: 12px;
 }
 
+#wdcmsbottombanner .banner .bottom-image.image1:before,
+#wdcmsbottombanner .banner .bottom-image.image1:hover:before {
+    content: none;
+    display: none;
+    animation: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+    -o-animation: none;
+    -ms-animation: none;
+}
+
 .bottom-wrapper {
     display: flex;
     flex-wrap: wrap;
